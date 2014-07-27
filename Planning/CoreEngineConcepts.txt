@@ -1,0 +1,5 @@
+Physics: Centralized engine, all objects go in, collisions handled, clean world comes out.  This is the last step of the update loop.
+Objects: Component like model, the with a pure data class Entity at the head, lets see if a specified inheritance tree handles things cleaner than a generic object system.
+Magic: handled mainly in projectiles (entity spinoff)
+Pojectiles: Have events; Created, Impact, Destroyed sleeeeeepy zzz......
+Networking: 
