@@ -40,17 +40,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\State\EntityStates.cs" />
+    <Compile Include="Entities\State\EntityStateManager.cs" />
     <Compile Include="GameState\GameObject.cs" />
     <Compile Include="GameState\GameStateBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Utility\Assets.cs" />
     <Compile Include="World\Level.cs" />
+    <Compile Include="World\PhysicsEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\AI\" />
-    <Folder Include="Entities\Physics\" />
     <Folder Include="Entities\Render\" />
-    <Folder Include="Entities\State\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
