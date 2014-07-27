@@ -10,6 +10,8 @@ namespace MageTastic.Entities
 {
     class Player : Entity
     {
+        private void PlayerControl
+
         public Player(Rectangle collisionBoxDimensions, Point boundingBoxDimensions, Vector2 origin, Texture2D texture, Vector2 position)
             :base(collisionBoxDimensions, boundingBoxDimensions, origin, texture, position)
         { }
