@@ -15,6 +15,7 @@ namespace MageTastic.World
 
         public Level()
         {
+            Entities = new List<Entity>();
         }
 
         public List<Entity> QueryForCollision(Entity input)

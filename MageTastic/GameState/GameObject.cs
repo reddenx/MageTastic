@@ -5,14 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MageTastic.Utility;
+using Microsoft.Xna.Framework.Input;
 
 namespace MageTastic.GameState
 {
     class GameObject : Game
     {
-        private readonly GraphicsDeviceManager GraphicsDeviceManager;
-        private readonly SpriteBatch SpriteBatch;
+        private GraphicsDeviceManager GraphicsDeviceManager;
+        private SpriteBatch SpriteBatch;
+        private readonly Point ScreenDimensions = new Point(1024, 768);
         
+
         private GameStateBase CurrentGameState;
 
         public GameObject()
@@ -21,13 +25,20 @@ namespace MageTastic.GameState
             GraphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Assets";
             
-            GraphicsDeviceManager.PreferredBackBufferWidth = 1024;
-            GraphicsDeviceManager.PreferredBackBufferHeight = 768;
+
+            GraphicsDeviceManager.PreferredBackBufferWidth = ScreenDimensions.X;
+            GraphicsDeviceManager.PreferredBackBufferHeight = ScreenDimensions.Y;
+
         }
 
         protected override void Update(GameTime gameTime)
         {
             CurrentGameState.Update(gameTime);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
 
             base.Update(gameTime);
         }
@@ -41,21 +52,18 @@ namespace MageTastic.GameState
 
         protected override void Initialize()
         {
-            //non content based loading (startup network here, instantiate first gamestate, get services setup)
-
-            CurrentGameState = new GamePlay();
+            CurrentGameState = new GamePlay(ScreenDimensions);
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            //build up assets
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         protected override void UnloadContent()
         {
-            //unload content
             base.UnloadContent();
         }
     }

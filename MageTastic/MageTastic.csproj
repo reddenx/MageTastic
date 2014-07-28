@@ -52,6 +52,8 @@
     <Compile Include="GameState\GameStateBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Utility\Assets.cs" />
+    <Compile Include="Utility\Camera.cs" />
+    <Compile Include="Utility\RectangleUtilities.cs" />
     <Compile Include="Utility\TickTimer.cs" />
     <Compile Include="World\Level.cs" />
     <Compile Include="World\CollisionEngine.cs" />
