@@ -12,6 +12,8 @@ namespace MageTastic.GameState
     {
         private readonly GraphicsDeviceManager GraphicsDeviceManager;
         private readonly SpriteBatch SpriteBatch;
+        
+        private GameStateBase CurrentGameState;
 
         public GameObject()
             :base()
@@ -25,18 +27,25 @@ namespace MageTastic.GameState
 
         protected override void Update(GameTime gameTime)
         {
+            CurrentGameState.Update(gameTime);
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            CurrentGameState.Draw(SpriteBatch);
+
             base.Draw(gameTime);
         }
 
         protected override void Initialize()
         {
+            //non content based loading (startup network here, instantiate first gamestate, get services setup)
+
+            CurrentGameState = new GamePlay();
+
             base.Initialize();
-            //non content based loading (startup network here)
         }
 
         protected override void LoadContent()
@@ -47,6 +56,7 @@ namespace MageTastic.GameState
         protected override void UnloadContent()
         {
             //unload content
+            base.UnloadContent();
         }
     }
 }
