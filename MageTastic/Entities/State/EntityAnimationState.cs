@@ -10,6 +10,8 @@ namespace MageTastic.Entities.State
 {
     class EntityAnimationState
     {
+        public EntityFrame CurrentFrame { get { return AnimationSet[CurrentState][CurrentFrameIndex]; } }
+
         private readonly Dictionary<EntityState, EntityFrame[]> AnimationSet;
         private EntityState CurrentState;
         private TickTimer CurrentFrameTimer;
@@ -27,7 +29,8 @@ namespace MageTastic.Entities.State
             CurrentFrameTimer.Update(gameTime);
             if (CurrentFrameTimer.IsComplete)
             {
-
+                CurrentFrameIndex = (CurrentFrameIndex + 1) % AnimationSet[CurrentState].Length; //looks goofy but it just doesn't let it go out of bounds
+                CurrentFrameTimer = new TickTimer(CurrentFrame.FrameTime);
             }
         }
     }

@@ -9,7 +9,6 @@ namespace MageTastic.Utility
 {
     class Camera
     {
-
         private Vector2 Position;
         private Point ViewDimensions;
         private float Zoom;
@@ -23,7 +22,7 @@ namespace MageTastic.Utility
         {
             Target = null;
             ViewDimensions = screenDimensions;
-            Zoom = 1f;
+            Zoom = 6f;
         }
 
         public void Update(GameTime gameTime)

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using MageTastic.Entities.State;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,10 @@ namespace MageTastic.Utility
 {
     class Assets 
     {
-        public static Texture2D PlayerKnight;
         private static Assets Instance;
+
+        public static Texture2D PlayerKnight;
+        public static Dictionary<EntityState, EntityFrame[]> AnimationSet;
 
         private Assets()
         {
@@ -32,8 +35,7 @@ namespace MageTastic.Utility
 
         private void _LoadContent(ContentManager content)
         {
-            PlayerKnight = content.Load<Texture2D>("PlayerKnight");
+            PlayerKnight = content.Load<Texture2D>("Base");
         }
-
     }
 }

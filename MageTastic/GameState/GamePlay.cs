@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MageTastic.Utility;
+using MageTastic.Entities;
 
 namespace MageTastic.GameState
 {
@@ -18,6 +19,9 @@ namespace MageTastic.GameState
         {
             Camera = new Camera(screenDimensions);
             CurrentLevel = new Level();
+
+            //TODO remove proto code
+            CurrentLevel.AddEntity(new PlayerProto());
         }
 
         public override void Update(GameTime gameTime)

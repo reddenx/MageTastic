@@ -10,7 +10,7 @@ namespace MageTastic.Entities.State
 {
     class EntityFrame
     {
-        public readonly Point BoundingBox;
+        public readonly Point BoundingBoxDimensions;
         public readonly Rectangle PhysicsBox;
         public readonly Vector2 Origin;
         public readonly Vector2 RightAttach;
@@ -18,6 +18,7 @@ namespace MageTastic.Entities.State
         public readonly Rectangle[] DamageZones;
         public readonly EntityFrame RightAttachment;
         public readonly EntityFrame LeftAttachment;
+        public readonly int FrameTime;
 
         public EntityFrame(
             Point bounds, 
@@ -27,9 +28,10 @@ namespace MageTastic.Entities.State
             Vector2 leftAttach, 
             Rectangle[] damageZones,
             EntityFrame rightAttachment,
-            EntityFrame leftAttachment)
+            EntityFrame leftAttachment,
+            int frameTime)
         {
-            BoundingBox = bounds;
+            BoundingBoxDimensions = bounds;
             PhysicsBox = physics;
             Origin = origin;
             RightAttach = rightAttach;
@@ -37,6 +39,8 @@ namespace MageTastic.Entities.State
             DamageZones = damageZones;
             RightAttachment = rightAttachment;
             LeftAttachment = leftAttachment;
+            FrameTime = frameTime;
         }
+
     }
 }

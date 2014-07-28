@@ -47,5 +47,11 @@ namespace MageTastic.World
                 entity.Draw(spriteBatch);
             }
         }
+
+        internal void AddEntity(Entity entity)
+        {
+            Entities.Add(entity);
+
+        }
     }
 }

@@ -25,10 +25,8 @@ namespace MageTastic.GameState
             GraphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Assets";
             
-
             GraphicsDeviceManager.PreferredBackBufferWidth = ScreenDimensions.X;
             GraphicsDeviceManager.PreferredBackBufferHeight = ScreenDimensions.Y;
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -45,6 +43,7 @@ namespace MageTastic.GameState
 
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.Wheat);
             CurrentGameState.Draw(SpriteBatch);
 
             base.Draw(gameTime);
@@ -52,6 +51,7 @@ namespace MageTastic.GameState
 
         protected override void Initialize()
         {
+            Assets.Initialize();
             CurrentGameState = new GamePlay(ScreenDimensions);
 
             base.Initialize();
@@ -60,6 +60,7 @@ namespace MageTastic.GameState
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
+            Assets.LoadContent(Content);
         }
 
         protected override void UnloadContent()
