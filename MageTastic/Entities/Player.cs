@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MageTastic.Entities.State;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,13 @@ namespace MageTastic.Entities
 {
     class Player : Entity
     {
-        private void PlayerControl
+        public override EntityFrame CurrentStateFrame
+        {
+            get { throw new NotImplementedException(); }
+        }
 
         public Player(Rectangle collisionBoxDimensions, Point boundingBoxDimensions, Vector2 origin, Texture2D texture, Vector2 position)
-            :base(collisionBoxDimensions, boundingBoxDimensions, origin, texture, position)
+            //:base(collisionBoxDimensions, boundingBoxDimensions, origin, texture, position)
         { }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
@@ -30,5 +34,7 @@ namespace MageTastic.Entities
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

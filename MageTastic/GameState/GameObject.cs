@@ -14,6 +14,7 @@ namespace MageTastic.GameState
         private readonly SpriteBatch SpriteBatch;
 
         public GameObject()
+            :base()
         {
             GraphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Assets";

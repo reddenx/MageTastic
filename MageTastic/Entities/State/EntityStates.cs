@@ -8,6 +8,9 @@ namespace MageTastic.Entities.State
 {
     enum EntityState
     {
+        //dev
+        Vitruvian = 0,
+
         //basics
         Idle = 1,
         Moving = 2,
@@ -21,5 +24,13 @@ namespace MageTastic.Entities.State
         ChargingUp = 6,
         Attacking = 7,
         Recovering = 8,
+    }
+
+    enum Direction
+    {
+        Up = 0,
+        Down = 1,
+        Left = 2,
+        Righ = 3
     }
 }
