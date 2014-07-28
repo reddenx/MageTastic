@@ -1,0 +1,31 @@
+First Iteration:
+ - 1 character, main attack swings staff, secondary shoots projectile
+ - 1 enemy, aquires player as target, runs at player, swings weapon when in certain range
+
+Second Iteration (skill variety):
+ - Warrior (steamroller, crowd controller), all hits provide a slight knockback
+  + Primary swing sword
+  + Secondary Dash Attack in direction of mouse
+  + 1 Slam, radial stun from where slam hits
+  + 2 sweeping strike, cone attack, reflects projectiles in range
+  + 3 whirlwind, press for 1 rotation, hold for continual rotation, move slowly towards mouse damaging enemies in range
+  + 4 overhead slash, high damage, small area, low range
+ - Mage (range damage, heals, slight crowd control)
+  + primary damage orb, explodes at mouse or first contact (dark)
+  + Secondary, [flash of light?] short teleport(light), has cd
+  + 1 damage, spear of light(light), quick moving projectile pierces moving a large distance
+  + 2 sustained lightning, cone + stun, (dark)
+  + 3 light orbs, sustained shoots lots of little orbs out that do small aoe damage/heal around where they land, directed via mouse
+  + 4 damage, meteor lingering fire(dark), stun
+ - Rogue (fast mover, melee glass cannon, dots)
+  + primary, quick stab attack
+  + secondary, shadow step
+  + 1 poison sweep, very small cone, applies poison with no damage
+  + 2 stun bomb, aoe from characer, very brief stun
+  + 3 caltrops, aoe lingering slow and dot (fake dot, just apply damage each tick in area)
+  + 4 assassinate, each other skill builds up a point, this uses those points as a damage modifier
+
+Final Iteration(resources):
+ - Warrior, slow recharging stamina, gains stamina when charge hits enemy, should cap at just under twice the most expensive skill
+ - Mage, light dark system, no cooldowns or resources, dark skills move bar lighter, light skills move it darker, light skills benefit from lightness, opposite for dark skills.  bar used as modifier like such: range 0-2 (dark-light), light moves -, dark moves +, light mod = lightbar, dark mod = 2-lightbar. bar movement is reduced from max: lightskillcost * lightbar, darkskillcost * (2-lightbar), t converted 1/r eq.
+ - rogue, fast replenishing energy, teleport is only skill with permanent cd, every attack that hits provides 1.3 * that skill back over 5 seconds. every skill has a cooldown, but only 2 may be on cooldown at once allowing for constant skill use (needs tweaking to prevent faceroll).

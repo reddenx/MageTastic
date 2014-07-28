@@ -1,0 +1,20 @@
+Skill Mechanics: types; instant activation, sustained(channelled)
+ events:
+  1 - button pressed or held, activating animation until timer, move to 2, on early release cancel and return to non skill state.
+  2 - channelling / attacking, if can be sustained, (move half speed) check every tick (timer tick not frame) if button released to stop skill, move to 3 when stopped.
+  3 - recovery, stuck here until timer expires
+
+example:
+ - whirlwind:
+  + press button
+  + activation timer is 0, moves to channel / attack mode
+  + now channelling, do spin attack (rotate player in attack animation doing cone damage during each direction), once rotation is done check if button held to do again, if not move to recovery
+  + recovery timer is 0, move back to non skill state
+ 
+ - weapon swing
+  + press button
+  + activation timer is .2s, (starts swinging), timer expires move to channelling / attacking
+  + activation is .1s, anything in the sword's damage area is hit with damage once, on timer expire, move to recovery
+  + recovery is .1s, on expire move to non skill state
+  
+ = EVERY SKILL STATE MAKES CHARACTER MOVE AT HALF SPEED (may make it skill specific)

@@ -1,5 +1,5 @@
 Physics: Centralized engine, all objects go in, collisions handled, clean world comes out.  This is the last step of the update loop.
-Objects: Component like model, the with a pure data class Entity at the head, lets see if a specified inheritance tree handles things cleaner than a generic object system.
-Magic: handled mainly in projectiles (entity spinoff)
-Pojectiles: Have events; Created, Impact, Destroyed sleeeeeepy zzz......
-Networking: 
+
+Objects: EVERYTHING is an object, character+weapons is an object, projectiles, aoe pools etc, all objects.  non component structure, inheritance and specialization for AOE, projectiles, characters, decorations, particles.  characters specialize as playercontrolled, and ai.  
+
+Object State: FSM, implemented using state pattern, hopefully won't be changing
