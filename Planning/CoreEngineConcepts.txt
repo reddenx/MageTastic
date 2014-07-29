@@ -1,5 +1,7 @@
 Physics: Centralized engine, all objects go in, collisions handled, clean world comes out.  This is the last step of the update loop.
 
-Objects: EVERYTHING is an object, character+weapons is an object, projectiles, aoe pools etc, all objects.  non component structure, inheritance and specialization for AOE, projectiles, characters, decorations, particles.  characters specialize as playercontrolled, and ai.  
+Entity: EVERYTHING is an entity, character is an entity, projectiles, aoe pools etc, all things that exist.  non component structure, inheritance and specialization for AOE, projectiles, characters, decorations, particles or any other divergent concept or behavior.  characters specialize as playercontrolled, and NPC.  
 
-Object State: FSM, implemented using state pattern, hopefully won't be changing
+Entity State: FSM, implemented using state pattern, hopefully won't be changing
+
+Services: graphics, sound, networking, are all going to be wrapped in global singleton wrapped services, trying it out
