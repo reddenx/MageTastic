@@ -7,19 +7,22 @@ using System.Linq;
 using System.Text;
 using MageTastic.Utility;
 using MageTastic.Entities;
+using Microsoft.Xna.Framework.Input;
+using MageTastic.Engines;
 
 namespace MageTastic.GameState
 {
     class GamePlay : GameStateBase
     {
         private Level CurrentLevel;
-        private Camera Camera;
 
-        public GamePlay(Point screenDimensions)
+        public GamePlay()
         {
-            Camera = new Camera(screenDimensions);
             CurrentLevel = new Level();
+        }
 
+        public override void Initialize()
+        {
             //TODO remove proto code
             CurrentLevel.AddEntity(new PlayerProto());
         }
@@ -38,7 +41,7 @@ namespace MageTastic.GameState
                 DepthStencilState.Default,
                 RasterizerState.CullNone,
                 null,
-                Camera.Transformation);
+                RenderEngine.RenderTransform);
 
             CurrentLevel.Draw(spriteBatch);
 

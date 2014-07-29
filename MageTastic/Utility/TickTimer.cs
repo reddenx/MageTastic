@@ -33,5 +33,7 @@ namespace MageTastic.Utility
         {
             CurrentCountdown -= gameTime.ElapsedGameTime;
         }
+
+        public static TickTimer Expired { get { return new TickTimer(0); } }
     }
 }

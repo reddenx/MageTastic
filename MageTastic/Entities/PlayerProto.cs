@@ -1,4 +1,5 @@
-﻿using MageTastic.Entities.State;
+﻿using MageTastic.Engines;
+using MageTastic.Entities.State;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,28 +18,60 @@ namespace MageTastic.Entities
         {
             get
             {
-                return new EntityFrame(
-                    new Point(8, 8),
-                    new Rectangle(1, 1, 5, 5),
-                    new Vector2(5, 5),
-                    new Vector2(8, 4),
-                    new Vector2(8, 4),
-                    null,
-                    null,
-                    null,
-                    100);
+                return base.State.CurrentFrame;
             }
         }
 
         public PlayerProto()
         //:base(collisionBoxDimensions, boundingBoxDimensions, origin, texture, position)
         {
+            State = new EntityState(Assets.KnightAnimationSet);
             Position = Vector2.Zero;
+            Texture = Assets.PlayerKnight;
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            //get movement direction from wasd
+            //set update parameters from input
+            var movementDirection = GetMovementDirectionFromKeyboard();
+            var facingDirection = GetFacingDirectionFromMouse();
+
+            //move player
+            Position += movementDirection;
+
+            State.Update(gameTime, facingDirection, EntityStates.Moving);
+        }
+
+        private Direction GetFacingDirectionFromMouse()
+        {
+            var facingDirection = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position) - Position;
+
+            if (Math.Abs(facingDirection.X) > Math.Abs(facingDirection.Y))
+            {
+                if (facingDirection.X > 0)
+                {
+                    return Direction.Right;
+                }
+                else
+                {
+                    return Direction.Left;
+                }
+            }
+            else
+            {
+                if (facingDirection.Y > 0)
+                {
+                    return Direction.Down;
+                }
+                else
+                {
+                    return Direction.Up;
+                }
+            }
+        }
+
+        private Vector2 GetMovementDirectionFromKeyboard()
+        {
             var movementInputDirection = Vector2.Zero;
             var keyboardState = Keyboard.GetState();
 
@@ -65,19 +98,18 @@ namespace MageTastic.Entities
                 movementInputDirection.Normalize();
             }
 
-            //move player
-            Position += movementInputDirection;
+            return movementInputDirection;
         }
 
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            var sourceRectangle = new Rectangle(0, 0, 8, 8);
+            RenderEngine.DrawPlayerProto(spriteBatch, this);
 
-            spriteBatch.Draw(
-                Assets.PlayerKnight,
-                Position - CurrentStateFrame.Origin,
-                sourceRectangle,
-                Color.White);
+            spriteBatch.DrawString(
+                Assets.DevFont,
+                Mouse.GetState().Position.X + "," + Mouse.GetState().Position.Y,
+                Vector2.Zero,
+                Color.Black);
         }
 
         public override void HandleCollision(Entity colliders)

@@ -18,6 +18,7 @@ namespace MageTastic.Entities.State
         public readonly Rectangle[] DamageZones;
         public readonly EntityFrame RightAttachment;
         public readonly EntityFrame LeftAttachment;
+        public readonly Rectangle SpriteSheetSourceRectangle;
         public readonly int FrameTime;
 
         public EntityFrame(
@@ -29,6 +30,7 @@ namespace MageTastic.Entities.State
             Rectangle[] damageZones,
             EntityFrame rightAttachment,
             EntityFrame leftAttachment,
+            Rectangle spriteSheetSourceRectangle,
             int frameTime)
         {
             BoundingBoxDimensions = bounds;
@@ -40,6 +42,7 @@ namespace MageTastic.Entities.State
             RightAttachment = rightAttachment;
             LeftAttachment = leftAttachment;
             FrameTime = frameTime;
+            SpriteSheetSourceRectangle = spriteSheetSourceRectangle;
         }
 
     }

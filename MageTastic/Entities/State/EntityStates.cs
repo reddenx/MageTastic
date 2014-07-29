@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MageTastic.Entities.State
 {
-    enum EntityState
+    enum EntityStates
     {
         //dev
         Vitruvian = 0,
@@ -31,6 +31,6 @@ namespace MageTastic.Entities.State
         Up = 0,
         Down = 1,
         Left = 2,
-        Righ = 3
+        Right = 3
     }
 }

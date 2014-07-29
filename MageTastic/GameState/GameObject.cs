@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework.Input;
+using MageTastic.Engines;
 
 namespace MageTastic.GameState
 {
@@ -43,7 +44,7 @@ namespace MageTastic.GameState
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Wheat);
+            GraphicsDevice.Clear(Color.Black);
             CurrentGameState.Draw(SpriteBatch);
 
             base.Draw(gameTime);
@@ -52,7 +53,11 @@ namespace MageTastic.GameState
         protected override void Initialize()
         {
             Assets.Initialize();
-            CurrentGameState = new GamePlay(ScreenDimensions);
+            
+            Camera camera = new Camera(ScreenDimensions);
+            RenderEngine.Instantiate(camera);
+
+            CurrentGameState = new GamePlay();
 
             base.Initialize();
         }
@@ -61,6 +66,8 @@ namespace MageTastic.GameState
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Assets.LoadContent(Content);
+
+            CurrentGameState.Initialize();
         }
 
         protected override void UnloadContent()

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace MageTastic.Utility
 {
-    static class RectangleUtilities
+    static class RectangleExtensions
     {
         public static void CenterOnPosition(this Rectangle rect, Vector2 vector)
         {

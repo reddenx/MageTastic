@@ -52,10 +52,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Engines\RenderEngine.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\PlayerProto.cs" />
     <Compile Include="Entities\Render\EntityRenderer.cs" />
-    <Compile Include="Entities\State\EntityAnimationState.cs" />
+    <Compile Include="Entities\State\EntityState.cs" />
     <Compile Include="Entities\State\EntityFrame.cs" />
     <Compile Include="Entities\State\EntityStateManager.cs" />
     <Compile Include="Entities\State\EntityStates.cs" />
@@ -65,8 +66,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Utility\Assets.cs" />
     <Compile Include="Utility\Camera.cs" />
-    <Compile Include="Utility\RectangleUtilities.cs" />
+    <Compile Include="Utility\RectangleExtensions.cs" />
     <Compile Include="Utility\TickTimer.cs" />
+    <Compile Include="Utility\VectorExtensions.cs" />
     <Compile Include="World\CollisionEngine.cs" />
     <Compile Include="World\Level.cs" />
   </ItemGroup>

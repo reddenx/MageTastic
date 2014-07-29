@@ -10,14 +10,14 @@ namespace MageTastic.Entities.State
     class EntityStateManager
     {
         private readonly Entity Entity;
-        private EntityState CurrentState;
+        private EntityStates CurrentState;
 
         public EntityStateManager(Entity entity)
         {
             Entity = entity;
         }
 
-        public void SetState(EntityState state)
+        public void SetState(EntityStates state)
         {
             
         }

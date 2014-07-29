@@ -11,7 +11,7 @@ namespace MageTastic.Utility
     {
         private Vector2 Position;
         private Point ViewDimensions;
-        private float Zoom;
+        public float Zoom { get; private set; }
         private Entity Target;
         public Matrix Transformation
         {
