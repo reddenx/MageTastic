@@ -27,13 +27,24 @@ namespace MageTastic.Entities.State
             CurrentFrameTimer = TickTimer.Expired;
         }
 
+        public void SetState(EntityStates newState)
+        {
+            if (newState == CurrentState)
+                return;
 
+            CurrentState = newState;
+            CurrentFrameIndex = 0;
+            CurrentFrameTimer = new TickTimer(CurrentFrame.FrameTime);
+        }
 
         //TODO uncouple this from proto player
-        public void Update(GameTime gameTime, Direction facingDirection, EntityStates state)
+        public void Update(GameTime gameTime, Direction facingDirection)
         {
+            if (CurrentDirection != facingDirection)
+            {
+                CurrentFrameIndex = 0;
+            }
             CurrentDirection = facingDirection;
-            CurrentState = state;
 
             CurrentFrameTimer.Update(gameTime);
             if (CurrentFrameTimer.IsComplete)

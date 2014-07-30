@@ -15,7 +15,7 @@ namespace MageTastic.Entities
         public Vector2 Position;
         public bool IsCollidable = true;
         public Texture2D Texture;
-        protected EntityState State;
+        public EntityState State;
 
         public abstract EntityFrame CurrentStateFrame { get; }
 

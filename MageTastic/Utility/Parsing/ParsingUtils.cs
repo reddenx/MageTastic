@@ -74,7 +74,7 @@ namespace MageTastic.Utility.Parsing
                 animationSetMeta[state].Add(direction, frames);
             }
 
-            //TODO this is a stupid data type, make it better
+            //TODO this is a stupid data type, make it better, maybe not so bad
             var animationSet = new Dictionary<EntityStates, EntityFrame[][]>();
 
             foreach (var stateSet in animationSetMeta)

@@ -1,5 +1,6 @@
 ﻿using MageTastic.Engines;
 using MageTastic.Entities.State;
+using MageTastic.Entities.State.CharacterState;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +23,8 @@ namespace MageTastic.Entities
             }
         }
 
+        public StateBase CharacterFSM;
+
         public PlayerProto()
         //:base(collisionBoxDimensions, boundingBoxDimensions, origin, texture, position)
         {
@@ -36,19 +39,24 @@ namespace MageTastic.Entities
             var movementDirection = GetMovementDirectionFromKeyboard();
             var facingDirection = GetFacingDirectionFromMouse();
 
-            if (movementDirection != Vector2.Zero)
-            {
-                //State.SetState(EntityStates.Moving);
-            }
-            else
-            {
-                //State.SetState(EntityStates.Idle);
-            }
+            
 
             //move player
             Position += movementDirection;
 
-            State.Update(gameTime, facingDirection, EntityStates.Moving);
+
+            //set state based on input
+            if (movementDirection != Vector2.Zero)
+            {
+                State.SetState(EntityStates.Moving);
+            }
+            else
+            {
+                State.SetState(EntityStates.Idle);
+            }
+
+            State.Update(gameTime, facingDirection);
+
         }
 
         private Direction GetFacingDirectionFromMouse()
