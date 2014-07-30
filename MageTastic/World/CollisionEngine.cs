@@ -25,7 +25,7 @@ namespace MageTastic.World
                 {
                     foreach (var check in Entities)
                     {
-                        if (check.IsCollidable && entity.CurrentStateFrame.PhysicsBox.Intersects(check.CurrentStateFrame.PhysicsBox))
+                        if (check.IsCollidable && entity.State.CurrentFrame.PhysicsBox.Intersects(check.State.CurrentFrame.PhysicsBox))
                         {
                             check.HandleCollision(entity);
                             entity.HandleCollision(check);

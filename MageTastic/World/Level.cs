@@ -23,7 +23,7 @@ namespace MageTastic.World
             var colliders = new List<Entity>();
             foreach (var entity in Entities)
             {
-                if (entity.IsCollidable && entity.CurrentStateFrame.PhysicsBox.Intersects(input.CurrentStateFrame.PhysicsBox))
+                if (entity.IsCollidable && entity.State.CurrentFrame.PhysicsBox.Intersects(input.State.CurrentFrame.PhysicsBox))
                 {
                     colliders.Add(entity);
                 }

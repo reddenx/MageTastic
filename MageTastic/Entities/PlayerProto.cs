@@ -1,6 +1,7 @@
 ﻿using MageTastic.Engines;
 using MageTastic.Entities.State;
 using MageTastic.Entities.State.CharacterState;
+using MageTastic.Entities.State.CharacterState.PlayerStateMachine;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,76 +16,27 @@ namespace MageTastic.Entities
 {
     class PlayerProto : Entity
     {
-        public override EntityFrame CurrentStateFrame
-        {
-            get
-            {
-                return base.State.CurrentFrame;
-            }
-        }
-
-        public StateBase CharacterFSM;
-
         public PlayerProto()
         //:base(collisionBoxDimensions, boundingBoxDimensions, origin, texture, position)
         {
-            State = new EntityState(Assets.KnightAnimationSet);
             Position = Vector2.Zero;
             Texture = Assets.PlayerKnight;
+            AnimationSet = Assets.KnightAnimationSet;
+            State = new Idle(this);
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //set update parameters from input
             var movementDirection = GetMovementDirectionFromKeyboard();
-            var facingDirection = GetFacingDirectionFromMouse();
-
-            
-
-            //move player
-            Position += movementDirection;
-
-
-            //set state based on input
-            if (movementDirection != Vector2.Zero)
-            {
-                State.SetState(EntityStates.Moving);
-            }
-            else
-            {
-                State.SetState(EntityStates.Idle);
-            }
-
-            State.Update(gameTime, facingDirection);
-
-        }
-
-        private Direction GetFacingDirectionFromMouse()
-        {
             var facingDirection = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position) - Position;
 
-            if (Math.Abs(facingDirection.X) > Math.Abs(facingDirection.Y))
-            {
-                if (facingDirection.X > 0)
-                {
-                    return Direction.Right;
-                }
-                else
-                {
-                    return Direction.Left;
-                }
-            }
-            else
-            {
-                if (facingDirection.Y > 0)
-                {
-                    return Direction.Down;
-                }
-                else
-                {
-                    return Direction.Up;
-                }
-            }
+            State.ChangeDirection(facingDirection.ToDirection());
+            State.HandleMovement(movementDirection);
+
+            //TODO move to state, notify it of input vector
+
+            State.Update(gameTime);
         }
 
         private Vector2 GetMovementDirectionFromKeyboard()
@@ -131,6 +83,7 @@ namespace MageTastic.Entities
 
         public override void HandleCollision(Entity colliders)
         {
+            //if it's a skill collision, notify the state and let it handle it
             throw new NotImplementedException();
         }
     }

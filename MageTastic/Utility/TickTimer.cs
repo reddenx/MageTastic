@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace MageTastic.Utility
 {
+    /// <summary>
+    /// This convenient solution comes with a fair tradeoff:
+    /// it rounds to 0 when the timer hits zero meaning the next
+    /// frame should start with a little less than full time, but
+    /// this would hide any remainder (all in the context of 
+    /// repeating timers)
+    /// </summary>
     class TickTimer
     {
         private readonly int StartMilli;

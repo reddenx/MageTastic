@@ -41,7 +41,7 @@ namespace MageTastic.Engines
         //TODO come up with better backing names for instance methods in singletons
         private void _DrawPlayerProto(SpriteBatch spriteBatch, PlayerProto character)
         {
-            var frame = character.CurrentStateFrame;
+            var frame = character.State.CurrentFrame;
             var position = character.Position;
 
             spriteBatch.Draw(character.Texture,

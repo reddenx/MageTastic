@@ -56,9 +56,9 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\PlayerProto.cs" />
     <Compile Include="Entities\Render\EntityRenderer.cs" />
-    <Compile Include="Entities\State\CharacterState\PlayerStateMaching\Idle.cs" />
+    <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Idle.cs" />
+    <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Moving.cs" />
     <Compile Include="Entities\State\CharacterState\StateBase.cs" />
-    <Compile Include="Entities\State\EntityState.cs" />
     <Compile Include="Entities\State\EntityFrame.cs" />
     <Compile Include="Entities\State\EntityStates.cs" />
     <Compile Include="GameState\GameObject.cs" />
@@ -68,6 +68,7 @@
     <Compile Include="Utility\AnimationMetaReader.cs" />
     <Compile Include="Utility\Assets.cs" />
     <Compile Include="Utility\Camera.cs" />
+    <Compile Include="Utility\InputHelper.cs" />
     <Compile Include="Utility\Parsing\ParsingUtils.cs" />
     <Compile Include="Utility\RectangleExtensions.cs" />
     <Compile Include="Utility\TickTimer.cs" />
@@ -103,6 +104,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,5 +33,34 @@ namespace MageTastic.Entities.State
         Down = 1,
         Left = 2,
         Right = 3
+    }
+
+    static class DirectionExtensions
+    {
+        public static Direction ToDirection(this Vector2 vector)
+        {
+            if (Math.Abs(vector.X) > Math.Abs(vector.Y))
+            {
+                if (vector.X > 0)
+                {
+                    return Direction.Right;
+                }
+                else
+                {
+                    return Direction.Left;
+                }
+            }
+            else
+            {
+                if (vector.Y > 0)
+                {
+                    return Direction.Down;
+                }
+                else
+                {
+                    return Direction.Up;
+                }
+            }
+        }
     }
 }

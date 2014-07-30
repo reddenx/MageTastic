@@ -1,4 +1,6 @@
 ﻿using MageTastic.Entities.State;
+using MageTastic.Entities.State.CharacterState;
+using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,13 +14,16 @@ namespace MageTastic.Entities
     abstract class Entity
     {
         //TODO make them readonly with proper constructor once responsibilities are solidified
+        //data
         public Vector2 Position;
         public bool IsCollidable = true;
         public Texture2D Texture;
-        public EntityState State;
+        public Dictionary<EntityStates, EntityFrame[][]> AnimationSet;
 
-        public abstract EntityFrame CurrentStateFrame { get; }
+        //logic
+        public StateBase State;
 
+        //methods
         abstract public void Update(GameTime gameTime);
         abstract public void Draw(SpriteBatch spriteBatch);
         abstract public void HandleCollision(Entity colliders);
