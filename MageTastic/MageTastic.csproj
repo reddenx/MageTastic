@@ -58,14 +58,15 @@
     <Compile Include="Entities\Render\EntityRenderer.cs" />
     <Compile Include="Entities\State\EntityState.cs" />
     <Compile Include="Entities\State\EntityFrame.cs" />
-    <Compile Include="Entities\State\EntityStateManager.cs" />
     <Compile Include="Entities\State\EntityStates.cs" />
     <Compile Include="GameState\GameObject.cs" />
     <Compile Include="GameState\GamePlay.cs" />
     <Compile Include="GameState\GameStateBase.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Utility\AnimationMetaReader.cs" />
     <Compile Include="Utility\Assets.cs" />
     <Compile Include="Utility\Camera.cs" />
+    <Compile Include="Utility\Parsing\ParsingUtils.cs" />
     <Compile Include="Utility\RectangleExtensions.cs" />
     <Compile Include="Utility\TickTimer.cs" />
     <Compile Include="Utility\VectorExtensions.cs" />

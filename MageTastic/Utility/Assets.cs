@@ -1,4 +1,5 @@
 ﻿using MageTastic.Entities.State;
+using MageTastic.Utility.Parsing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,7 +23,7 @@ namespace MageTastic.Utility
 
         private Assets()
         {
-            KnightAnimationSet = ProtoBuildWalking();
+            KnightAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\stateTemplate.txt");
         }
 
         public static void Initialize()

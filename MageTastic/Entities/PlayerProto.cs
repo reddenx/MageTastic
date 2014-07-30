@@ -36,6 +36,15 @@ namespace MageTastic.Entities
             var movementDirection = GetMovementDirectionFromKeyboard();
             var facingDirection = GetFacingDirectionFromMouse();
 
+            if (movementDirection != Vector2.Zero)
+            {
+                //State.SetState(EntityStates.Moving);
+            }
+            else
+            {
+                //State.SetState(EntityStates.Idle);
+            }
+
             //move player
             Position += movementDirection;
 

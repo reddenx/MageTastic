@@ -27,6 +27,8 @@ namespace MageTastic.Entities.State
             CurrentFrameTimer = TickTimer.Expired;
         }
 
+
+
         //TODO uncouple this from proto player
         public void Update(GameTime gameTime, Direction facingDirection, EntityStates state)
         {

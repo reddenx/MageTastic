@@ -1,0 +1,113 @@
+info an animation frame needs to be loaded
+
+identification of frame:
+what state(action)
+frame number(squential load)
+direction up down left right 0-3
+
+frame:
+bounding box
+physics box
+origin
+right attachment point
+left attachment point
+damage zones (may go away)
+source rectangle
+frame time
+
+[<1,0> idle down{(0,0,8,8)(1,1,5,5)(3,5)(7,4)(0,4)()(0,0,8,8)(125)}]
+[<1,1> idle down{(0,0,8,8)(1,1,5,5)(3,5)(7,4)(0,4)()(0,0,8,8)(125)}]
+[<1,2> idle down{(0,0,8,8)(1,1,5,5)(3,5)(7,4)(0,4)()(0,0,8,8)(125)}]
+[<1,3> idle down{(0,0,8,8)(1,1,5,5)(3,5)(7,4)(0,4)()(0,0,8,8)(125)}]
+[
+    <2,0> moving up
+    {
+        (0,0,8,8)box
+        (1,1,5,5)phys
+        (3,5)origin
+        (7,4)right
+        (0,4)left
+        ()gonna be damage but couldnt come up with a good syntax yet
+        (0,8,8,8)source
+        (125)time
+    }
+    {
+        (0,0,8,8)box
+        (1,1,5,5)phys
+        (3,5)origin
+        (7,4)right
+        (0,4)left
+        ()gonna be damage but couldnt come up with a good syntax yet
+        (8,8,8,8)source
+        (125)time
+    }    
+]
+[
+    <2,1> moving down
+    {
+        (0,0,8,8)box
+        (1,1,5,5)phys
+        (3,5)origin
+        (7,4)right
+        (0,4)left
+        ()gonna be damage but couldnt come up with a good syntax yet
+        (0,16,8,8)source
+        (125)time
+    }
+    {
+        (0,0,8,8)box
+        (1,1,5,5)phys
+        (3,5)origin
+        (7,4)right
+        (0,4)left
+        ()gonna be damage but couldnt come up with a good syntax yet
+        (8,16,8,8)source
+        (125)time
+    }
+]
+[
+    <2,2> moving left(our left)
+    {
+        (0,0,8,8)box
+        (1,1,5,5)phys
+        (3,5)origin
+        (7,4)right
+        (0,4)left
+        ()gonna be damage but couldnt come up with a good syntax yet
+        (0,24,8,8)source
+        (125)time
+    }
+    {
+        (0,0,8,8)box
+        (1,1,5,5)phys
+        (3,5)origin
+        (7,4)right
+        (0,4)left
+        ()gonna be damage but couldnt come up with a good syntax yet
+        (8,24,8,8)source
+        (125)time
+    }
+]
+[
+    <2,3> moving right(our right)
+    {
+        (0,0,8,8)box
+        (1,1,5,5)phys
+        (3,5)origin
+        (7,4)right
+        (0,4)left
+        ()gonna be damage but couldnt come up with a good syntax yet
+        (0,32,8,8)source
+        (125)time
+    }
+    {
+        (0,0,8,8)box
+        (1,1,5,5)phys
+        (3,5)origin
+        (7,4)right
+        (0,4)left
+        ()gonna be damage but couldnt come up with a good syntax yet
+        (8,32,8,8)source
+        (125)time
+    }
+]
