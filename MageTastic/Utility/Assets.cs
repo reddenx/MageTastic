@@ -11,14 +11,16 @@ using System.Threading.Tasks;
 
 namespace MageTastic.Utility
 {
-    class Assets 
+    class Assets
     {
         private static Assets Instance;
 
 
         public static SpriteFont DevFont;
 
+        public static Texture2D DevTexture;
         public static Texture2D PlayerKnight;
+        public static Texture2D BlueMagicProjectile;
         public static Dictionary<EntityStates, EntityFrame[][]> KnightAnimationSet;
 
         private Assets()
@@ -41,8 +43,24 @@ namespace MageTastic.Utility
 
         private void _LoadContent(ContentManager content)
         {
-            PlayerKnight = content.Load<Texture2D>("Template");
+            //this one better load ^_^
+            DevTexture = content.Load<Texture2D>("Dev");
             DevFont = content.Load<SpriteFont>("arial");
+
+            LoadTextureFallWithFallback("Template", content);
+            LoadTextureFallWithFallback("BlueMagicProjectile", content);
+        }
+
+        private Texture2D LoadTextureFallWithFallback(string textureName, ContentManager content)
+        {
+            try
+            {
+                return content.Load<Texture2D>(textureName);
+            }
+            catch
+            {
+                return DevTexture;
+            }
         }
     }
 }
