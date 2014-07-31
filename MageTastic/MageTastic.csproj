@@ -56,8 +56,15 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\PlayerProto.cs" />
     <Compile Include="Entities\Render\EntityRenderer.cs" />
+    <Compile Include="Entities\State\CharacterState\DecorationStateMachine\Idle.cs" />
+    <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Attacking.cs" />
+    <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Charging.cs" />
+    <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Dead.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Idle.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Moving.cs" />
+    <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Recoiling.cs" />
+    <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Recovering.cs" />
+    <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Stunned.cs" />
     <Compile Include="Entities\State\CharacterState\StateBase.cs" />
     <Compile Include="Entities\State\EntityFrame.cs" />
     <Compile Include="Entities\State\EntityStates.cs" />

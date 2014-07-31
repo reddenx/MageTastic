@@ -1,0 +1,29 @@
+7 states logical states, 4 directions, 2 frames per animation(at least) 
+roughly 56 states
+
+
+states
+ ----
+vitruvian (can be same as idle, meant for dev or fallback)
+idle (required by all, default animation)
+moving (moving entities)
+dead (characters)
+recoiling (characters)
+stunned (characters)
+chargingup (characters)
+attacking (characters)
+stunned (characters)
+
+directions
+ --------
+up
+down (default draw for decorations and other static objects)
+left
+right
+
+
+
+general template (for visual sanity, parser handles any format)
+idle up down left right
+moving up down left right 
+etc. moving down through the states

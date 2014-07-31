@@ -15,9 +15,7 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
 
         public Moving(StateBase oldState)
             : base(oldState)
-        {
-
-        }
+        { }
 
         public override void HandleMovement(Vector2 movementVector)
         {

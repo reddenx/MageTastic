@@ -16,5 +16,3 @@ example:
   + activation timer is .2s, (starts swinging), timer expires move to channelling / attacking
   + activation is .1s, anything in the sword's damage area is hit with damage once, on timer expire, move to recovery
   + recovery is .1s, on expire move to non skill state
-  
- = EVERY SKILL STATE MAKES CHARACTER MOVE AT HALF SPEED (may make it skill specific)
