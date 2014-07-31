@@ -1,7 +1,3 @@
-7 states logical states, 4 directions, 2 frames per animation(at least) 
-roughly 56 states
-
-
 states
  ----
 vitruvian (can be same as idle, meant for dev or fallback)
@@ -12,7 +8,7 @@ recoiling (characters)
 stunned (characters)
 chargingup (characters)
 attacking (characters)
-stunned (characters)
+recovering (characters)
 
 directions
  --------

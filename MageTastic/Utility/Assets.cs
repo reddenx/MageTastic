@@ -47,7 +47,7 @@ namespace MageTastic.Utility
             DevTexture = content.Load<Texture2D>("Dev");
             DevFont = content.Load<SpriteFont>("arial");
 
-            LoadTextureFallWithFallback("Template", content);
+            LoadTextureFallWithFallback("Hero_1a", content);
             LoadTextureFallWithFallback("BlueMagicProjectile", content);
         }
 
