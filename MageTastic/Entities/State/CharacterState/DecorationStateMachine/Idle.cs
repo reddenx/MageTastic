@@ -10,6 +10,13 @@ namespace MageTastic.Entities.State.CharacterState.DecorationStateMachine
     /// </summary>
     class Idle : StateBase
     {
+        private Idle(Entity context)
+            :base(context)
+        { }
 
+        public override EntityStates CurrentState
+        {
+            get { return EntityStates.Idle; }
+        }
     }
 }

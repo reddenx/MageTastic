@@ -13,6 +13,10 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// </summary>
     class Attacking : StateBase
     {
+        public Attacking(StateBase oldState)
+            : base(oldState)
+        { }
+
         public override EntityStates CurrentState
         {
             get { throw new NotImplementedException(); }

@@ -14,6 +14,10 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// </summary>
     class Charging : StateBase
     {
+        public Charging(StateBase oldState)
+            : base(oldState)
+        { }
+
         public override EntityStates CurrentState
         {
             get { throw new NotImplementedException(); }

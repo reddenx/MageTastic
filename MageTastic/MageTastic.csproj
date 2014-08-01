@@ -55,7 +55,6 @@
     <Compile Include="Engines\RenderEngine.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\PlayerProto.cs" />
-    <Compile Include="Entities\Render\EntityRenderer.cs" />
     <Compile Include="Entities\State\CharacterState\DecorationStateMachine\Idle.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Attacking.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Charging.cs" />
@@ -111,7 +110,10 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Entities\Render\" />
+    <Folder Include="Entities\State\CharacterState\SkillSpecific\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

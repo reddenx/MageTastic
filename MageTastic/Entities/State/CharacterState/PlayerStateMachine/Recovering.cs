@@ -13,6 +13,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// </summary>
     class Recovering : StateBase
     {
+        public Recovering(StateBase oldBase)
+            : base(oldBase)
+        { }
 
         public override EntityStates CurrentState
         {

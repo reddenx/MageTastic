@@ -16,12 +16,25 @@ namespace MageTastic.Entities
         //TODO make them readonly with proper constructor once responsibilities are solidified
         //data
         public Vector2 Position;
-        public bool IsCollidable = true;
+        public bool IsCollidable;
         public Texture2D Texture;
-        public Dictionary<EntityStates, EntityFrame[][]> AnimationSet;
-
+        public readonly Dictionary<EntityStates, EntityFrame[][]> AnimationSet;
+        
         //logic
         public StateBase State;
+
+        public Entity(Dictionary<EntityStates, EntityFrame[][]> animationSet,
+            Texture2D texture,
+            bool isCollidable,
+            Vector2 position)
+        {
+            AnimationSet = animationSet;
+            Texture = texture;
+            IsCollidable = isCollidable;
+            Position = position;
+        }
+
+        
 
         //methods
         abstract public void Update(GameTime gameTime);

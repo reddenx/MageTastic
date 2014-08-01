@@ -17,11 +17,8 @@ namespace MageTastic.Entities
     class PlayerProto : Entity
     {
         public PlayerProto()
-        //:base(collisionBoxDimensions, boundingBoxDimensions, origin, texture, position)
+            :base(Assets.KnightAnimationSet, Assets.PlayerKnight, true, Vector2.Zero)
         {
-            Position = Vector2.Zero;
-            Texture = Assets.PlayerKnight;
-            AnimationSet = Assets.KnightAnimationSet;
             State = new Idle(this);
         }
 
