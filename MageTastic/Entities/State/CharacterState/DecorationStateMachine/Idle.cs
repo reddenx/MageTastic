@@ -8,9 +8,9 @@ namespace MageTastic.Entities.State.CharacterState.DecorationStateMachine
     /// <summary>
     /// decorations hang out but don't interact or do anything
     /// </summary>
-    class Idle : StateBase
+    class Idle : CharacterStateBase
     {
-        private Idle(Entity context)
+        private Idle(Character context)
             :base(context)
         { }
 

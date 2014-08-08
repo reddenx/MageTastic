@@ -6,14 +6,14 @@ using System.Text;
 
 namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
 {
-    class Moving : StateBase
+    class Moving : CharacterStateBase
     {
         public override EntityStates CurrentState
         {
             get { return EntityStates.Moving; }
         }
 
-        public Moving(StateBase oldState)
+        public Moving(CharacterStateBase oldState)
             : base(oldState)
         { }
 

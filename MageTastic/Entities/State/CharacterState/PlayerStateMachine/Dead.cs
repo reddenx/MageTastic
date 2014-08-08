@@ -11,9 +11,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// 
     /// can go to idle if brought back to life
     /// </summary>
-    class Dead : StateBase
+    class Dead : CharacterStateBase
     {
-        public Dead(StateBase oldState)
+        public Dead(CharacterStateBase oldState)
             : base(oldState)
         { }
 

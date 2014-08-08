@@ -10,8 +10,15 @@ namespace MageTastic.Entities
 {
     abstract class Character : Entity
     {
+        public EntityTeam Team;
+
         public Character(Dictionary<EntityStates, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position)
             : base(animationSet, texture, true, position)
         { }
+
+        public void UseSkill(object skill)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

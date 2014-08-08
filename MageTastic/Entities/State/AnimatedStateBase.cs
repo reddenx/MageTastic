@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.CharacterState
+namespace MageTastic.Entities.State
 {
-    abstract class StateBase
+    abstract class AnimatedStateBase
     {
         //not necessary but useful for debug and tracking
         abstract public EntityStates CurrentState { get; }
@@ -23,9 +23,9 @@ namespace MageTastic.Entities.State.CharacterState
         protected Direction CurrentDirection;
 
         //think this is a powerful pattern, publicly need to supply context, internally handles automatically with changestate
-        private StateBase() { }
+        private AnimatedStateBase() { }
 
-        protected StateBase(StateBase oldBase) 
+        protected AnimatedStateBase(AnimatedStateBase oldBase) 
         {
             Context = oldBase.Context;
 
@@ -35,7 +35,7 @@ namespace MageTastic.Entities.State.CharacterState
             CurrentDirection = oldBase.CurrentDirection;
         }
 
-        public StateBase(Entity context)
+        public AnimatedStateBase(Entity context)
         {
             Context = context;
 
@@ -45,7 +45,7 @@ namespace MageTastic.Entities.State.CharacterState
             CurrentDirection = Direction.Up;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             FrameTimer.Update(gameTime);
             if (FrameTimer.IsComplete)
@@ -61,7 +61,7 @@ namespace MageTastic.Entities.State.CharacterState
         public virtual void HandleAction(object actionInput) { }
         public virtual void ChangeDirection(Direction direction) { CurrentDirection = direction; }
 
-        protected void ChangeState(StateBase newState)
+        protected void ChangeState(AnimatedStateBase newState)
         {
             Context.State = newState;
         }

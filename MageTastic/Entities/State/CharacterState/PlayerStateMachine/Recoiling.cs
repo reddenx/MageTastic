@@ -12,9 +12,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// 
     /// can go to stunned or to idle
     /// </summary>
-    class Recoiling : StateBase
+    class Recoiling : CharacterStateBase
     {
-        public Recoiling(StateBase oldState)
+        public Recoiling(CharacterStateBase oldState)
             : base(oldState)
         { }
 

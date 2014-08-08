@@ -6,18 +6,18 @@ using System.Text;
 
 namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
 {
-    class Idle : StateBase
+    class Idle : CharacterStateBase
     {
         public override EntityStates CurrentState
         {
             get { return EntityStates.Idle; }
         }
 
-        public Idle(Entity context)
+        public Idle(Character context)
             : base(context)
         { }
 
-        public Idle(StateBase oldState)
+        public Idle(CharacterStateBase oldState)
             :base(oldState)
         {
         }

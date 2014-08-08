@@ -13,9 +13,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// 
     /// can go to idle
     /// </summary>
-    class Stunned : StateBase
+    class Stunned : CharacterStateBase
     {
-        public Stunned(StateBase oldState)
+        public Stunned(CharacterStateBase oldState)
             : base(oldState)
         { }
 

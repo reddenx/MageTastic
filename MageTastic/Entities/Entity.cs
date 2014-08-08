@@ -21,7 +21,7 @@ namespace MageTastic.Entities
         public readonly Dictionary<EntityStates, EntityFrame[][]> AnimationSet;
         
         //logic
-        public StateBase State;
+        public AnimatedStateBase State;
 
         public Entity(Dictionary<EntityStates, EntityFrame[][]> animationSet,
             Texture2D texture,

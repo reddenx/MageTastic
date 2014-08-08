@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 
 namespace MageTastic.Entities
 {
-    class PlayerProto : Entity
+    class PlayerProto : Character
     {
         public PlayerProto()
-            :base(Assets.KnightAnimationSet, Assets.PlayerKnight, true, Vector2.Zero)
+            :base(Assets.KnightAnimationSet, Assets.PlayerKnight, Vector2.Zero)
         {
             State = new Idle(this);
         }
@@ -73,9 +73,14 @@ namespace MageTastic.Entities
 
             spriteBatch.DrawString(
                 Assets.DevFont,
-                Mouse.GetState().Position.X + "," + Mouse.GetState().Position.Y,
+                State.CurrentState.ToString(),
                 Vector2.Zero,
-                Color.Black);
+                Color.Black,
+                0f,
+                Vector2.Zero,
+                .25f,
+                SpriteEffects.None,
+                0f);
         }
 
         public override void HandleCollision(Entity colliders)

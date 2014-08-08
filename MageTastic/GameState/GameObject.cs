@@ -44,7 +44,7 @@ namespace MageTastic.GameState
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
             CurrentGameState.Draw(SpriteBatch);
 
             base.Draw(gameTime);

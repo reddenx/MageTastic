@@ -1,0 +1,8 @@
+Tracking of tasks so they don't get lost
+
+* Refactor entity state system, allow for skills
+* build first enemy (target dummy or something to take damage)
+* Start skill prototyping
+* GameState state machine, changing states allows for loading and dumping of assets etc.
+* Break player proto object into character, projectile, decoration tree
+* Start UI pattern redevelopment, winform-like falls down in worldspace
