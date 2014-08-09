@@ -42,7 +42,6 @@ namespace MageTastic.Engines
         private void _DrawPlayerProto(SpriteBatch spriteBatch, PlayerProto character)
         {
             var frame = character.State.CurrentFrame;
-            var position = character.Position;
 
             spriteBatch.Draw(character.Texture,
                 character.Position,
@@ -58,6 +57,11 @@ namespace MageTastic.Engines
         public static Vector2 TranslateWindowsToWorldSpace(Point windowsSpace)
         {
             return windowsSpace.ToVector() / instance.Camera.Zoom;
+        }
+
+        internal static void DrawProjectileProto(ProjectileProtoBlueOrb projectileProtoBlueOrb)
+        {
+            
         }
     }
 }

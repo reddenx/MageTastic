@@ -56,10 +56,12 @@
     <Compile Include="Engines\MediaEngine.cs" />
     <Compile Include="Engines\NetworkEngine.cs" />
     <Compile Include="Engines\RenderEngine.cs" />
+    <Compile Include="Engines\WorldEngine.cs" />
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityTeam.cs" />
     <Compile Include="Entities\PlayerProto.cs" />
+    <Compile Include="Entities\ProjectileProtoBlueOrb.cs" />
     <Compile Include="Entities\SkillProto.cs" />
     <Compile Include="Entities\State\AnimatedStateBase.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Dead.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Entities\State\CharacterState\CharacterStateBase.cs" />
     <Compile Include="Entities\State\EntityFrame.cs" />
     <Compile Include="Entities\State\EntityStates.cs" />
+    <Compile Include="Entities\State\ProjectileState\ProjectileFlying.cs" />
     <Compile Include="GameState\GameObject.cs" />
     <Compile Include="GameState\GamePlay.cs" />
     <Compile Include="GameState\GameStateBase.cs" />

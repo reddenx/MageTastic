@@ -14,7 +14,7 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
 
         public override EntityStates CurrentState
         {
-            get { return EntityStates.Moving; }
+            get { return EntityStates.Attacking; }
         }
 
         public ShootOrb(CharacterStateBase returnState)

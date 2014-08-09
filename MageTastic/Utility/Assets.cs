@@ -25,7 +25,7 @@ namespace MageTastic.Utility
 
         private Assets()
         {
-            KnightAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\stateTemplate.txt");
+            KnightAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\Hero_1aData.txt");
         }
 
         public static void Initialize()
@@ -47,7 +47,7 @@ namespace MageTastic.Utility
             DevTexture = content.Load<Texture2D>("Dev");
             DevFont = content.Load<SpriteFont>("arial");
 
-            PlayerKnight = LoadTextureFallWithFallback("Template", content);
+            PlayerKnight = LoadTextureFallWithFallback("Hero_1a", content);
             BlueMagicProjectile = LoadTextureFallWithFallback("BlueMagicProjectile", content);
         }
 
