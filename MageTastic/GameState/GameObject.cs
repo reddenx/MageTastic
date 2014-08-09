@@ -59,6 +59,7 @@ namespace MageTastic.GameState
             Camera camera = new Camera(ScreenDimensions);
             RenderEngine.Instantiate(camera);
             InputEngine.Instantiate();
+            WorldEngine.Instantiate();
 
             CurrentGameState = new GamePlay();
 

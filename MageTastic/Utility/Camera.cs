@@ -32,5 +32,10 @@ namespace MageTastic.Utility
                 Position = new Vector2(Target.Position.X - ViewDimensions.X / 2, Target.Position.Y - ViewDimensions.Y / 2);
             }
         }
+
+        public void SetTarget(Entity target)
+        {
+            Target = target;
+        }
     }
 }

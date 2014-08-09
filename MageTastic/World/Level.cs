@@ -12,10 +12,12 @@ namespace MageTastic.World
     class Level
     {
         private readonly List<Entity> Entities;
+        private readonly List<Entity> NewEntityAdditions;
 
         public Level()
         {
             Entities = new List<Entity>();
+            NewEntityAdditions = new List<Entity>();
         }
 
         public List<Entity> QueryForCollision(Entity input)
@@ -34,6 +36,9 @@ namespace MageTastic.World
 
         public void Update(GameTime gameTime)
         {
+            Entities.AddRange(NewEntityAdditions);
+            NewEntityAdditions.Clear();
+
             foreach (var entity in Entities)
             {
                 entity.Update(gameTime);
@@ -50,8 +55,7 @@ namespace MageTastic.World
 
         internal void AddEntity(Entity entity)
         {
-            Entities.Add(entity);
-
+            NewEntityAdditions.Add(entity);
         }
     }
 }

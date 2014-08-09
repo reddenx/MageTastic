@@ -8,8 +8,6 @@ namespace MageTastic.Entities.State.ProjectileState
     //TODO this is a proto, make into generic projectile
     class ProjectileFlying : AnimatedStateBase
     {
-        protected ProjectileProtoBlueOrb Projectile;
-
         public ProjectileFlying(ProjectileProtoBlueOrb context)
             : base(context)
         {

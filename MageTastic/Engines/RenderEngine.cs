@@ -59,9 +59,26 @@ namespace MageTastic.Engines
             return windowsSpace.ToVector() / instance.Camera.Zoom;
         }
 
-        internal static void DrawProjectileProto(ProjectileProtoBlueOrb projectileProtoBlueOrb)
+        public static void DrawProjectileProto(SpriteBatch spriteBatch, ProjectileProtoBlueOrb projectileProtoBlueOrb)
         {
-            
+            var frame = projectileProtoBlueOrb.State.CurrentFrame;
+
+            //TODO rotation
+
+            spriteBatch.Draw(projectileProtoBlueOrb.Texture,
+                projectileProtoBlueOrb.Position,
+                frame.SpriteSheetSourceRectangle,
+                Color.White,
+                0f,
+                frame.Origin,
+                1f,
+                SpriteEffects.None,
+                0f);
+        }
+
+        public static void SetCameraTarget(Entity target)
+        {
+            instance.Camera.SetTarget(target);
         }
     }
 }

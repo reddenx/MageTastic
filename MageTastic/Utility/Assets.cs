@@ -21,11 +21,13 @@ namespace MageTastic.Utility
         public static Texture2D DevTexture;
         public static Texture2D PlayerKnight;
         public static Texture2D BlueMagicProjectile;
-        public static Dictionary<EntityStates, EntityFrame[][]> KnightAnimationSet;
+        public static Dictionary<EntityStates, EntityFrame[][]> CharacterAnimationSet;
+        public static Dictionary<EntityStates, EntityFrame[][]> BlueMagicProjectileAnimationSet;
 
         private Assets()
         {
-            KnightAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\Hero_1aData.txt");
+            CharacterAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\Hero_1aData.txt");
+            BlueMagicProjectileAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\BlueMagicProjectileData.txt");
         }
 
         public static void Initialize()

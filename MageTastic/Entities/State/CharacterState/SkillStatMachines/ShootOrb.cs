@@ -1,4 +1,6 @@
-﻿using MageTastic.Utility;
+﻿using MageTastic.Engines;
+using MageTastic.Utility;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,11 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
             if (InternalStateTimer.IsComplete )
             {
                 //move to attacking phase
+                WorldEngine.AddEntityToWorld(new ProjectileProtoBlueOrb(
+                    Assets.BlueMagicProjectileAnimationSet,
+                    Assets.BlueMagicProjectile,
+                    CurrentFrame.LeftAttach + Context.Position,
+                    Vector2.Zero));
                 ChangeState(ReturnState);
             }
 

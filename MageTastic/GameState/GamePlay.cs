@@ -19,12 +19,15 @@ namespace MageTastic.GameState
         public GamePlay()
         {
             CurrentLevel = new Level();
+            WorldEngine.SetLevel(CurrentLevel);
         }
 
         public override void Initialize()
         {
             //TODO remove proto code
-            CurrentLevel.AddEntity(new PlayerProto());
+            var player = new PlayerProto();
+            CurrentLevel.AddEntity(player);
+            RenderEngine.SetCameraTarget(player);
         }
 
         public override void Update(GameTime gameTime)

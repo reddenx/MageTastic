@@ -18,7 +18,7 @@ namespace MageTastic.Engines
         {
         }
 
-        public static void Initialize()
+        public static void Instantiate()
         {
             if (Instance == null)
             {
