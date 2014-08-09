@@ -58,7 +58,7 @@ namespace MageTastic.Entities.State
         //inputs into state machine
         public virtual void HandleHitBy(object skillOrAttackIwasHitBy) { }
         public virtual void HandleMovement(Vector2 movementVector) { }
-        public virtual void HandleAction(object actionInput) { }
+        public virtual void HandleAction(SkillProto actionInput) { }
         public virtual void ChangeDirection(Direction direction) { CurrentDirection = direction; }
 
         protected void ChangeState(AnimatedStateBase newState)

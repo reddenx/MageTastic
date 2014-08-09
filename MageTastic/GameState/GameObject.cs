@@ -32,6 +32,8 @@ namespace MageTastic.GameState
 
         protected override void Update(GameTime gameTime)
         {
+            InputEngine.Update(gameTime);
+
             CurrentGameState.Update(gameTime);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -56,6 +58,7 @@ namespace MageTastic.GameState
             
             Camera camera = new Camera(ScreenDimensions);
             RenderEngine.Instantiate(camera);
+            InputEngine.Instantiate();
 
             CurrentGameState = new GamePlay();
 

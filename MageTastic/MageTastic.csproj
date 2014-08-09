@@ -60,6 +60,7 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityTeam.cs" />
     <Compile Include="Entities\PlayerProto.cs" />
+    <Compile Include="Entities\SkillProto.cs" />
     <Compile Include="Entities\State\AnimatedStateBase.cs" />
     <Compile Include="Entities\State\CharacterState\DecorationStateMachine\Idle.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Dead.cs" />

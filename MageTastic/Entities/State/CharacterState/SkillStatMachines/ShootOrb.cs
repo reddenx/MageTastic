@@ -12,18 +12,16 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
 
         private TickTimer InternalStateTimer;
 
-        private EntityStates CurrentSkillState;
         public override EntityStates CurrentState
         {
-            get { return CurrentSkillState; }
+            get { return EntityStates.Moving; }
         }
 
         public ShootOrb(CharacterStateBase returnState)
             :base(returnState)
         {
-            CurrentSkillState = EntityStates.ChargingUp;
             ReturnState = returnState;
-            InternalStateTimer = new TickTimer(1000);
+            InternalStateTimer = new TickTimer(3000);
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
@@ -31,10 +29,8 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
             InternalStateTimer.Update(gameTime);
             if (InternalStateTimer.IsComplete )
             {
-                if (CurrentSkillState == EntityStates.ChargingUp)
-                {
-                    CurrentSkillState = EntityStates.Attacking;
-                }
+                //move to attacking phase
+                ChangeState(ReturnState);
             }
 
             base.Update(gameTime);

@@ -16,9 +16,12 @@ namespace MageTastic.Entities
 {
     class PlayerProto : Character
     {
+        private SkillProto ProtoSkill;
+
         public PlayerProto()
-            :base(Assets.KnightAnimationSet, Assets.PlayerKnight, Vector2.Zero)
+            :base(Assets.KnightAnimationSet, Assets.PlayerKnight, Vector2.Zero, EntityTeam.Players)
         {
+            ProtoSkill = new SkillProto();
             State = new Idle(this);
         }
 
@@ -64,6 +67,11 @@ namespace MageTastic.Entities
                 movementInputDirection.Normalize();
             }
 
+            if (InputEngine.WasKeyPressed(Keys.D1))
+            {
+                UseSkill(ProtoSkill);
+            }
+
             return movementInputDirection;
         }
 
@@ -73,7 +81,7 @@ namespace MageTastic.Entities
 
             spriteBatch.DrawString(
                 Assets.DevFont,
-                State.CurrentState.ToString(),
+                State.ToString(),
                 Vector2.Zero,
                 Color.Black,
                 0f,

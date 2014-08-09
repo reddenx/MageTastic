@@ -12,13 +12,15 @@ namespace MageTastic.Entities
     {
         public EntityTeam Team;
 
-        public Character(Dictionary<EntityStates, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position)
+        public Character(Dictionary<EntityStates, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position, EntityTeam team)
             : base(animationSet, texture, true, position)
-        { }
-
-        public void UseSkill(object skill)
         {
-            throw new NotImplementedException();
+            Team = team;
+        }
+
+        public void UseSkill(SkillProto skill)
+        {
+            State.HandleAction(skill);
         }
     }
 }
