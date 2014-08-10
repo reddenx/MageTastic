@@ -17,6 +17,11 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
             : base(oldState)
         { }
 
+        public override void HandleAction(SkillProto actionInput)
+        {
+            ChangeState(actionInput.InitiateSkill(this));
+        }
+
         public override void HandleMovement(Vector2 movementVector)
         {
             if (movementVector == Vector2.Zero)

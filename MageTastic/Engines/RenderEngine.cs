@@ -12,12 +12,12 @@ namespace MageTastic.Engines
 {
     class RenderEngine
     {
-        static RenderEngine instance;
-
+        static RenderEngine Instance;
+        
         private readonly Camera Camera;
         public static Matrix RenderTransform
         {
-            get { return instance.Camera.Transformation; }
+            get { return Instance.Camera.Transformation; }
         }
 
         private RenderEngine(Camera camera)
@@ -27,19 +27,24 @@ namespace MageTastic.Engines
 
         public static void Instantiate(Camera camera)
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = new RenderEngine(camera);
+                Instance = new RenderEngine(camera);
             }
         }
 
-        //TODO remove proto, make character generic
-        public static void DrawPlayerProto(SpriteBatch spriteBatch, PlayerProto character)
+        public static void Update(GameTime gameTime)
         {
-            instance._DrawPlayerProto(spriteBatch, character);
+            Instance.Camera.Update(gameTime);
         }
+
+        public static void DrawPlayerProto(SpriteBatch spriteBatch, Character character)
+        {
+            Instance._DrawPlayerProto(spriteBatch, character);
+        }
+
         //TODO come up with better backing names for instance methods in singletons
-        private void _DrawPlayerProto(SpriteBatch spriteBatch, PlayerProto character)
+        private void _DrawPlayerProto(SpriteBatch spriteBatch, Character character)
         {
             var frame = character.State.CurrentFrame;
 
@@ -56,7 +61,7 @@ namespace MageTastic.Engines
 
         public static Vector2 TranslateWindowsToWorldSpace(Point windowsSpace)
         {
-            return windowsSpace.ToVector() / instance.Camera.Zoom;
+            return windowsSpace.ToVector() / Instance.Camera.Zoom;
         }
 
         public static void DrawProjectileProto(SpriteBatch spriteBatch, ProjectileProtoBlueOrb projectileProtoBlueOrb)
@@ -78,7 +83,7 @@ namespace MageTastic.Engines
 
         public static void SetCameraTarget(Entity target)
         {
-            instance.Camera.SetTarget(target);
+            Instance.Camera.SetTarget(target);
         }
     }
 }

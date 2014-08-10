@@ -19,6 +19,7 @@ namespace MageTastic.Entities
         public bool IsCollidable;
         public Texture2D Texture;
         public readonly Dictionary<EntityStates, EntityFrame[][]> AnimationSet;
+        public bool RemoveFromWorld;
         
         //logic
         public AnimatedStateBase State;
@@ -40,5 +41,6 @@ namespace MageTastic.Entities
         abstract public void Update(GameTime gameTime);
         abstract public void Draw(SpriteBatch spriteBatch);
         abstract public void HandleCollision(Entity colliders);
+
     }
 }

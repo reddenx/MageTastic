@@ -23,7 +23,7 @@ namespace MageTastic.Entities
 
         public override void Update(GameTime gameTime)
         {
-            Position += Velocity;
+            State.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

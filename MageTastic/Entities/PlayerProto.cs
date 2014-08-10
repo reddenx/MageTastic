@@ -79,6 +79,8 @@ namespace MageTastic.Entities
         {
             RenderEngine.DrawPlayerProto(spriteBatch, this);
 
+            spriteBatch.Draw(Assets.DevTexture, new Rectangle((int)Position.X, (int)Position.Y, 1,1), Color.White);
+
             spriteBatch.DrawString(
                 Assets.DevFont,
                 State.ToString(),

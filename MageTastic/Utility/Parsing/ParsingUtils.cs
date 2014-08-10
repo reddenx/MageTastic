@@ -56,7 +56,7 @@ namespace MageTastic.Utility.Parsing
                     frames.Add(new EntityFrame(
                         bounds.ToPoint(),
                         physics.ToRectangle(),
-                        origin.ToVector2(),
+                        origin.ToVector2() + new Vector2(.5f), //to center on pixel
                         rightAttachPoint.ToVector2(),
                         leftAttachPoint.ToVector2(),
                         null,
