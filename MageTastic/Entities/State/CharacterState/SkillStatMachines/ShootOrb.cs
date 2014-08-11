@@ -19,7 +19,7 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
 
         public override EntityStates CurrentState
         {
-            get { return EntityStates.ChargingUp; }
+            get { return EntityStates.Attacking; }
         }
 
         public ShootOrb(CharacterStateBase returnState)
@@ -36,15 +36,19 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
             {
                 var direction = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position) - Context.Position;
                 direction.Normalize();
-                direction += (new Vector2((float)Rand.NextDouble(), (float)Rand.NextDouble()) - new Vector2(.5f)) * 0.5f;
-                direction *= 4f;
+                direction += (new Vector2((float)Rand.NextDouble(), (float)Rand.NextDouble()) - new Vector2(.5f)) * .25f;
+                direction.Normalize();
+                direction *= 1.5f;
+
+                var flyTime = Rand.Next(900, 1200);
 
                 //move to attacking phase
                 WorldEngine.AddEntityToWorld(new ProjectileProtoBlueOrb(
                     Assets.BlueMagicProjectileAnimationSet,
                     Assets.BlueMagicProjectile,
                     CurrentFrame.LeftAttach + Context.Position-Context.State.CurrentFrame.Origin,
-                    direction));
+                    direction,
+                    flyTime));
 
                 if (InputEngine.IsKeyUp(Keys.D1))
                 {
@@ -52,7 +56,7 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
                 }
                 else
                 {
-                    InternalStateTimer = new TickTimer(50);
+                    InternalStateTimer = new TickTimer(150);
                 }
             }
 

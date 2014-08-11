@@ -30,6 +30,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
                 return;
             }
 
+            movementVector.Normalize();
+            movementVector *= .75f;
+
             Context.Position += movementVector;
         }
     }

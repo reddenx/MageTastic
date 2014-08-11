@@ -13,7 +13,7 @@ namespace MageTastic.Engines
     class RenderEngine
     {
         static RenderEngine Instance;
-        
+
         private readonly Camera Camera;
         public static Matrix RenderTransform
         {
@@ -61,7 +61,7 @@ namespace MageTastic.Engines
 
         public static Vector2 TranslateWindowsToWorldSpace(Point windowsSpace)
         {
-            return windowsSpace.ToVector() / Instance.Camera.Zoom;
+            return (new Vector2(windowsSpace.X, windowsSpace.Y)) / Instance.Camera.Zoom;
         }
 
         public static void DrawProjectileProto(SpriteBatch spriteBatch, ProjectileProtoBlueOrb projectileProtoBlueOrb)
@@ -69,16 +69,24 @@ namespace MageTastic.Engines
             var frame = projectileProtoBlueOrb.State.CurrentFrame;
 
             //TODO rotation
+            var rotation = (float)Math.Atan2(projectileProtoBlueOrb.Velocity.X, -projectileProtoBlueOrb.Velocity.Y);
 
             spriteBatch.Draw(projectileProtoBlueOrb.Texture,
                 projectileProtoBlueOrb.Position,
                 frame.SpriteSheetSourceRectangle,
                 Color.White,
-                0f,
+                rotation,
                 frame.Origin,
                 1f,
                 SpriteEffects.None,
                 0f);
+        }
+
+        public static void DrawDevDot(SpriteBatch spriteBatch, Vector2 position)
+        {
+            var scale = 1f / (float)Assets.DevTexture.Bounds.Height;
+
+            spriteBatch.Draw(Assets.DevTexture, position, null, Color.White, 0f, new Vector2(.5f), scale, SpriteEffects.None, 0f);
         }
 
         public static void SetCameraTarget(Entity target)

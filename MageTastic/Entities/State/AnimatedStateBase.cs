@@ -30,9 +30,9 @@ namespace MageTastic.Entities.State
             Context = oldBase.Context;
 
             Animation = Context.AnimationSet[CurrentState];
-            FrameTimer = TickTimer.Expired;
             FrameIndex = 0;
             CurrentDirection = oldBase.CurrentDirection;
+            FrameTimer = new TickTimer(CurrentFrame.FrameTime);
         }
 
         public AnimatedStateBase(Entity context)

@@ -1,4 +1,5 @@
 ﻿using MageTastic.Entities;
+using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -59,6 +60,27 @@ namespace MageTastic.World
             {
                 entity.Update(gameTime);
             }
+
+            DetermineCollisions();
+        }
+
+        private void DetermineCollisions()
+        {
+            //stupidly inefficient n^2(ish) algorithm
+            foreach (var entity in Entities)
+            {
+                if (entity.IsCollidable)
+                {
+                    foreach (var check in Entities)
+                    {
+                        if (check.IsCollidable && check != entity && entity.State.CurrentFrame.PhysicsBox.Intersects(check.State.CurrentFrame.PhysicsBox))
+                        {
+                            check.HandleCollision(entity);
+                            entity.HandleCollision(check);
+                        }
+                    }
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -67,6 +89,17 @@ namespace MageTastic.World
             {
                 entity.Draw(spriteBatch);
             }
+
+            spriteBatch.DrawString(
+                Assets.DevFont,
+                Entities.Count.ToString(),
+                Vector2.Zero,
+                Color.Black,
+                0f,
+                new Vector2(0,-20),
+                .2f,
+                SpriteEffects.None,
+                0f);
         }
 
         internal void AddEntity(Entity entity)

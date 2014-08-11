@@ -14,11 +14,11 @@ namespace MageTastic.Entities
     {
         public Vector2 Velocity;
 
-        public ProjectileProtoBlueOrb(Dictionary<EntityStates, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position, Vector2 velocity)
+        public ProjectileProtoBlueOrb(Dictionary<EntityStates, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position, Vector2 velocity, int flyTime)
             :base(animationSet, texture, true, position)
         {
             Velocity = velocity;
-            State = new ProjectileFlying(this);
+            State = new BlueOrbFlyingProto(this, flyTime);
         }
 
         public override void Update(GameTime gameTime)

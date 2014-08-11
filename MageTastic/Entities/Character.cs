@@ -11,6 +11,7 @@ namespace MageTastic.Entities
     abstract class Character : Entity
     {
         public EntityTeam Team;
+        public CharacterStats Stats;
 
         public Character(Dictionary<EntityStates, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position, EntityTeam team)
             : base(animationSet, texture, true, position)

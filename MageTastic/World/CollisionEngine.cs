@@ -16,23 +16,6 @@ namespace MageTastic.World
             Entities = entities;
         }
 
-        public void DetermineCollisions()
-        {
-            //stupidly inefficient n^2(ish) algorithm
-            foreach (var entity in Entities)
-            {
-                if (entity.IsCollidable)
-                {
-                    foreach (var check in Entities)
-                    {
-                        if (check.IsCollidable && entity.State.CurrentFrame.PhysicsBox.Intersects(check.State.CurrentFrame.PhysicsBox))
-                        {
-                            check.HandleCollision(entity);
-                            entity.HandleCollision(check);
-                        }
-                    }
-                }
-            }
-        }
+        
     }
 }

@@ -57,8 +57,8 @@ namespace MageTastic.Utility.Parsing
                         bounds.ToPoint(),
                         physics.ToRectangle(),
                         origin.ToVector2() + new Vector2(.5f), //to center on pixel
-                        rightAttachPoint.ToVector2(),
-                        leftAttachPoint.ToVector2(),
+                        rightAttachPoint.ToVector2() + new Vector2(.5f),
+                        leftAttachPoint.ToVector2() + new Vector2(.5f),
                         null,
                         null,
                         null,
