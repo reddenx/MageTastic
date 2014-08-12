@@ -13,11 +13,10 @@ namespace MageTastic.Entities
 {
     abstract class Entity
     {
-        //TODO make them readonly with proper constructor once responsibilities are solidified
         //data
         public Vector2 Position;
         public bool IsCollidable;
-        public Texture2D Texture;
+        public readonly Texture2D Texture;
         public readonly Dictionary<EntityStates, EntityFrame[][]> AnimationSet;
         public bool RemoveFromWorld;
         

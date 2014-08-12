@@ -1,4 +1,5 @@
 ﻿using MageTastic.Entities.State;
+using MageTastic.World;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -74,7 +75,6 @@ namespace MageTastic.Utility.Parsing
                 animationSetMeta[state].Add(direction, frames);
             }
 
-            //TODO this is a stupid data type, make it better, maybe not so bad
             var animationSet = new Dictionary<EntityStates, EntityFrame[][]>();
 
             foreach (var stateSet in animationSetMeta)
@@ -90,6 +90,201 @@ namespace MageTastic.Utility.Parsing
             }
 
             return animationSet;
+        }
+
+        //TODO THIS IS A FUCKING WRECK, clean it up, get the data in a file.
+        public static Tile[][] GetLevelFromFile(string filename)
+        {
+            //again too lazy today to make it a real parser, but here's where it would parse
+
+            var data = new int[][]
+            {
+                new int[] { 1,1,1,1,1 },
+                new int[] { 1,0,0,0,1 },
+                new int[] { 1,0,0,0,1 },
+                new int[] { 1,0,0,0,1 },
+                new int[] { 1,1,1,1,1 },
+            };
+
+            var map = new Tile[5][];
+
+            for (int i = 0; i < data.Length; ++i)
+            {
+                map[i] = new Tile[data.Length];
+
+                for (int j = 0; j < data[i].Length; ++j)
+                {
+                    //calculate what tile it is based on number here
+
+                    int fg = data[i][j];
+                    int bg = fg;
+
+                    if (j != 0 && j < map[i].Length - 1 && i != 0 && i < map[i].Length - 1)
+                    {
+                        bg = GetBGFromMap(new Point(i, j), data, fg);
+
+                        if (fg == bg)
+                        {
+                            map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[fg][bg][0], new Rectangle(i * 16, j * 16, 16, 16));
+                        }
+                        else
+                        {
+                            int id = data[i + 1][j] != fg ? GetIdFromKnownMap(i + 1, j) : 0;
+                            id += data[i][j + 1] != fg ? GetIdFromKnownMap(i, j + 1) : 0;
+                            id += data[i - 1][j] != fg ? GetIdFromKnownMap(i - 1, j) : 0;
+                            id += data[i][j - 1] != fg ? GetIdFromKnownMap(i, j - 1) : 0;
+
+                            if (id == 15)
+                            {
+                                id = data[i + 1][j + 1] != fg ? GetIdFromKnownMap(i + 1, j + 1) : 0
+                                    + data[i - 1][j + 1] != fg ? GetIdFromKnownMap(i - 1, j + 1) : 0
+                                    + data[i - 1][j - 1] != fg ? GetIdFromKnownMap(i - 1, j - 1) : 0
+                                    + data[i + 1][j - 1] != fg ? GetIdFromKnownMap(i + 1, j - 1) : 0;
+                            }
+                            //add cross
+                            //if 15 add corners
+
+                            map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[fg][bg][id], new Rectangle(i * 16, j * 16, 16, 16));
+                        }
+                    }
+                    else
+                    {
+                        map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[fg][bg][0], new Rectangle(i * 16, j * 16, 16, 16));
+                    }
+
+
+
+                }
+            }
+
+            return map;
+        }
+
+        private static int GetBGFromMap(Point p, int[][] data, int fg)
+        {
+            if (data[p.X + 1][p.Y] != fg)
+            {
+                return data[p.X + 1][p.Y];
+            }
+            if (data[p.X - 1][p.Y] != fg)
+            {
+                return data[p.X - 1][p.Y];
+            }
+            if (data[p.X][p.Y + 1] != fg)
+            {
+                return data[p.X][p.Y + 1];
+            }
+            if (data[p.X + 1][p.Y + 1] != fg)
+            {
+                return data[p.X + 1][p.Y + 1];
+            }
+            if (data[p.X - 1][p.Y + 1] != fg)
+            {
+                return data[p.X - 1][p.Y + 1];
+            }
+            if (data[p.X][p.Y - 1] != fg)
+            {
+                return data[p.X][p.Y - 1];
+            }
+            if (data[p.X + 1][p.Y - 1] != fg)
+            {
+                return data[p.X + 1][p.Y - 1];
+            }
+            if (data[p.X - 1][p.Y - 1] != fg)
+            {
+                return data[p.X - 1][p.Y - 1];
+            }
+
+            return fg;
+        }
+
+        private static int GetIdFromKnownMap(int x, int y)
+        {
+            var map = new int[][]
+            {
+                new int[] {7,1,3,11,10},
+                new int[] {8,0,2,9,5},
+                new int[] {12,4,6,19,16},
+            };
+
+            var id = map[x][y];
+
+            return id;
+        }
+
+        public static Rectangle[][][] GetTileSetFromFile(string filename)
+        {
+            //too lazy, gonna hardcode till I get some more assets
+
+            //var rectangles = new Dictionary<int, Rectangle>();
+            //var completeFileText = File.ReadAllText(filename);
+
+            //foreach (var entry in GetBetween(completeFileText, '[', ']'))
+            //{
+            //    var key = GetBetween(entry, '<', '>').First().ToInt();
+            //    var rectangleToks = GetBetween(entry, '(', ')').First().Split(',');
+            //    var value = new Rectangle(rectangleToks[0].ToInt(), rectangleToks[1].ToInt(), rectangleToks[2].ToInt(), rectangleToks[3].ToInt());
+
+            //    rectangles.Add(key, value);
+            //}
+
+            //var maxId = rectangles.Keys.Max();
+            //var rectangleList = new List<Rectangle>();
+
+            //for (int i = 0; i < maxId; ++i)
+            //{
+            //    if (rectangles.ContainsKey(i))
+            //    {
+            //        rectangleList.Add(rectangles[i]);
+            //    }
+            //    else
+            //    {
+            //        rectangleList.Add(new Rectangle(0, 0, 1, 1));
+            //    }
+            //}
+
+            var rectangles = new Rectangle[3][][];
+            var tileSize = 16;
+
+            //3x3 conversion, would work for any amount
+            for (int backgroundIndex = 0; backgroundIndex < 3; ++backgroundIndex)
+            {
+                rectangles[backgroundIndex] = new Rectangle[3][];
+
+                for (int foregroundIndex = 0; foregroundIndex < 3; ++foregroundIndex)
+                {
+                    rectangles[backgroundIndex][foregroundIndex] = new Rectangle[20];
+
+                    var xOff = 5 * tileSize * backgroundIndex;
+                    var yOff = 3 * tileSize * foregroundIndex;
+
+                    //lol could have easily put this in a file ^_^ ... too late...
+                    rectangles[backgroundIndex][foregroundIndex][0] = new Rectangle(xOff + tileSize * 1, yOff + tileSize * 1, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][1] = new Rectangle(xOff + tileSize * 1, yOff + tileSize * 0, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][2] = new Rectangle(xOff + tileSize * 2, yOff + tileSize * 1, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][3] = new Rectangle(xOff + tileSize * 2, yOff + tileSize * 0, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][4] = new Rectangle(xOff + tileSize * 1, yOff + tileSize * 2, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][5] = new Rectangle(xOff + tileSize * 4, yOff + tileSize * 1, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][6] = new Rectangle(xOff + tileSize * 2, yOff + tileSize * 2, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][7] = new Rectangle(xOff + tileSize * 0, yOff + tileSize * 0, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][8] = new Rectangle(xOff + tileSize * 0, yOff + tileSize * 1, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][9] = new Rectangle(xOff + tileSize * 3, yOff + tileSize * 1, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][10] = new Rectangle(xOff + tileSize * 4, yOff + tileSize * 0, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][11] = new Rectangle(xOff + tileSize * 3, yOff + tileSize * 0, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][12] = new Rectangle(xOff + tileSize * 0, yOff + tileSize * 2, tileSize, tileSize);
+
+
+
+                    rectangles[backgroundIndex][foregroundIndex][16] = new Rectangle(xOff + tileSize * 4, yOff + tileSize * 2, tileSize, tileSize);
+
+
+                    rectangles[backgroundIndex][foregroundIndex][19] = new Rectangle(xOff + tileSize * 3, yOff + tileSize * 2, tileSize, tileSize);
+
+                    //80x48
+                }
+            }
+
+            return rectangles;
         }
 
         private static Vector2 ToVector2(this string[] s)

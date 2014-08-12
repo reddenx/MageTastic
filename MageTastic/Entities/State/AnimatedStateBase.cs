@@ -12,7 +12,6 @@ namespace MageTastic.Entities.State
         //not necessary but useful for debug and tracking
         abstract public EntityStates CurrentState { get; }
 
-        //TODO this will change to inevitable character class
         protected Entity Context;
 
         //animation information

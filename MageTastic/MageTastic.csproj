@@ -85,9 +85,9 @@
     <Compile Include="Utility\Camera.cs" />
     <Compile Include="Utility\Parsing\ParsingUtils.cs" />
     <Compile Include="Utility\TickTimer.cs" />
-    <Compile Include="World\CollisionEngine.cs" />
     <Compile Include="World\Director.cs" />
     <Compile Include="World\Level.cs" />
+    <Compile Include="World\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

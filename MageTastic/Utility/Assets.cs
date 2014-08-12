@@ -1,5 +1,6 @@
 ﻿using MageTastic.Entities.State;
 using MageTastic.Utility.Parsing;
+using MageTastic.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,13 +22,17 @@ namespace MageTastic.Utility
         public static Texture2D DevTexture;
         public static Texture2D PlayerKnight;
         public static Texture2D BlueMagicProjectile;
+        public static Texture2D TileMapTexture;
         public static Dictionary<EntityStates, EntityFrame[][]> CharacterAnimationSet;
         public static Dictionary<EntityStates, EntityFrame[][]> BlueMagicProjectileAnimationSet;
+        public static Rectangle[][][] BlendedTileSet;
+        public static Tile[][] LevelOneTileMap { get; set; }
 
         private Assets()
         {
             CharacterAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\Hero_1aData.txt");
             BlueMagicProjectileAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\BlueMagicProjectileData.txt");
+            BlendedTileSet = ParsingUtils.GetTileSetFromFile("Assets\\BlendedTileSetData.txt");
         }
 
         public static void Initialize()
@@ -51,6 +56,8 @@ namespace MageTastic.Utility
 
             PlayerKnight = LoadTextureFallWithFallback("Hero_1a", content);
             BlueMagicProjectile = LoadTextureFallWithFallback("BlueMagicProjectile", content);
+            TileMapTexture = LoadTextureFallWithFallback("OutdoorTileset", content);
+            LevelOneTileMap = ParsingUtils.GetLevelFromFile("l1");
         }
 
         private Texture2D LoadTextureFallWithFallback(string textureName, ContentManager content)
@@ -64,5 +71,6 @@ namespace MageTastic.Utility
                 return DevTexture;
             }
         }
+
     }
 }

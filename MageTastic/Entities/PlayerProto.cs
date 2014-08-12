@@ -34,8 +34,6 @@ namespace MageTastic.Entities
             State.ChangeDirection(facingDirection.ToDirection());
             State.HandleMovement(movementDirection);
 
-            //TODO move to state, notify it of input vector
-
             State.Update(gameTime);
         }
 

@@ -1,4 +1,5 @@
-﻿using MageTastic.Entities;
+﻿using MageTastic.Engines;
+using MageTastic.Entities;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,11 +15,13 @@ namespace MageTastic.World
     {
         private readonly List<Entity> Entities;
         private readonly List<Entity> NewEntityAdditions;
+        private readonly Tile[][] TileMap;//TODO pull into it's own object that can build itself
 
         public Level()
         {
             Entities = new List<Entity>();
             NewEntityAdditions = new List<Entity>();
+            TileMap = Assets.LevelOneTileMap;
         }
 
         public List<Entity> QueryForCollision(Entity input)
@@ -85,6 +88,14 @@ namespace MageTastic.World
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            for (int i = 0; i < TileMap.Length; ++i)
+            {
+                for (int j = 0; j < TileMap[i].Length; ++j)
+                {
+                    RenderEngine.DrawTile(spriteBatch, TileMap[i][j]);
+                }
+            }
+
             foreach (var entity in Entities)
             {
                 entity.Draw(spriteBatch);

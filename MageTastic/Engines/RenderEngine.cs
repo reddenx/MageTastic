@@ -1,6 +1,7 @@
 ﻿using MageTastic.Entities;
 using MageTastic.Entities.State;
 using MageTastic.Utility;
+using MageTastic.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -43,7 +44,6 @@ namespace MageTastic.Engines
             Instance._DrawPlayerProto(spriteBatch, character);
         }
 
-        //TODO come up with better backing names for instance methods in singletons
         private void _DrawPlayerProto(SpriteBatch spriteBatch, Character character)
         {
             var frame = character.State.CurrentFrame;
@@ -68,7 +68,6 @@ namespace MageTastic.Engines
         {
             var frame = projectileProtoBlueOrb.State.CurrentFrame;
 
-            //TODO rotation
             var rotation = (float)Math.Atan2(projectileProtoBlueOrb.Velocity.X, -projectileProtoBlueOrb.Velocity.Y);
 
             spriteBatch.Draw(projectileProtoBlueOrb.Texture,
@@ -82,6 +81,11 @@ namespace MageTastic.Engines
                 0f);
         }
 
+        internal static void DrawTile(SpriteBatch spriteBatch, Tile tile)
+        {
+            spriteBatch.Draw(tile.Texture, tile.DrawRectangle, tile.SourceRectangle, Color.White);
+        }
+
         public static void DrawDevDot(SpriteBatch spriteBatch, Vector2 position)
         {
             var scale = 1f / (float)Assets.DevTexture.Bounds.Height;
@@ -93,5 +97,7 @@ namespace MageTastic.Engines
         {
             Instance.Camera.SetTarget(target);
         }
+
+        
     }
 }

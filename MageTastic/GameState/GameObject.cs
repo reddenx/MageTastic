@@ -61,7 +61,6 @@ namespace MageTastic.GameState
             InputEngine.Instantiate();
             WorldEngine.Instantiate();
 
-            CurrentGameState = new GamePlay();
 
             base.Initialize();
         }
@@ -71,6 +70,8 @@ namespace MageTastic.GameState
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Assets.LoadContent(Content);
 
+
+            CurrentGameState = new GamePlay();
             CurrentGameState.Initialize();
         }
 
