@@ -168,35 +168,35 @@ namespace MageTastic.Utility.Parsing
 
         private static int GetBGFromMap(Point p, int[][] data, int fg)
         {
-            if (data[p.X + 1][p.Y] != fg)
+            if (data[p.X + 1][p.Y] > fg)
             {
                 return data[p.X + 1][p.Y];
             }
-            if (data[p.X - 1][p.Y] != fg)
+            if (data[p.X - 1][p.Y] > fg)
             {
                 return data[p.X - 1][p.Y];
             }
-            if (data[p.X][p.Y + 1] != fg)
+            if (data[p.X][p.Y + 1] > fg)
             {
                 return data[p.X][p.Y + 1];
             }
-            if (data[p.X + 1][p.Y + 1] != fg)
+            if (data[p.X + 1][p.Y + 1] > fg)
             {
                 return data[p.X + 1][p.Y + 1];
             }
-            if (data[p.X - 1][p.Y + 1] != fg)
+            if (data[p.X - 1][p.Y + 1] > fg)
             {
                 return data[p.X - 1][p.Y + 1];
             }
-            if (data[p.X][p.Y - 1] != fg)
+            if (data[p.X][p.Y - 1] > fg)
             {
                 return data[p.X][p.Y - 1];
             }
-            if (data[p.X + 1][p.Y - 1] != fg)
+            if (data[p.X + 1][p.Y - 1] > fg)
             {
                 return data[p.X + 1][p.Y - 1];
             }
-            if (data[p.X - 1][p.Y - 1] != fg)
+            if (data[p.X - 1][p.Y - 1] > fg)
             {
                 return data[p.X - 1][p.Y - 1];
             }
