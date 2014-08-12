@@ -99,18 +99,24 @@ namespace MageTastic.Utility.Parsing
 
             var data = new int[][]
             {
-                new int[] { 1,1,1,1,1 },
-                new int[] { 1,0,0,0,1 },
-                new int[] { 1,0,0,0,1 },
-                new int[] { 1,0,0,0,1 },
-                new int[] { 1,1,1,1,1 },
+                new int[] { 1,1,1,1,1,1,1,1,1 },
+                new int[] { 1,0,0,0,0,0,0,0,1 },
+                new int[] { 1,0,0,0,0,0,0,0,1 },
+                new int[] { 1,0,0,0,0,0,0,0,1 },
+                new int[] { 1,0,0,2,2,0,0,0,1 },
+                new int[] { 1,0,0,2,2,0,0,0,1 },
+                new int[] { 1,0,0,0,0,0,0,0,1 },
+                new int[] { 1,0,0,0,0,0,0,0,1 },
+                new int[] { 1,0,0,0,0,0,0,0,1 },
+                new int[] { 1,0,0,0,0,0,0,0,1 },
+                new int[] { 1,1,1,1,1,1,1,1,1 },
             };
 
-            var map = new Tile[5][];
+            var map = new Tile[data.Length][];
 
             for (int i = 0; i < data.Length; ++i)
             {
-                map[i] = new Tile[data.Length];
+                map[i] = new Tile[data[i].Length];
 
                 for (int j = 0; j < data[i].Length; ++j)
                 {
@@ -119,7 +125,7 @@ namespace MageTastic.Utility.Parsing
                     int fg = data[i][j];
                     int bg = fg;
 
-                    if (j != 0 && j < map[i].Length - 1 && i != 0 && i < map[i].Length - 1)
+                    if (j != 0 && j < data[i].Length - 1 && i != 0 && i < data.Length - 1)
                     {
                         bg = GetBGFromMap(new Point(i, j), data, fg);
 
@@ -129,27 +135,27 @@ namespace MageTastic.Utility.Parsing
                         }
                         else
                         {
-                            int id = data[i + 1][j] != fg ? GetIdFromKnownMap(i + 1, j) : 0;
-                            id += data[i][j + 1] != fg ? GetIdFromKnownMap(i, j + 1) : 0;
-                            id += data[i - 1][j] != fg ? GetIdFromKnownMap(i - 1, j) : 0;
-                            id += data[i][j - 1] != fg ? GetIdFromKnownMap(i, j - 1) : 0;
+                            int id = data[i + 1][j] != fg ? GetIdFromKnownMap(1, 0) : 0;
+                            id += data[i][j + 1] != fg ? GetIdFromKnownMap(0, 1) : 0;
+                            id += data[i - 1][j] != fg ? GetIdFromKnownMap(-1, 0) : 0;
+                            id += data[i][j - 1] != fg ? GetIdFromKnownMap(0, -1) : 0;
 
                             if (id == 15)
                             {
-                                id = data[i + 1][j + 1] != fg ? GetIdFromKnownMap(i + 1, j + 1) : 0
-                                    + data[i - 1][j + 1] != fg ? GetIdFromKnownMap(i - 1, j + 1) : 0
-                                    + data[i - 1][j - 1] != fg ? GetIdFromKnownMap(i - 1, j - 1) : 0
-                                    + data[i + 1][j - 1] != fg ? GetIdFromKnownMap(i + 1, j - 1) : 0;
+                                id = data[i + 1][j + 1] != fg ? GetIdFromKnownMap(1, 1) : 0
+                                    + data[i - 1][j + 1] != fg ? GetIdFromKnownMap(-1, 1) : 0
+                                    + data[i - 1][j - 1] != fg ? GetIdFromKnownMap(-1, -1) : 0
+                                    + data[i + 1][j - 1] != fg ? GetIdFromKnownMap(1, -1) : 0;
                             }
                             //add cross
                             //if 15 add corners
 
-                            map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[fg][bg][id], new Rectangle(i * 16, j * 16, 16, 16));
+                            map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[bg][fg][id], new Rectangle(i * 16, j * 16, 16, 16));
                         }
                     }
                     else
                     {
-                        map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[fg][bg][0], new Rectangle(i * 16, j * 16, 16, 16));
+                        map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[bg][fg][0], new Rectangle(i * 16, j * 16, 16, 16));
                     }
 
 
@@ -200,14 +206,16 @@ namespace MageTastic.Utility.Parsing
 
         private static int GetIdFromKnownMap(int x, int y)
         {
+            ++x;
+            ++y;
             var map = new int[][]
             {
-                new int[] {7,1,3,11,10},
-                new int[] {8,0,2,9,5},
-                new int[] {12,4,6,19,16},
+                new int[] {5,1,7},
+                new int[] {8,0,2},
+                new int[] {10,4,11}
             };
 
-            var id = map[x][y];
+            var id = map[y][x];
 
             return id;
         }
@@ -253,10 +261,10 @@ namespace MageTastic.Utility.Parsing
 
                 for (int foregroundIndex = 0; foregroundIndex < 3; ++foregroundIndex)
                 {
-                    rectangles[backgroundIndex][foregroundIndex] = new Rectangle[20];
+                    rectangles[backgroundIndex][foregroundIndex] = new Rectangle[18];
 
-                    var xOff = 5 * tileSize * backgroundIndex;
-                    var yOff = 3 * tileSize * foregroundIndex;
+                    var xOff = 5 * tileSize * foregroundIndex;
+                    var yOff = 3 * tileSize * backgroundIndex;
 
                     //lol could have easily put this in a file ^_^ ... too late...
                     rectangles[backgroundIndex][foregroundIndex][0] = new Rectangle(xOff + tileSize * 1, yOff + tileSize * 1, tileSize, tileSize);
@@ -266,9 +274,9 @@ namespace MageTastic.Utility.Parsing
                     rectangles[backgroundIndex][foregroundIndex][4] = new Rectangle(xOff + tileSize * 1, yOff + tileSize * 2, tileSize, tileSize);
                     rectangles[backgroundIndex][foregroundIndex][5] = new Rectangle(xOff + tileSize * 4, yOff + tileSize * 1, tileSize, tileSize);
                     rectangles[backgroundIndex][foregroundIndex][6] = new Rectangle(xOff + tileSize * 2, yOff + tileSize * 2, tileSize, tileSize);
-                    rectangles[backgroundIndex][foregroundIndex][7] = new Rectangle(xOff + tileSize * 0, yOff + tileSize * 0, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][9] = new Rectangle(xOff + tileSize * 0, yOff + tileSize * 0, tileSize, tileSize);
                     rectangles[backgroundIndex][foregroundIndex][8] = new Rectangle(xOff + tileSize * 0, yOff + tileSize * 1, tileSize, tileSize);
-                    rectangles[backgroundIndex][foregroundIndex][9] = new Rectangle(xOff + tileSize * 3, yOff + tileSize * 1, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][7] = new Rectangle(xOff + tileSize * 3, yOff + tileSize * 1, tileSize, tileSize);
                     rectangles[backgroundIndex][foregroundIndex][10] = new Rectangle(xOff + tileSize * 4, yOff + tileSize * 0, tileSize, tileSize);
                     rectangles[backgroundIndex][foregroundIndex][11] = new Rectangle(xOff + tileSize * 3, yOff + tileSize * 0, tileSize, tileSize);
                     rectangles[backgroundIndex][foregroundIndex][12] = new Rectangle(xOff + tileSize * 0, yOff + tileSize * 2, tileSize, tileSize);
@@ -278,7 +286,7 @@ namespace MageTastic.Utility.Parsing
                     rectangles[backgroundIndex][foregroundIndex][16] = new Rectangle(xOff + tileSize * 4, yOff + tileSize * 2, tileSize, tileSize);
 
 
-                    rectangles[backgroundIndex][foregroundIndex][19] = new Rectangle(xOff + tileSize * 3, yOff + tileSize * 2, tileSize, tileSize);
+                    rectangles[backgroundIndex][foregroundIndex][17] = new Rectangle(xOff + tileSize * 3, yOff + tileSize * 2, tileSize, tileSize);
 
                     //80x48
                 }
