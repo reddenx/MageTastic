@@ -70,6 +70,7 @@
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Moving.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Recoiling.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Stunned.cs" />
+    <Compile Include="Entities\State\CharacterState\SkillStatMachines\ChargeOrb.cs" />
     <Compile Include="Entities\State\CharacterState\SkillStatMachines\ShootOrb.cs" />
     <Compile Include="Entities\State\CharacterState\CharacterStateBase.cs" />
     <Compile Include="Entities\State\EntityFrame.cs" />

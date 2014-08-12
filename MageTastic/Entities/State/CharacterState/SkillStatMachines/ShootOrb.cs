@@ -22,11 +22,11 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
             get { return EntityStates.Attacking; }
         }
 
-        public ShootOrb(CharacterStateBase returnState)
-            :base(returnState)
+        public ShootOrb(CharacterStateBase previousState, CharacterStateBase returnState)
+            : base(previousState)
         {
             ReturnState = returnState;
-            InternalStateTimer = new TickTimer(1000);
+            InternalStateTimer = new TickTimer(150);
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
@@ -34,21 +34,7 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
             InternalStateTimer.Update(gameTime);
             if (InternalStateTimer.IsComplete )
             {
-                var direction = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position) - Context.Position;
-                direction.Normalize();
-                direction += (new Vector2((float)Rand.NextDouble(), (float)Rand.NextDouble()) - new Vector2(.5f)) * .25f;
-                direction.Normalize();
-                direction *= 1.5f;
-
-                var flyTime = Rand.Next(900, 1200);
-
-                //move to attacking phase
-                WorldEngine.AddEntityToWorld(new ProjectileProtoBlueOrb(
-                    Assets.BlueMagicProjectileAnimationSet,
-                    Assets.BlueMagicProjectile,
-                    CurrentFrame.LeftAttach + Context.Position-Context.State.CurrentFrame.Origin,
-                    direction,
-                    flyTime));
+                CreateAndShootOrb();
 
                 if (InputEngine.IsKeyUp(Keys.D1))
                 {
@@ -61,6 +47,24 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
             }
 
             base.Update(gameTime);
+        }
+
+        private void CreateAndShootOrb()
+        {
+            var direction = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position) - Context.Position;
+            direction.Normalize();
+            direction += (new Vector2((float)Rand.NextDouble(), (float)Rand.NextDouble()) - new Vector2(.5f)) * .25f;
+            direction.Normalize();
+            direction *= 1.5f;
+
+            var flyTime = Rand.Next(900, 1200);
+
+            WorldEngine.AddEntityToWorld(new ProjectileProtoBlueOrb(
+                Assets.BlueMagicProjectileAnimationSet,
+                Assets.BlueMagicProjectile,
+                CurrentFrame.LeftAttach + Context.Position - Context.State.CurrentFrame.Origin,
+                direction,
+                flyTime));
         }
 
         public override void HandleMovement(Vector2 movementVector)

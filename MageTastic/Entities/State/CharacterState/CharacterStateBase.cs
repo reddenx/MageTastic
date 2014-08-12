@@ -17,6 +17,7 @@ namespace MageTastic.Entities.State.CharacterState
 
         public CharacterStateBase(Character context)
             :base(context)
-        { }
+        {
+        }
     }
 }

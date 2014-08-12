@@ -22,7 +22,7 @@ namespace MageTastic.Entities
 
         public AnimatedStateBase InitiateSkill(CharacterStateBase previousState)
         {
-            var skillStartState = new ShootOrb(previousState);
+            var skillStartState = new ChargeOrb(previousState);
             return skillStartState;
         }
 
