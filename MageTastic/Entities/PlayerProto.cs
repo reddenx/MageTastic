@@ -65,7 +65,7 @@ namespace MageTastic.Entities
                 movementInputDirection.Normalize();
             }
 
-            if (InputEngine.WasKeyPressed(Keys.D1))
+            if (InputEngine.WasKeyPressed(Keys.Space))
             {
                 UseSkill(ProtoSkill);
             }
@@ -102,7 +102,7 @@ namespace MageTastic.Entities
         public override void HandleCollision(Entity colliders)
         {
             //if it's a skill collision, notify the state and let it handle it
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

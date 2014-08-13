@@ -14,9 +14,9 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
 
         private TickTimer InternalStateTimer;
 
-        public override EntityStates CurrentState
+        public override EntityState CurrentState
         {
-            get { return EntityStates.ChargingUp; }
+            get { return EntityState.ChargingUp; }
         }
 
         public ChargeOrb(CharacterStateBase returnState)

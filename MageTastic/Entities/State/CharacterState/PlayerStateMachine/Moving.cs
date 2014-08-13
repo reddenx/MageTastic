@@ -8,9 +8,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
 {
     class Moving : CharacterStateBase
     {
-        public override EntityStates CurrentState
+        public override EntityState CurrentState
         {
-            get { return EntityStates.Moving; }
+            get { return EntityState.Moving; }
         }
 
         public Moving(CharacterStateBase oldState)

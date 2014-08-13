@@ -15,9 +15,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// </summary>
     class Stunned : CharacterStateBase
     {
-        public override EntityStates CurrentState
+        public override EntityState CurrentState
         {
-            get { return EntityStates.Stunned; }
+            get { return EntityState.Stunned; }
         }
 
         public Stunned(CharacterStateBase oldState)

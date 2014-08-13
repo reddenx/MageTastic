@@ -20,6 +20,7 @@ namespace MageTastic.Entities.State
         public readonly EntityFrame LeftAttachment;
         public readonly Rectangle SpriteSheetSourceRectangle;
         public readonly int FrameTime;
+        public readonly float Scale;
 
         public EntityFrame(
             Point bounds, 
@@ -43,6 +44,8 @@ namespace MageTastic.Entities.State
             LeftAttachment = leftAttachment;
             FrameTime = frameTime;
             SpriteSheetSourceRectangle = spriteSheetSourceRectangle;
+
+            Scale = (float)BoundingBoxDimensions.X / (float)SpriteSheetSourceRectangle.Width;
         }
 
     }

@@ -23,8 +23,8 @@ namespace MageTastic.Utility
         public static Texture2D PlayerKnight;
         public static Texture2D BlueMagicProjectile;
         public static Texture2D TileMapTexture;
-        public static Dictionary<EntityStates, EntityFrame[][]> CharacterAnimationSet;
-        public static Dictionary<EntityStates, EntityFrame[][]> BlueMagicProjectileAnimationSet;
+        public static Dictionary<EntityState, EntityFrame[][]> CharacterAnimationSet;
+        public static Dictionary<EntityState, EntityFrame[][]> BlueMagicProjectileAnimationSet;
         public static Rectangle[][][] BlendedTileSet;
         public static Tile[][] LevelOneTileMap { get; set; }
 

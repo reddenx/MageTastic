@@ -8,9 +8,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
 {
     class Idle : CharacterStateBase
     {
-        public override EntityStates CurrentState
+        public override EntityState CurrentState
         {
-            get { return EntityStates.Idle; }
+            get { return EntityState.Idle; }
         }
 
         public Idle(Character context)

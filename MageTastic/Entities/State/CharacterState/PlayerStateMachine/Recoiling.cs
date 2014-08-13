@@ -14,9 +14,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// </summary>
     class Recoiling : CharacterStateBase
     {
-        public override EntityStates CurrentState
+        public override EntityState CurrentState
         {
-            get { return EntityStates.Recoiling; }
+            get { return EntityState.Recoiling; }
         }
 
         public Recoiling(CharacterStateBase oldState, int timeMilli)

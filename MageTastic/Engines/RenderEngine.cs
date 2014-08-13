@@ -21,9 +21,12 @@ namespace MageTastic.Engines
             get { return Instance.Camera.Transformation; }
         }
 
+        private Random Rand;
+
         private RenderEngine(Camera camera)
         {
             Camera = camera;
+            Rand = new Random();
         }
 
         public static void Instantiate(Camera camera)
@@ -54,7 +57,7 @@ namespace MageTastic.Engines
                 Color.White,
                 0f,
                 frame.Origin,
-                1f,
+                frame.Scale,
                 SpriteEffects.None,
                 0f);
         }
@@ -67,7 +70,6 @@ namespace MageTastic.Engines
         public static void DrawProjectileProto(SpriteBatch spriteBatch, ProjectileProtoBlueOrb projectileProtoBlueOrb)
         {
             var frame = projectileProtoBlueOrb.State.CurrentFrame;
-
             var rotation = (float)Math.Atan2(projectileProtoBlueOrb.Velocity.X, -projectileProtoBlueOrb.Velocity.Y);
 
             spriteBatch.Draw(projectileProtoBlueOrb.Texture,
@@ -76,7 +78,7 @@ namespace MageTastic.Engines
                 Color.White,
                 rotation,
                 frame.Origin,
-                1f,
+                frame.Scale,
                 SpriteEffects.None,
                 0f);
         }

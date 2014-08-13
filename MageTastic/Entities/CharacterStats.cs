@@ -13,6 +13,9 @@ namespace MageTastic.Entities
         //magic    magic attack, resource pool, magic resistance
         //agility  speed, dodge, crit, bleed
 
+        public int Health=100;
+        public int Resource=100;
+
         public int Vitality;
         public int Vigor;
 

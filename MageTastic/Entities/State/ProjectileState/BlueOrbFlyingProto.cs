@@ -27,13 +27,26 @@ namespace MageTastic.Entities.State.ProjectileState
             ExplosionTimer.Update(gameTime);
             if (ExplosionTimer.IsComplete)
             {
-                ChangeState(new BlueOrbExplosionProto(this));
+                Explode();
             }
         }
 
-        public override EntityStates CurrentState
+        private void Explode()
         {
-            get { return EntityStates.Idle; }
+            ChangeState(new BlueOrbExplosionProto(this));
+        }
+
+        public override EntityState CurrentState
+        {
+            get { return EntityState.Idle; }
+        }
+
+        public override void HandleCollision(Entity collider)
+        {
+            if(!(collider is ProjectileProtoBlueOrb) && collider != Projectile.Source)
+            {
+                Explode();
+            }
         }
     }
 }

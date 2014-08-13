@@ -63,8 +63,10 @@
     <Compile Include="Entities\EntityTeam.cs" />
     <Compile Include="Entities\PlayerProto.cs" />
     <Compile Include="Entities\ProjectileProtoBlueOrb.cs" />
+    <Compile Include="Entities\ProtoEnemy.cs" />
     <Compile Include="Entities\SkillProto.cs" />
     <Compile Include="Entities\State\AnimatedStateBase.cs" />
+    <Compile Include="Entities\State\CharacterState\EnemyStateMachine\EnemyIdle.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Dead.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Idle.cs" />
     <Compile Include="Entities\State\CharacterState\PlayerStateMachine\Moving.cs" />

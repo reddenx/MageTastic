@@ -17,32 +17,32 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
 
         private TickTimer InternalStateTimer;
 
-        public override EntityStates CurrentState
+        public override EntityState CurrentState
         {
-            get { return EntityStates.Attacking; }
+            get { return EntityState.Attacking; }
         }
 
         public ShootOrb(CharacterStateBase previousState, CharacterStateBase returnState)
             : base(previousState)
         {
             ReturnState = returnState;
-            InternalStateTimer = new TickTimer(150);
+            InternalStateTimer = TickTimer.Expired;
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             InternalStateTimer.Update(gameTime);
             if (InternalStateTimer.IsComplete )
             {
                 CreateAndShootOrb();
 
-                if (InputEngine.IsKeyUp(Keys.D1))
+                if (InputEngine.IsKeyUp(Keys.Space))
                 {
                     ChangeState(ReturnState);
                 }
                 else
                 {
-                    InternalStateTimer = new TickTimer(150);
+                    InternalStateTimer = new TickTimer(250);
                 }
             }
 
@@ -55,16 +55,17 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
             direction.Normalize();
             direction += (new Vector2((float)Rand.NextDouble(), (float)Rand.NextDouble()) - new Vector2(.5f)) * .25f;
             direction.Normalize();
-            direction *= 1.5f;
+            direction *= .25f;
 
-            var flyTime = Rand.Next(900, 1200);
+            var flyTime = Rand.Next(1200, 8000);
 
             WorldEngine.AddEntityToWorld(new ProjectileProtoBlueOrb(
                 Assets.BlueMagicProjectileAnimationSet,
                 Assets.BlueMagicProjectile,
                 CurrentFrame.LeftAttach + Context.Position - Context.State.CurrentFrame.Origin,
                 direction,
-                flyTime));
+                flyTime,
+                Context as Character));
         }
 
         public override void HandleMovement(Vector2 movementVector)

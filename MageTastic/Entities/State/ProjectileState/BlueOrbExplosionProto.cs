@@ -28,9 +28,9 @@ namespace MageTastic.Entities.State.ProjectileState
             }
         }
 
-        public override EntityStates CurrentState
+        public override EntityState CurrentState
         {
-            get { return EntityStates.Attacking; }
+            get { return EntityState.Attacking; }
         }
     }
 }

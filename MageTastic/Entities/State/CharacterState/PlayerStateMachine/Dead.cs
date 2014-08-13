@@ -13,9 +13,9 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// </summary>
     class Dead : CharacterStateBase
     {
-        public override EntityStates CurrentState
+        public override EntityState CurrentState
         {
-            get { return EntityStates.Dead; }
+            get { return EntityState.Dead; }
         }
 
         public Dead(CharacterStateBase oldState)

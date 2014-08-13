@@ -28,17 +28,17 @@ namespace MageTastic.Utility.Parsing
         }
 
 
-        public static Dictionary<EntityStates, EntityFrame[][]> GetAnimationSetFromFile(string filename)
+        public static Dictionary<EntityState, EntityFrame[][]> GetAnimationSetFromFile(string filename)
         {
             //syntax: [<state,direction>{(parameter1)(parameter2)(...)...}{...}...]
 
-            var animationSetMeta = new Dictionary<EntityStates, Dictionary<Direction, List<EntityFrame>>>();
+            var animationSetMeta = new Dictionary<EntityState, Dictionary<Direction, List<EntityFrame>>>();
 
             var completeFileText = File.ReadAllText(filename);
             foreach (var animationLine in GetBetween(completeFileText, '[', ']'))
             {
                 var animationMetaData = GetBetween(animationLine, '<', '>')[0].Split(',');
-                var state = (EntityStates)int.Parse(animationMetaData[0]);
+                var state = (EntityState)int.Parse(animationMetaData[0]);
                 var direction = (Direction)int.Parse(animationMetaData[1]);
 
                 var frames = new List<EntityFrame>();
@@ -75,7 +75,7 @@ namespace MageTastic.Utility.Parsing
                 animationSetMeta[state].Add(direction, frames);
             }
 
-            var animationSet = new Dictionary<EntityStates, EntityFrame[][]>();
+            var animationSet = new Dictionary<EntityState, EntityFrame[][]>();
 
             foreach (var stateSet in animationSetMeta)
             {
@@ -302,7 +302,7 @@ namespace MageTastic.Utility.Parsing
 
         private static Point ToPoint(this string[] s)
         {
-            return new Point(s[0].ToInt(), s[1].ToInt());
+            return new Point(s[2].ToInt(), s[3].ToInt());
         }
 
         private static Rectangle ToRectangle(this string[] s)

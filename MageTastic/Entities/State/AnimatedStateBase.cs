@@ -10,7 +10,7 @@ namespace MageTastic.Entities.State
     abstract class AnimatedStateBase
     {
         //not necessary but useful for debug and tracking
-        abstract public EntityStates CurrentState { get; }
+        abstract public EntityState CurrentState { get; }
 
         protected Entity Context;
 
@@ -21,7 +21,6 @@ namespace MageTastic.Entities.State
         private int FrameIndex;
         protected Direction CurrentDirection;
 
-        //think this is a powerful pattern, publicly need to supply context, internally handles automatically with changestate
         private AnimatedStateBase() { }
 
         protected AnimatedStateBase(AnimatedStateBase oldBase) 
@@ -59,6 +58,7 @@ namespace MageTastic.Entities.State
         public virtual void HandleMovement(Vector2 movementVector) { }
         public virtual void HandleAction(SkillProto actionInput) { }
         public virtual void ChangeDirection(Direction direction) { CurrentDirection = direction; }
+        public virtual void HandleCollision(Entity collider) { Context.HandleCollision(collider); }
 
         protected void ChangeState(AnimatedStateBase newState)
         {

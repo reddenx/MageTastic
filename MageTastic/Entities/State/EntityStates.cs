@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MageTastic.Entities.State
 {
-    enum EntityStates
+    enum EntityState
     {
         //dev
         Vitruvian = 0,

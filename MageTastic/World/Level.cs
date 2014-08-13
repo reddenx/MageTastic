@@ -76,10 +76,10 @@ namespace MageTastic.World
                 {
                     foreach (var check in Entities)
                     {
-                        if (check.IsCollidable && check != entity && entity.State.CurrentFrame.PhysicsBox.Intersects(check.State.CurrentFrame.PhysicsBox))
+                        if (check.IsCollidable && entity.IsCollidable && check != entity && entity.GetTranslatedPhysicsRectangle().Intersects(check.GetTranslatedPhysicsRectangle()))
                         {
-                            check.HandleCollision(entity);
-                            entity.HandleCollision(check);
+                            check.State.HandleCollision(entity);
+                            entity.State.HandleCollision(check);
                         }
                     }
                 }
