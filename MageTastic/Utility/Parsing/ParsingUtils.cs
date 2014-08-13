@@ -92,24 +92,24 @@ namespace MageTastic.Utility.Parsing
             return animationSet;
         }
 
-        //TODO THIS IS A FUCKING WRECK, clean it up, get the data in a file.
+        //TODO THIS IS A FUCKING WRECK, clean it up, get the data in a file, present algorithm better
         public static Tile[][] GetLevelFromFile(string filename)
         {
             //again too lazy today to make it a real parser, but here's where it would parse
 
             var data = new int[][]
             {
-                new int[] { 1,1,1,1,1,1,1,1,1 },
-                new int[] { 1,0,0,0,0,0,0,0,1 },
-                new int[] { 1,0,0,0,0,0,0,0,1 },
-                new int[] { 1,0,0,0,0,0,0,0,1 },
-                new int[] { 1,0,0,2,2,0,0,0,1 },
-                new int[] { 1,0,0,2,2,0,0,0,1 },
-                new int[] { 1,0,0,0,0,0,0,0,1 },
-                new int[] { 1,0,0,0,0,0,0,0,1 },
-                new int[] { 1,0,0,0,0,0,0,0,1 },
-                new int[] { 1,0,0,0,0,0,0,0,1 },
-                new int[] { 1,1,1,1,1,1,1,1,1 },
+                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                new int[] { 0,0,0,0,1,1,0,0,0,0,0,0,0 },
+                new int[] { 0,0,0,1,1,1,0,0,0,0,0,0,0 },
+                new int[] { 0,0,1,1,1,0,0,0,0,0,0,0,0 },
+                new int[] { 0,1,1,1,0,0,0,0,0,0,0,0,0 },
+                new int[] { 0,1,1,0,0,0,0,0,0,0,0,0,0 },
+                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
+                
             };
 
             var map = new Tile[data.Length][];
@@ -140,12 +140,12 @@ namespace MageTastic.Utility.Parsing
                             id += data[i - 1][j] != fg ? GetIdFromKnownMap(-1, 0) : 0;
                             id += data[i][j - 1] != fg ? GetIdFromKnownMap(0, -1) : 0;
 
-                            if (id == 15)
+                            if (id == 0)
                             {
-                                id = data[i + 1][j + 1] != fg ? GetIdFromKnownMap(1, 1) : 0
-                                    + data[i - 1][j + 1] != fg ? GetIdFromKnownMap(-1, 1) : 0
-                                    + data[i - 1][j - 1] != fg ? GetIdFromKnownMap(-1, -1) : 0
-                                    + data[i + 1][j - 1] != fg ? GetIdFromKnownMap(1, -1) : 0;
+                                id = data[i + 1][j + 1] != fg ? GetIdFromKnownMap(1, 1) : 0;
+                                id += data[i - 1][j + 1] != fg ? GetIdFromKnownMap(-1, 1) : 0;
+                                id += data[i - 1][j - 1] != fg ? GetIdFromKnownMap(-1, -1) : 0;
+                                id += data[i + 1][j - 1] != fg ? GetIdFromKnownMap(1, -1) : 0;
                             }
                             //add cross
                             //if 15 add corners
@@ -168,35 +168,35 @@ namespace MageTastic.Utility.Parsing
 
         private static int GetBGFromMap(Point p, int[][] data, int fg)
         {
-            if (data[p.X + 1][p.Y] > fg)
+            if (data[p.X + 1][p.Y] < fg)
             {
                 return data[p.X + 1][p.Y];
             }
-            if (data[p.X - 1][p.Y] > fg)
+            if (data[p.X - 1][p.Y] < fg)
             {
                 return data[p.X - 1][p.Y];
             }
-            if (data[p.X][p.Y + 1] > fg)
+            if (data[p.X][p.Y + 1] < fg)
             {
                 return data[p.X][p.Y + 1];
             }
-            if (data[p.X + 1][p.Y + 1] > fg)
+            if (data[p.X + 1][p.Y + 1] < fg)
             {
                 return data[p.X + 1][p.Y + 1];
             }
-            if (data[p.X - 1][p.Y + 1] > fg)
+            if (data[p.X - 1][p.Y + 1] < fg)
             {
                 return data[p.X - 1][p.Y + 1];
             }
-            if (data[p.X][p.Y - 1] > fg)
+            if (data[p.X][p.Y - 1] < fg)
             {
                 return data[p.X][p.Y - 1];
             }
-            if (data[p.X + 1][p.Y - 1] > fg)
+            if (data[p.X + 1][p.Y - 1] < fg)
             {
                 return data[p.X + 1][p.Y - 1];
             }
-            if (data[p.X - 1][p.Y - 1] > fg)
+            if (data[p.X - 1][p.Y - 1] < fg)
             {
                 return data[p.X - 1][p.Y - 1];
             }

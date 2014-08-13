@@ -48,6 +48,10 @@ namespace MageTastic.GameState
 
             CurrentLevel.Draw(spriteBatch);
 
+            //TODO dev dots
+            var mousePos = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position);
+            spriteBatch.Draw(Assets.DevTexture, new Rectangle((int)mousePos.X, (int)mousePos.Y, 1, 1), Color.White);
+
             spriteBatch.End();
         }
     }

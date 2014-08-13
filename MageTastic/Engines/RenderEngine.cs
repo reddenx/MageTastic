@@ -61,7 +61,7 @@ namespace MageTastic.Engines
 
         public static Vector2 TranslateWindowsToWorldSpace(Point windowsSpace)
         {
-            return (new Vector2(windowsSpace.X, windowsSpace.Y)) / Instance.Camera.Zoom;
+            return Instance.Camera.TranslateToWorldSpace(windowsSpace);
         }
 
         public static void DrawProjectileProto(SpriteBatch spriteBatch, ProjectileProtoBlueOrb projectileProtoBlueOrb)

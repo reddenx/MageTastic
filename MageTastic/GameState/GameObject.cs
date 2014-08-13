@@ -33,6 +33,7 @@ namespace MageTastic.GameState
         protected override void Update(GameTime gameTime)
         {
             InputEngine.Update(gameTime);
+            RenderEngine.Update(gameTime);
 
             CurrentGameState.Update(gameTime);
 

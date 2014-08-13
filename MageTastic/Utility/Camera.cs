@@ -29,13 +29,18 @@ namespace MageTastic.Utility
         {
             if (Target != null)
             {
-                Position = new Vector2(Target.Position.X - ViewDimensions.X / 2, Target.Position.Y - ViewDimensions.Y / 2);
+                Position = -Target.Position*Zoom + new Vector2(ViewDimensions.X/2,ViewDimensions.Y/2) ;// new Vector2(Target.Position.X - ViewDimensions.X / 2, Target.Position.Y - ViewDimensions.Y / 2);
             }
         }
 
         public void SetTarget(Entity target)
         {
             Target = target;
+        }
+
+        public Vector2 TranslateToWorldSpace(Point windowsSpace)
+        {
+            return (new Vector2(windowsSpace.X, windowsSpace.Y) - Position) / Zoom;
         }
     }
 }
