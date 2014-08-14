@@ -27,8 +27,6 @@ namespace MageTastic.Entities
         public override void Draw(SpriteBatch spriteBatch)
         {
             RenderEngine.DrawPlayerProto(spriteBatch, this);
-
-            spriteBatch.Draw(Assets.DevTexture, GetTranslatedPhysicsRectangle(), Color.White);
         }
 
         public override void HandleCollision(Entity colliders)

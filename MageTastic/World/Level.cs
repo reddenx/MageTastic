@@ -15,7 +15,7 @@ namespace MageTastic.World
     {
         private readonly List<Entity> Entities;
         private readonly List<Entity> NewEntityAdditions;
-        private readonly Tile[,] TileMap;//TODO pull into it's own object that can build itself
+        private readonly Tile[,] TileMap;
 
         public Level()
         {
@@ -69,6 +69,7 @@ namespace MageTastic.World
 
         private void DetermineCollisions()
         {
+            //TODO efficiency
             //stupidly inefficient n^2(ish) algorithm
             foreach (var entity in Entities)
             {
@@ -91,7 +92,7 @@ namespace MageTastic.World
 
             RenderEngine.DrawTileMapInView(TileMap, spriteBatch);
 
-            foreach (var entity in Entities)
+            foreach (var entity in Entities.OrderBy(uu => uu.Position.Y))
             {
                 entity.Draw(spriteBatch);
             }

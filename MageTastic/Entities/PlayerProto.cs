@@ -18,8 +18,8 @@ namespace MageTastic.Entities
     {
         private SkillProto ProtoSkill;
 
-        public PlayerProto()
-            :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, new Vector2(2000), EntityTeam.Players)
+        public PlayerProto(Vector2 position)
+            :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, position, EntityTeam.Players)
         {
             ProtoSkill = new SkillProto();
             State = new Idle(this);

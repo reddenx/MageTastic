@@ -53,11 +53,11 @@ namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
         {
             var direction = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position) - Context.Position;
             direction.Normalize();
-            direction += (new Vector2((float)Rand.NextDouble(), (float)Rand.NextDouble()) - new Vector2(.5f)) * .25f;
+            direction += (new Vector2((float)Rand.NextDouble(), (float)Rand.NextDouble()) - new Vector2(.5f)) * .5f;
             direction.Normalize();
-            direction *= .25f;
+            direction *= 1f;
 
-            var flyTime = Rand.Next(1200, 8000);
+            var flyTime = Rand.Next(900, 1200);
 
             WorldEngine.AddEntityToWorld(new ProjectileProtoBlueOrb(
                 Assets.BlueMagicProjectileAnimationSet,

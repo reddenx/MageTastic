@@ -25,9 +25,9 @@ namespace MageTastic.GameState
         public override void Initialize()
         {
             //TODO remove proto code
-            var player = new PlayerProto();
+            var player = new PlayerProto(new Vector2(2000));
             CurrentLevel.AddEntity(player);
-            var enemy = new ProtoEnemy(Assets.CharacterAnimationSet, Assets.PlayerKnight, new Vector2(100, 100));
+            var enemy = new ProtoEnemy(Assets.CharacterAnimationSet, Assets.PlayerKnight, new Vector2(2020));
             CurrentLevel.AddEntity(enemy);
             
 
@@ -51,10 +51,6 @@ namespace MageTastic.GameState
                 RenderEngine.RenderTransform);
 
             CurrentLevel.Draw(spriteBatch);
-
-            //TODO dev dots
-            var mousePos = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position);
-            spriteBatch.Draw(Assets.DevTexture, new Rectangle((int)mousePos.X, (int)mousePos.Y, 1, 1), Color.White);
 
             spriteBatch.End();
         }

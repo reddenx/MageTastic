@@ -28,12 +28,13 @@ namespace MageTastic.GameState
             
             GraphicsDeviceManager.PreferredBackBufferWidth = ScreenDimensions.X;
             GraphicsDeviceManager.PreferredBackBufferHeight = ScreenDimensions.Y;
+
+            GraphicsDeviceManager.SynchronizeWithVerticalRetrace = true;
         }
 
         protected override void Update(GameTime gameTime)
         {
             InputEngine.Update(gameTime);
-            RenderEngine.Update(gameTime);
 
             CurrentGameState.Update(gameTime);
 
@@ -41,6 +42,7 @@ namespace MageTastic.GameState
             {
                 Exit();
             }
+            RenderEngine.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -62,7 +64,6 @@ namespace MageTastic.GameState
             InputEngine.Instantiate();
             WorldEngine.Instantiate();
 
-
             base.Initialize();
         }
 
@@ -70,7 +71,6 @@ namespace MageTastic.GameState
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Assets.LoadContent(Content);
-
 
             CurrentGameState = new GamePlay();
             CurrentGameState.Initialize();

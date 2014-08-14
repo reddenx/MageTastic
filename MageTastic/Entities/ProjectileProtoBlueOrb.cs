@@ -32,17 +32,11 @@ namespace MageTastic.Entities
         public override void Draw(SpriteBatch spriteBatch)
         {
             RenderEngine.DrawProjectileProto(spriteBatch, this);
-
-            //var color = Color.White;
-            //color.A = 150;
-
-            //spriteBatch.Draw(Assets.DevTexture, GetTranslatedPhysicsRectangle(), color);
         }
 
         public override void HandleCollision(Entity colliders)
         {
-            //TODO do effect transfer here
-             //throw new NotImplementedException();
+            //TODO do effect transfer here?
         }
     }
 }
