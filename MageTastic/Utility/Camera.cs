@@ -42,5 +42,12 @@ namespace MageTastic.Utility
         {
             return (new Vector2(windowsSpace.X, windowsSpace.Y) - Position) / Zoom;
         }
+
+        public Rectangle GetWorldlyViewport()
+        {
+            var transPosition = Position * -1 / Zoom;
+            var transDimensions = new Point((int)(ViewDimensions.X / Zoom), (int)(ViewDimensions.Y / Zoom));
+            return new Rectangle((int)transPosition.X, (int)transPosition.Y, transDimensions.X, transDimensions.Y);
+        }
     }
 }

@@ -88,13 +88,8 @@ namespace MageTastic.World
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int x = 0; x < TileMap.GetLength(0); ++x)
-            {
-                for (int y = 0; y < TileMap.GetLength(1); ++y)
-                {
-                    RenderEngine.DrawTile(spriteBatch, TileMap[x,y]);
-                }
-            }
+
+            RenderEngine.DrawTileMapInView(TileMap, spriteBatch);
 
             foreach (var entity in Entities)
             {
@@ -107,7 +102,7 @@ namespace MageTastic.World
                 Vector2.Zero,
                 Color.Black,
                 0f,
-                new Vector2(0,-20),
+                new Vector2(0, -20),
                 .2f,
                 SpriteEffects.None,
                 0f);

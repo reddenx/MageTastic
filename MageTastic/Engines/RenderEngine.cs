@@ -83,11 +83,6 @@ namespace MageTastic.Engines
                 0f);
         }
 
-        internal static void DrawTile(SpriteBatch spriteBatch, Tile tile)
-        {
-            spriteBatch.Draw(tile.Texture, tile.DrawRectangle, tile.SourceRectangle, Color.White);
-        }
-
         public static void DrawDevDot(SpriteBatch spriteBatch, Vector2 position)
         {
             var scale = 1f / (float)Assets.DevTexture.Bounds.Height;
@@ -100,6 +95,24 @@ namespace MageTastic.Engines
             Instance.Camera.SetTarget(target);
         }
 
-        
+        public static void DrawTileMapInView(Tile[,] tileMap, SpriteBatch spriteBatch)
+        {
+            var viewpoint = Instance.Camera.GetWorldlyViewport();
+
+            var xMin = viewpoint.X / 16 - 0;
+            var yMin = viewpoint.Y / 16 - 0;
+
+            var xMax = viewpoint.Width / 16 + 2 + xMin;
+            var yMax = viewpoint.Height / 16 + 1 + yMin;
+
+            for (int y = yMin; y < yMax ; ++y)
+            {
+                for (int x = xMin; x < xMax ; ++x)
+                {
+                    var tile = tileMap[x,y];
+                    spriteBatch.Draw(tile.Texture, tile.DrawRectangle, tile.SourceRectangle, Color.White);
+                }
+            }
+        }
     }
 }

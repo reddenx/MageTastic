@@ -33,15 +33,15 @@ namespace MageTastic.Entities
         {
             RenderEngine.DrawProjectileProto(spriteBatch, this);
 
-            var color = Color.White;
-            color.A = 150;
+            //var color = Color.White;
+            //color.A = 150;
 
-            spriteBatch.Draw(Assets.DevTexture, GetTranslatedPhysicsRectangle(), color);
+            //spriteBatch.Draw(Assets.DevTexture, GetTranslatedPhysicsRectangle(), color);
         }
 
         public override void HandleCollision(Entity colliders)
         {
-            //do effect transfer here
+            //TODO do effect transfer here
              //throw new NotImplementedException();
         }
     }

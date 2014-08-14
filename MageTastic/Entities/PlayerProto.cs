@@ -19,7 +19,7 @@ namespace MageTastic.Entities
         private SkillProto ProtoSkill;
 
         public PlayerProto()
-            :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, new Vector2(500), EntityTeam.Players)
+            :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, new Vector2(2000), EntityTeam.Players)
         {
             ProtoSkill = new SkillProto();
             State = new Idle(this);
@@ -81,8 +81,8 @@ namespace MageTastic.Entities
             //spriteBatch.Draw(Assets.DevTexture, new Rectangle((int)(State.CurrentFrame.LeftAttach.X + Position.X - State.CurrentFrame.Origin.X), (int)(State.CurrentFrame.LeftAttach.Y + Position.Y - State.CurrentFrame.Origin.Y), 1, 1), Color.White);
             //spriteBatch.Draw(Assets.DevTexture, new Rectangle((int)(State.CurrentFrame.RightAttach.X + Position.X - State.CurrentFrame.Origin.X), (int)(State.CurrentFrame.RightAttach.Y + Position.Y - State.CurrentFrame.Origin.Y), 1, 1), Color.White);
 
-            RenderEngine.DrawDevDot(spriteBatch, Position);
-            RenderEngine.DrawDevDot(spriteBatch, Position + State.CurrentFrame.RightAttach - State.CurrentFrame.Origin);
+            //RenderEngine.DrawDevDot(spriteBatch, Position);
+            //RenderEngine.DrawDevDot(spriteBatch, Position + State.CurrentFrame.RightAttach - State.CurrentFrame.Origin);
 
             spriteBatch.DrawString(
                 Assets.DevFont,
@@ -94,9 +94,6 @@ namespace MageTastic.Entities
                 .2f,
                 SpriteEffects.None,
                 0f);
-
-            
-
         }
 
         public override void HandleCollision(Entity colliders)
