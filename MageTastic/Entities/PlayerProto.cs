@@ -19,7 +19,7 @@ namespace MageTastic.Entities
         private SkillProto ProtoSkill;
 
         public PlayerProto()
-            :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, Vector2.Zero, EntityTeam.Players)
+            :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, new Vector2(500), EntityTeam.Players)
         {
             ProtoSkill = new SkillProto();
             State = new Idle(this);

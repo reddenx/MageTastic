@@ -26,7 +26,7 @@ namespace MageTastic.Utility
         public static Dictionary<EntityState, EntityFrame[][]> CharacterAnimationSet;
         public static Dictionary<EntityState, EntityFrame[][]> BlueMagicProjectileAnimationSet;
         public static Rectangle[][][] BlendedTileSet;
-        public static Tile[][] LevelOneTileMap { get; set; }
+        public static Tile[,] LevelOneTileMap { get; set; }
 
         private Assets()
         {
@@ -57,7 +57,7 @@ namespace MageTastic.Utility
             PlayerKnight = LoadTextureFallWithFallback("Hero_1a", content);
             BlueMagicProjectile = LoadTextureFallWithFallback("BlueMagicProjectile", content);
             TileMapTexture = LoadTextureFallWithFallback("OutdoorTileset", content);
-            LevelOneTileMap = ParsingUtils.GetLevelFromFile("l1");
+            LevelOneTileMap = ParsingUtils.GetLevelFromImage("Assets\\Island.png");
         }
 
         private Texture2D LoadTextureFallWithFallback(string textureName, ContentManager content)

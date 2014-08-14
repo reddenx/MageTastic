@@ -15,7 +15,7 @@ namespace MageTastic.World
     {
         private readonly List<Entity> Entities;
         private readonly List<Entity> NewEntityAdditions;
-        private readonly Tile[][] TileMap;//TODO pull into it's own object that can build itself
+        private readonly Tile[,] TileMap;//TODO pull into it's own object that can build itself
 
         public Level()
         {
@@ -88,11 +88,11 @@ namespace MageTastic.World
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < TileMap.Length; ++i)
+            for (int x = 0; x < TileMap.GetLength(0); ++x)
             {
-                for (int j = 0; j < TileMap[i].Length; ++j)
+                for (int y = 0; y < TileMap.GetLength(1); ++y)
                 {
-                    RenderEngine.DrawTile(spriteBatch, TileMap[i][j]);
+                    RenderEngine.DrawTile(spriteBatch, TileMap[x,y]);
                 }
             }
 

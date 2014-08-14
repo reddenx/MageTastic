@@ -11,6 +11,8 @@ namespace MageTastic.Utility.Parsing
 {
     static class ParsingUtils
     {
+
+
         public static string[] GetBetween(string str, char start, char end, int offset = 0)
         {
             var datas = new List<string>();
@@ -92,70 +94,85 @@ namespace MageTastic.Utility.Parsing
             return animationSet;
         }
 
+        public static Tile[,] GetLevelFromImage(string filename)
+        {
+            var bitmap = new System.Drawing.Bitmap(filename);
+            var mapData = new int[bitmap.Width, bitmap.Height];
+
+            for (int x = 0; x < bitmap.Width; ++x)
+            {
+                for (int y = 0; y < bitmap.Height; ++y)
+                {
+                    var pixel = bitmap.GetPixel(x, y);
+
+                    switch (pixel.Name)
+                    {
+                        case "ff0000ff": //blue water 0
+                            mapData[x, y] = 0;
+                            break;
+                        case "ffffff00":
+                            mapData[x, y] = 1;
+                            break;
+                        case "ff00ff00":
+                            mapData[x, y] = 2;
+                            break;
+                        default:
+                            mapData[x, y] = 1;
+                            break;
+                    }
+                }
+            }
+
+            return GetLevelFromData(mapData);
+        }
+
         //TODO THIS IS A FUCKING WRECK, clean it up, get the data in a file, present algorithm better
-        public static Tile[][] GetLevelFromFile(string filename)
+        public static Tile[,] GetLevelFromData(int[,] data)
         {
             //again too lazy today to make it a real parser, but here's where it would parse
 
-            var data = new int[][]
+            var map = new Tile[data.GetLength(0), data.GetLength(1)];
+
+            for (int y = 0; y < data.GetLength(1); ++y)
             {
-                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
-                new int[] { 0,0,0,0,1,1,0,0,0,0,0,0,0 },
-                new int[] { 0,0,0,1,1,1,0,0,0,0,0,0,0 },
-                new int[] { 0,0,1,1,1,0,0,0,0,0,0,0,0 },
-                new int[] { 0,1,1,1,0,0,0,0,0,0,0,0,0 },
-                new int[] { 0,1,1,0,0,0,0,0,0,0,0,0,0 },
-                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
-                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
-                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
-                new int[] { 0,0,0,0,0,0,0,0,0,0,0,0,0 },
-                
-            };
-
-            var map = new Tile[data.Length][];
-
-            for (int i = 0; i < data.Length; ++i)
-            {
-                map[i] = new Tile[data[i].Length];
-
-                for (int j = 0; j < data[i].Length; ++j)
+                for (int x = 0; x < data.GetLength(0); ++x)
                 {
                     //calculate what tile it is based on number here
 
-                    int fg = data[i][j];
+                    int fg = data[x, y];
                     int bg = fg;
 
-                    if (j != 0 && j < data[i].Length - 1 && i != 0 && i < data.Length - 1)
+                    if (x != 0 && x < data.GetLength(0) - 1 && y != 0 && y < data.GetLength(1) - 1)
                     {
-                        bg = GetBGFromMap(new Point(i, j), data, fg);
+                        bg = GetBGFromMap(new Point(x, y), data, fg);
 
                         if (fg == bg)
                         {
-                            map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[fg][bg][0], new Rectangle(i * 16, j * 16, 16, 16));
+                            map[x, y] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[fg][bg][0], new Rectangle(x * 16, y * 16, 16, 16));
                         }
                         else
                         {
-                            int id = data[i + 1][j] != fg ? GetIdFromKnownMap(1, 0) : 0;
-                            id += data[i][j + 1] != fg ? GetIdFromKnownMap(0, 1) : 0;
-                            id += data[i - 1][j] != fg ? GetIdFromKnownMap(-1, 0) : 0;
-                            id += data[i][j - 1] != fg ? GetIdFromKnownMap(0, -1) : 0;
+                            int id = data[x + 1, y] != fg ? GetIdFromKnownMap(1, 0) : 0;
+                            id += data[x, y + 1] != fg ? GetIdFromKnownMap(0, 1) : 0;
+                            id += data[x - 1, y] != fg ? GetIdFromKnownMap(-1, 0) : 0;
+                            id += data[x, y - 1] != fg ? GetIdFromKnownMap(0, -1) : 0;
 
                             if (id == 0)
                             {
-                                id = data[i + 1][j + 1] != fg ? GetIdFromKnownMap(1, 1) : 0;
-                                id += data[i - 1][j + 1] != fg ? GetIdFromKnownMap(-1, 1) : 0;
-                                id += data[i - 1][j - 1] != fg ? GetIdFromKnownMap(-1, -1) : 0;
-                                id += data[i + 1][j - 1] != fg ? GetIdFromKnownMap(1, -1) : 0;
+                                id = data[x + 1, y + 1] != fg ? GetIdFromKnownMap(1, 1) : 0;
+                                id += data[x - 1, y + 1] != fg ? GetIdFromKnownMap(-1, 1) : 0;
+                                id += data[x - 1, y - 1] != fg ? GetIdFromKnownMap(-1, -1) : 0;
+                                id += data[x + 1, y - 1] != fg ? GetIdFromKnownMap(1, -1) : 0;
                             }
                             //add cross
                             //if 15 add corners
 
-                            map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[bg][fg][id], new Rectangle(i * 16, j * 16, 16, 16));
+                            map[x,y] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[bg][fg][id], new Rectangle(x * 16, y * 16, 16, 16));
                         }
                     }
                     else
                     {
-                        map[i][j] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[bg][fg][0], new Rectangle(i * 16, j * 16, 16, 16));
+                        map[x,y] = new Tile(Assets.TileMapTexture, Assets.BlendedTileSet[bg][fg][0], new Rectangle(x * 16, y * 16, 16, 16));
                     }
 
 
@@ -166,45 +183,45 @@ namespace MageTastic.Utility.Parsing
             return map;
         }
 
-        private static int GetBGFromMap(Point p, int[][] data, int fg)
+        private static int GetBGFromMap(Point p, int[,] data, int fg)
         {
-            if (data[p.X + 1][p.Y] < fg)
+            if (data[p.X + 1, p.Y] < fg)
             {
-                return data[p.X + 1][p.Y];
+                return data[p.X + 1, p.Y];
             }
-            if (data[p.X - 1][p.Y] < fg)
+            if (data[p.X - 1, p.Y] < fg)
             {
-                return data[p.X - 1][p.Y];
+                return data[p.X - 1, p.Y];
             }
-            if (data[p.X][p.Y + 1] < fg)
+            if (data[p.X, p.Y + 1] < fg)
             {
-                return data[p.X][p.Y + 1];
+                return data[p.X, p.Y + 1];
             }
-            if (data[p.X + 1][p.Y + 1] < fg)
+            if (data[p.X + 1, p.Y + 1] < fg)
             {
-                return data[p.X + 1][p.Y + 1];
+                return data[p.X + 1, p.Y + 1];
             }
-            if (data[p.X - 1][p.Y + 1] < fg)
+            if (data[p.X - 1, p.Y + 1] < fg)
             {
-                return data[p.X - 1][p.Y + 1];
+                return data[p.X - 1, p.Y + 1];
             }
-            if (data[p.X][p.Y - 1] < fg)
+            if (data[p.X, p.Y - 1] < fg)
             {
-                return data[p.X][p.Y - 1];
+                return data[p.X, p.Y - 1];
             }
-            if (data[p.X + 1][p.Y - 1] < fg)
+            if (data[p.X + 1, p.Y - 1] < fg)
             {
-                return data[p.X + 1][p.Y - 1];
+                return data[p.X + 1, p.Y - 1];
             }
-            if (data[p.X - 1][p.Y - 1] < fg)
+            if (data[p.X - 1, p.Y - 1] < fg)
             {
-                return data[p.X - 1][p.Y - 1];
+                return data[p.X - 1, p.Y - 1];
             }
 
             return fg;
         }
 
-        private static int GetIdFromKnownMap(int x, int y)
+        private static int GetIdFromKnownMap(int y, int x)
         {
             ++x;
             ++y;
@@ -215,7 +232,7 @@ namespace MageTastic.Utility.Parsing
                 new int[] {10,4,11}
             };
 
-            var id = map[y][x];
+            var id = map[x][y];
 
             return id;
         }
