@@ -17,6 +17,7 @@ namespace MageTastic.Entities
             : base(animationSet, texture, true, position)
         {
             Team = team;
+            Stats = new CharacterStats();
         }
 
         public void UseSkill(SkillProto skill)

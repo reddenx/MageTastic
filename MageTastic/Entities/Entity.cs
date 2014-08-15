@@ -11,6 +11,13 @@ using System.Threading.Tasks;
 
 namespace MageTastic.Entities
 {
+    enum EntityTeam
+    {
+        Players,
+        Enemies,
+        Neutral
+    }
+
     abstract class Entity
     {
         //data

@@ -60,7 +60,6 @@
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\CharacterStats.cs" />
     <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\EntityTeam.cs" />
     <Compile Include="Entities\PlayerProto.cs" />
     <Compile Include="Entities\ProjectileProtoBlueOrb.cs" />
     <Compile Include="Entities\ProtoEnemy.cs" />
@@ -85,6 +84,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Utility\Assets.cs" />
     <Compile Include="Utility\Camera.cs" />
+    <Compile Include="Utility\ConstrainedValue.cs" />
     <Compile Include="Utility\Parsing\ParsingUtils.cs" />
     <Compile Include="Utility\TickTimer.cs" />
     <Compile Include="World\Director.cs" />
