@@ -9,6 +9,8 @@ using MageTastic.Utility;
 using MageTastic.Entities;
 using Microsoft.Xna.Framework.Input;
 using MageTastic.Engines;
+using MageTastic.Entities.Characters.Players;
+using MageTastic.Entities.Characters.Enemies;
 
 namespace MageTastic.GameState
 {

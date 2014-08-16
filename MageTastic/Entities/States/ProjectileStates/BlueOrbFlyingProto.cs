@@ -1,10 +1,12 @@
-﻿using MageTastic.Utility;
+﻿using MageTastic.Entities.Characters;
+using MageTastic.Entities.Projectiles;
+using MageTastic.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.ProjectileState
+namespace MageTastic.Entities.States.ProjectileStates
 {
     //TODO this is a proto, make into generic projectile
     class BlueOrbFlyingProto : AnimatedStateBase
@@ -45,6 +47,10 @@ namespace MageTastic.Entities.State.ProjectileState
         {
             if(!(collider is ProjectileProtoBlueOrb) && collider != Projectile.Source)
             {
+                if (collider is Character && collider != Projectile.Source)
+                {
+                    ((Character)(collider)).Stats.Health -= 10;
+                }
                 Explode();
             }
         }

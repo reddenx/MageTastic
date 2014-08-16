@@ -1,6 +1,6 @@
 ﻿using MageTastic.Engines;
-using MageTastic.Entities.State;
-using MageTastic.Entities.State.CharacterState.EnemyStateMachine;
+using MageTastic.Entities.States;
+using MageTastic.Entities.States.CharacterStates.EnemyStates;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,14 +9,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities
+namespace MageTastic.Entities.Characters.Enemies
 {
     class ProtoEnemy : Character
     {
         public ProtoEnemy(Dictionary<EntityState,EntityFrame[][]> animationSet, Texture2D texture, Vector2 position)
             : base(animationSet, texture, position, EntityTeam.Enemies)
         {
-            State = new EnemyIdle(this);
+            State = new IdleEnemy(this);
+            Stats = new CharacterStats(this);
         }
 
         public override void Update(GameTime gameTime)
@@ -33,6 +34,11 @@ namespace MageTastic.Entities
 
         public override void HandleCollision(Entity colliders)
         {
+        }
+
+        public override void OnDeath()
+        {
+            State = new DeadEnemy(State);
         }
     }
 }

@@ -1,23 +1,25 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MageTastic.Entities.Characters;
+using MageTastic.Entities.Characters.Skills;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
+namespace MageTastic.Entities.States.CharacterStates.PlayerStates
 {
-    class Idle : CharacterStateBase
+    class IdlePlayer : CharacterStateBase
     {
         public override EntityState CurrentState
         {
             get { return EntityState.Idle; }
         }
 
-        public Idle(Character context)
+        public IdlePlayer(Character context)
             : base(context)
         { }
 
-        public Idle(CharacterStateBase oldState)
+        public IdlePlayer(CharacterStateBase oldState)
             :base(oldState)
         {
         }
@@ -31,7 +33,7 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
         {
             if (movementVector != Vector2.Zero)
             {
-                ChangeState(new Moving(this));
+                ChangeState(new MovingPlayer(this));
             }
         }
     }

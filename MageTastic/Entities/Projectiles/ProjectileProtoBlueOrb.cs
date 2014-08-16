@@ -1,6 +1,7 @@
 ﻿using MageTastic.Engines;
-using MageTastic.Entities.State;
-using MageTastic.Entities.State.ProjectileState;
+using MageTastic.Entities.Characters;
+using MageTastic.Entities.States;
+using MageTastic.Entities.States.ProjectileStates;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,9 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities
+namespace MageTastic.Entities.Projectiles
 {
-    class ProjectileProtoBlueOrb : Entity
+    class ProjectileProtoBlueOrb : ProjectileBase
     {
         public Character Source;
         public Vector2 Velocity;

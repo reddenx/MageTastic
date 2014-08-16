@@ -1,18 +1,19 @@
-﻿using System;
+﻿using MageTastic.Entities.Characters.Enemies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.CharacterState.EnemyStateMachine
+namespace MageTastic.Entities.States.CharacterStates.EnemyStates
 {
-    class EnemyIdle : AnimatedStateBase
+    class IdleEnemy : AnimatedStateBase
     {
         public override EntityState CurrentState
         {
             get { return EntityState.Idle; }
         }
 
-        public EnemyIdle(ProtoEnemy enemy)
+        public IdleEnemy(ProtoEnemy enemy)
             : base(enemy)
         { }
     }

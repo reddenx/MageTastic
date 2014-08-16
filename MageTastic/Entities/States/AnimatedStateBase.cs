@@ -1,11 +1,12 @@
-﻿using MageTastic.Utility;
+﻿using MageTastic.Entities.Characters.Skills;
+using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State
+namespace MageTastic.Entities.States
 {
     abstract class AnimatedStateBase
     {

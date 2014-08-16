@@ -35,5 +35,10 @@ namespace MageTastic.Engines
         {
             Instance.CurrentLevel.AddEntity(entity);
         }
+
+        public static IEnumerable<Entity> GetAllPlayers()
+        {
+            return Instance.CurrentLevel.GetEntitiesOfTeam(EntityTeam.Players);
+        }
     }
 }

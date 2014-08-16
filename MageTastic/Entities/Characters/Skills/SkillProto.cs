@@ -1,13 +1,13 @@
-﻿using MageTastic.Entities.State;
-using MageTastic.Entities.State.CharacterState;
-using MageTastic.Entities.State.CharacterState.SkillStatMachines;
+﻿using MageTastic.Entities.States;
+using MageTastic.Entities.States.CharacterStates;
+using MageTastic.Entities.States.CharacterStates.SkillStates;
 using MageTastic.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities
+namespace MageTastic.Entities.Characters.Skills
 {
     class SkillProto
     {

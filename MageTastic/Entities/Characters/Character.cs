@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MageTastic.Entities.State;
+using MageTastic.Entities.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MageTastic.Entities.Characters.Skills;
 
-namespace MageTastic.Entities
+namespace MageTastic.Entities.Characters
 {
     abstract class Character : Entity
     {
@@ -17,12 +18,14 @@ namespace MageTastic.Entities
             : base(animationSet, texture, true, position)
         {
             Team = team;
-            Stats = new CharacterStats();
+            Stats = new CharacterStats(this);
         }
 
         public void UseSkill(SkillProto skill)
         {
             State.HandleAction(skill);
         }
+
+        abstract public void OnDeath();
     }
 }

@@ -1,19 +1,20 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MageTastic.Entities.Characters.Skills;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
+namespace MageTastic.Entities.States.CharacterStates.PlayerStates
 {
-    class Moving : CharacterStateBase
+    class MovingPlayer : CharacterStateBase
     {
         public override EntityState CurrentState
         {
             get { return EntityState.Moving; }
         }
 
-        public Moving(CharacterStateBase oldState)
+        public MovingPlayer(CharacterStateBase oldState)
             : base(oldState)
         { }
 
@@ -26,7 +27,7 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
         {
             if (movementVector == Vector2.Zero)
             {
-                ChangeState(new Idle(this));
+                ChangeState(new IdlePlayer(this));
                 return;
             }
 

@@ -1,7 +1,7 @@
 ﻿using MageTastic.Engines;
-using MageTastic.Entities.State;
-using MageTastic.Entities.State.CharacterState;
-using MageTastic.Entities.State.CharacterState.PlayerStateMachine;
+using MageTastic.Entities.Characters.Skills;
+using MageTastic.Entities.States.CharacterStates;
+using MageTastic.Entities.States.CharacterStates.PlayerStates;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MageTastic.Entities
+namespace MageTastic.Entities.Characters.Players
 {
     class PlayerProto : Character
     {
@@ -22,7 +22,7 @@ namespace MageTastic.Entities
             :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, position, EntityTeam.Players)
         {
             ProtoSkill = new SkillProto();
-            State = new Idle(this);
+            State = new IdlePlayer(this);
         }
 
         public override void Update(GameTime gameTime)
@@ -100,6 +100,11 @@ namespace MageTastic.Entities
         {
             //if it's a skill collision, notify the state and let it handle it
             //throw new NotImplementedException();
+        }
+
+        public override void OnDeath()
+        {
+            State = new DeadPlayer(State as CharacterStateBase);
         }
     }
 }

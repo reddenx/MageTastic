@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
+namespace MageTastic.Entities.States.CharacterStates.PlayerStates
 {
     /// <summary>
     /// happens when hit by a skill or attack
@@ -12,14 +12,14 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// 
     /// can go to stunned or to idle
     /// </summary>
-    class Recoiling : CharacterStateBase
+    class RecoilingPlayer : CharacterStateBase
     {
         public override EntityState CurrentState
         {
             get { return EntityState.Recoiling; }
         }
 
-        public Recoiling(CharacterStateBase oldState, int timeMilli)
+        public RecoilingPlayer(CharacterStateBase oldState, int timeMilli)
             : base(oldState)
         { }
     }

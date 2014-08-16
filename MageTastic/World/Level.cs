@@ -1,5 +1,6 @@
 ﻿using MageTastic.Engines;
 using MageTastic.Entities;
+using MageTastic.Entities.Characters;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -112,6 +113,12 @@ namespace MageTastic.World
         internal void AddEntity(Entity entity)
         {
             NewEntityAdditions.Add(entity);
+        }
+
+        //TODO EFFICIENCY laughing at this, had to make it quick and dirty, change it when it becomes a problem
+        public IEnumerable<Entity> GetEntitiesOfTeam(EntityTeam entityTeam)
+        {
+            return Entities.Where(uu => (uu is Character && ((Character)uu).Team == EntityTeam.Players));
         }
     }
 }

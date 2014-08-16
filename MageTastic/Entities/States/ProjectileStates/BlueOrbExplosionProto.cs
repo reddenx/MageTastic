@@ -1,11 +1,12 @@
-﻿using MageTastic.Utility;
+﻿using MageTastic.Entities.Projectiles;
+using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.ProjectileState
+namespace MageTastic.Entities.States.ProjectileStates
 {
     class BlueOrbExplosionProto : AnimatedStateBase
     {

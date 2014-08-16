@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
+namespace MageTastic.Entities.States.CharacterStates.SkillStates
 {
     class ChargeOrb : CharacterStateBase
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MageTastic.Entities.State
+namespace MageTastic.Entities
 {
     enum EntityState
     {

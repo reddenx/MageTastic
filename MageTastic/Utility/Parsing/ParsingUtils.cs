@@ -1,4 +1,5 @@
-﻿using MageTastic.Entities.State;
+﻿using MageTastic.Entities;
+using MageTastic.Entities.States;
 using MageTastic.World;
 using Microsoft.Xna.Framework;
 using System;

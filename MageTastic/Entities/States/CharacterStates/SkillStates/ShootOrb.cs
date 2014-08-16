@@ -1,4 +1,6 @@
 ﻿using MageTastic.Engines;
+using MageTastic.Entities.Characters;
+using MageTastic.Entities.Projectiles;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -7,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.CharacterState.SkillStatMachines
+namespace MageTastic.Entities.States.CharacterStates.SkillStates
 {
     class ShootOrb : CharacterStateBase
     {

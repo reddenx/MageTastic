@@ -19,7 +19,7 @@ namespace MageTastic.Utility
         private readonly Action OnDepleted;
         private readonly Action OnFilled;
 
-        public ConstrainedValue(float defaultValue, float min, float max, Action onDepleted, Action onFilled)
+        public ConstrainedValue(float defaultValue, float min, float max, Action onDepleted = null, Action onFilled = null)
         {
             MinValue = min;
             MaxValue = max;

@@ -1,5 +1,5 @@
-﻿using MageTastic.Entities.State;
-using MageTastic.Entities.State.CharacterState;
+﻿using MageTastic.Entities.States;
+using MageTastic.Entities.States.CharacterStates;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

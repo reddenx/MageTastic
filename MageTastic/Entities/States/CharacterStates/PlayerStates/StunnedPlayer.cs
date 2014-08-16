@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
+namespace MageTastic.Entities.States.CharacterStates.PlayerStates
 {
     /// <summary>
     /// when a skill or attack does stun
@@ -13,14 +13,14 @@ namespace MageTastic.Entities.State.CharacterState.PlayerStateMachine
     /// 
     /// can go to idle
     /// </summary>
-    class Stunned : CharacterStateBase
+    class StunnedPlayer : CharacterStateBase
     {
         public override EntityState CurrentState
         {
             get { return EntityState.Stunned; }
         }
 
-        public Stunned(CharacterStateBase oldState)
+        public StunnedPlayer(CharacterStateBase oldState)
             : base(oldState)
         { }
     }

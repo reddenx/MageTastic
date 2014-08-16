@@ -1,5 +1,7 @@
 ﻿using MageTastic.Entities;
-using MageTastic.Entities.State;
+using MageTastic.Entities.Characters;
+using MageTastic.Entities.Projectiles;
+using MageTastic.Entities.States;
 using MageTastic.Utility;
 using MageTastic.World;
 using Microsoft.Xna.Framework;
