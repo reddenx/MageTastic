@@ -24,9 +24,9 @@ namespace MageTastic.Entities.States.CharacterStates.PlayerStates
         {
         }
 
-        public override void HandleAction(SkillProto actionInput)
+        public override void HandleAction(SkillBase actionInput)
         {
-            ChangeState(actionInput.InitiateSkill(this));
+            ChangeState(actionInput.GetStartingSkillState(this));
         }
 
         public override void HandleMovement(Vector2 movementVector)

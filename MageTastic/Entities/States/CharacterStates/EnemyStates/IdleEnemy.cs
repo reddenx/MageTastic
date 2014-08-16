@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MageTastic.Entities.States.CharacterStates.EnemyStates
 {
-    class IdleEnemy : AnimatedStateBase
+    class IdleEnemy : CharacterStateBase
     {
         public override EntityState CurrentState
         {
@@ -16,5 +16,10 @@ namespace MageTastic.Entities.States.CharacterStates.EnemyStates
         public IdleEnemy(ProtoEnemy enemy)
             : base(enemy)
         { }
+
+        public override void HandleMovement(Microsoft.Xna.Framework.Vector2 movementVector)
+        {
+            ChangeState(new MovingEnemy(this));
+        }
     }
 }

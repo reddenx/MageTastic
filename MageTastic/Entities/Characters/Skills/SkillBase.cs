@@ -9,22 +9,15 @@ using System.Text;
 
 namespace MageTastic.Entities.Characters.Skills
 {
-    class SkillProto
+    abstract class SkillBase
     {
-        //needs to somehow kick off the state machine for that direction meaning it must store the initial state
-
         //some sort of cooldown timer
         public TickTimer CooldownTimer;
 
-        public SkillProto()
-        {
-        }
+        public SkillBase()
+        {}
 
-        public AnimatedStateBase InitiateSkill(CharacterStateBase previousState)
-        {
-            var skillStartState = new ChargeOrb(previousState);
-            return skillStartState;
-        }
+        abstract public CharacterStateBase GetStartingSkillState(CharacterStateBase previousState);
 
         public void StartCooldown()
         {

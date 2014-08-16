@@ -2,6 +2,7 @@
 using MageTastic.Entities.Characters.Skills;
 using MageTastic.Entities.States.CharacterStates;
 using MageTastic.Entities.States.CharacterStates.PlayerStates;
+using MageTastic.Entities.States.CharacterStates.SkillStates;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,12 +17,12 @@ namespace MageTastic.Entities.Characters.Players
 {
     class PlayerProto : Character
     {
-        private SkillProto ProtoSkill;
+        private SkillBase ProtoSkill;
 
         public PlayerProto(Vector2 position)
             :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, position, EntityTeam.Players)
         {
-            ProtoSkill = new SkillProto();
+            ProtoSkill = new PlayerShootOrbSkill();
             State = new IdlePlayer(this);
         }
 
@@ -30,6 +31,11 @@ namespace MageTastic.Entities.Characters.Players
             //set update parameters from input
             var movementDirection = GetMovementDirectionFromKeyboard();
             var facingDirection = RenderEngine.TranslateWindowsToWorldSpace(InputEngine.MousePositionInWindowsSpace()) - Position;
+
+            if (InputEngine.WasKeyPressed(Keys.Space))
+            {
+                UseSkill(ProtoSkill);
+            }
 
             State.ChangeDirection(facingDirection.ToDirection());
             State.HandleMovement(movementDirection);
@@ -62,11 +68,6 @@ namespace MageTastic.Entities.Characters.Players
             if (movementInputDirection != Vector2.Zero)
             {
                 movementInputDirection.Normalize();
-            }
-
-            if (InputEngine.WasKeyPressed(Keys.Space))
-            {
-                UseSkill(ProtoSkill);
             }
 
             return movementInputDirection;

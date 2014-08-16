@@ -21,7 +21,7 @@ namespace MageTastic.Entities.Characters
             Stats = new CharacterStats(this);
         }
 
-        public void UseSkill(SkillProto skill)
+        public void UseSkill(SkillBase skill)
         {
             State.HandleAction(skill);
         }
