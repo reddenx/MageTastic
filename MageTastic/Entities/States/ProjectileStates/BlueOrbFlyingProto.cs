@@ -45,14 +45,18 @@ namespace MageTastic.Entities.States.ProjectileStates
 
         public override void HandleCollision(Entity collider)
         {
-            if(!(collider is ProjectileProtoBlueOrb) && collider != Projectile.Source)
+            if(!(collider is ProjectileBase) && collider != Projectile.Source.Owner)
             {
                 if (collider is Character)
                 {
                     var characterCollider = collider as Character;
-                    if (characterCollider.Team != Projectile.Source.Team)
+                    if (characterCollider.Team != Projectile.Source.Owner.Team)
                     {
-                        characterCollider.Stats.Health -= 10;
+                        //TODO let one of the entities handle defending or attacking on this one
+                        foreach (var effect in Projectile.Source.Effects)
+                        {
+                            effect.ApplyTo(characterCollider);
+                        }
                         Explode();
                     }
                 }

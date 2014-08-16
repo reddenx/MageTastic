@@ -9,11 +9,23 @@ namespace MageTastic.Entities.Characters.Skills
 {
     class PlayerShootOrbSkill : SkillBase
     {
-        public PlayerShootOrbSkill() { }
+        public PlayerShootOrbSkill(Character owner)
+            :base(owner)
+        {
+
+        }
 
         public override CharacterStateBase GetStartingSkillState(CharacterStateBase previousState)
         {
-            return new ChargeOrb(previousState);
+            return new ChargeOrb(previousState, this);
+        }
+
+        public override SkillEffect[] Effects
+        {
+            get
+            {
+                return new SkillEffect[] { new BlueOrbEffect(Owner) };
+            }
         }
     }
 }

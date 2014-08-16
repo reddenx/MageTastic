@@ -24,7 +24,7 @@ namespace MageTastic.Entities.Characters.Enemies
             State = new IdleEnemy(this);
             Stats = new CharacterStats(this);
 
-            Skill = new EnemyShootOrbSkill();
+            Skill = new EnemyShootOrbSkill(this);
         }
 
         public override void Update(GameTime gameTime)

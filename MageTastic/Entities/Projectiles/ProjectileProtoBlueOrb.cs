@@ -1,5 +1,6 @@
 ﻿using MageTastic.Engines;
 using MageTastic.Entities.Characters;
+using MageTastic.Entities.Characters.Skills;
 using MageTastic.Entities.States;
 using MageTastic.Entities.States.ProjectileStates;
 using MageTastic.Utility;
@@ -14,10 +15,10 @@ namespace MageTastic.Entities.Projectiles
 {
     class ProjectileProtoBlueOrb : ProjectileBase
     {
-        public Character Source;
+        public SkillBase Source;
         public Vector2 Velocity;
 
-        public ProjectileProtoBlueOrb(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position, Vector2 velocity, int flyTime, Character source)
+        public ProjectileProtoBlueOrb(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position, Vector2 velocity, int flyTime, SkillBase source)
             :base(animationSet, texture, true, position)
         {
             Velocity = velocity;

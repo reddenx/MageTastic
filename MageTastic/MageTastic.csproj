@@ -59,6 +59,7 @@
     <Compile Include="Engines\WorldEngine.cs" />
     <Compile Include="Entities\Characters\Character.cs" />
     <Compile Include="Entities\Characters\CharacterStats.cs" />
+    <Compile Include="Entities\Characters\Skills\BlueOrbEffect.cs" />
     <Compile Include="Entities\Characters\Skills\EnemyShootOrbSkill.cs" />
     <Compile Include="Entities\Characters\Skills\PlayerShootOrbSkill.cs" />
     <Compile Include="Entities\Characters\Skills\SkillEffect.cs" />

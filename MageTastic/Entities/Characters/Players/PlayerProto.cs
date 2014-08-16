@@ -22,8 +22,10 @@ namespace MageTastic.Entities.Characters.Players
         public PlayerProto(Vector2 position)
             :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, position, EntityTeam.Players)
         {
-            ProtoSkill = new PlayerShootOrbSkill();
+            ProtoSkill = new PlayerShootOrbSkill(this);
             State = new IdlePlayer(this);
+
+            Stats.MagicResist = 100;
         }
 
         public override void Update(GameTime gameTime)

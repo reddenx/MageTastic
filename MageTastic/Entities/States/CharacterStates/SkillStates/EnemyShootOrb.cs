@@ -1,6 +1,7 @@
 ﻿using MageTastic.Engines;
 using MageTastic.Entities.Characters;
 using MageTastic.Entities.Characters.Enemies;
+using MageTastic.Entities.Characters.Skills;
 using MageTastic.Entities.Projectiles;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
@@ -15,18 +16,19 @@ namespace MageTastic.Entities.States.CharacterStates.SkillStates
     {
         private readonly CharacterStateBase PreviousState;
         private readonly TickTimer ShootTime;
+        private readonly SkillBase SkillUsed;
 
         public override EntityState CurrentState
         {
             get { return EntityState.Attacking; }
         }
 
-        public EnemyShootOrb(CharacterStateBase previousState)
+        public EnemyShootOrb(CharacterStateBase previousState, SkillBase usedSkill)
             : base(previousState)
         {
             PreviousState = previousState;
             ShootTime = new TickTimer(1000);
-            
+            SkillUsed = usedSkill;
         }
 
         private void CreateAndShootOrb()
@@ -44,7 +46,16 @@ namespace MageTastic.Entities.States.CharacterStates.SkillStates
                 CurrentFrame.LeftAttach + Context.Position - Context.State.CurrentFrame.Origin,
                 direction,
                 flyTime,
-                Context as Character));
+                SkillUsed));
+        }
+
+        public override void HandleMovement(Vector2 movementVector)
+        {
+            movementVector.Normalize();
+            movementVector /= 10f;
+
+            Context.Position += movementVector;
+            base.HandleMovement(movementVector);
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)

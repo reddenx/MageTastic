@@ -1,4 +1,5 @@
-﻿using MageTastic.Entities.Projectiles;
+﻿using MageTastic.Entities.Characters;
+using MageTastic.Entities.Projectiles;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
 using System;
@@ -12,11 +13,13 @@ namespace MageTastic.Entities.States.ProjectileStates
     {
         private ProjectileProtoBlueOrb Projectile { get { return (ProjectileProtoBlueOrb)Context; } }
         private TickTimer ExplosionTimer;
+        private List<Character> CharactersAlreadyHit;
 
         public BlueOrbExplosionProto(AnimatedStateBase oldState)
             :base(oldState)
         {
             ExplosionTimer = new TickTimer(750);
+            CharactersAlreadyHit = new List<Character>();
         }
 
         public override void Update(GameTime gameTime)
@@ -27,6 +30,28 @@ namespace MageTastic.Entities.States.ProjectileStates
             {
                 Context.RemoveFromWorld = true;
             }
+        }
+
+        public override void HandleCollision(Entity collider)
+        {
+            if (!(collider is ProjectileBase) && collider != Projectile.Source.Owner)
+            {
+                if (collider is Character)
+                {
+                    var characterCollider = collider as Character;
+                    if (characterCollider.Team != Projectile.Source.Owner.Team && !CharactersAlreadyHit.Contains(characterCollider))
+                    {
+                        //TODO let one of the entities handle defending or attacking on this one
+                        foreach (var effect in Projectile.Source.Effects)
+                        {
+                            effect.ApplyTo(characterCollider);
+                        }
+
+                        CharactersAlreadyHit.Add(characterCollider);
+                    }
+                }
+            }
+            base.HandleCollision(collider);
         }
 
         public override EntityState CurrentState

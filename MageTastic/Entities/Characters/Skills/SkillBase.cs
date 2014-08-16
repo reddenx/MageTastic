@@ -11,17 +11,14 @@ namespace MageTastic.Entities.Characters.Skills
 {
     abstract class SkillBase
     {
-        //some sort of cooldown timer
-        public TickTimer CooldownTimer;
+        abstract public SkillEffect[] Effects { get; }
+        public readonly Character Owner;
 
-        public SkillBase()
-        {}
+        public SkillBase(Character owner)
+        {
+            Owner = owner;
+        }
 
         abstract public CharacterStateBase GetStartingSkillState(CharacterStateBase previousState);
-
-        public void StartCooldown()
-        {
-            CooldownTimer = new TickTimer(5000);
-        }
     }
 }
