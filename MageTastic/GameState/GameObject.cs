@@ -38,7 +38,7 @@ namespace MageTastic.GameState
 
             CurrentGameState.Update(gameTime);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (InputEngine.IsKeyDown(Keys.Escape))
             {
                 Exit();
             }

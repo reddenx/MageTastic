@@ -29,7 +29,7 @@ namespace MageTastic.Entities.Characters.Players
         {
             //set update parameters from input
             var movementDirection = GetMovementDirectionFromKeyboard();
-            var facingDirection = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position) - Position;
+            var facingDirection = RenderEngine.TranslateWindowsToWorldSpace(InputEngine.MousePositionInWindowsSpace()) - Position;
 
             State.ChangeDirection(facingDirection.ToDirection());
             State.HandleMovement(movementDirection);
@@ -40,22 +40,21 @@ namespace MageTastic.Entities.Characters.Players
         private Vector2 GetMovementDirectionFromKeyboard()
         {
             var movementInputDirection = Vector2.Zero;
-            var keyboardState = Keyboard.GetState();
 
-            if (keyboardState.IsKeyDown(Keys.A))
+            if (InputEngine.IsKeyDown(Keys.A))
             {
                 movementInputDirection.X -= 1;
             }
-            else if (keyboardState.IsKeyDown(Keys.D))
+            else if (InputEngine.IsKeyDown(Keys.D))
             {
                 movementInputDirection.X += 1;
             }
 
-            if (keyboardState.IsKeyDown(Keys.W))
+            if (InputEngine.IsKeyDown(Keys.W))
             {
                 movementInputDirection.Y -= 1;
             }
-            else if (keyboardState.IsKeyDown(Keys.S))
+            else if (InputEngine.IsKeyDown(Keys.S))
             {
                 movementInputDirection.Y += 1;
             }

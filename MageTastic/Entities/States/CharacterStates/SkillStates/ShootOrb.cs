@@ -53,7 +53,7 @@ namespace MageTastic.Entities.States.CharacterStates.SkillStates
 
         private void CreateAndShootOrb()
         {
-            var direction = RenderEngine.TranslateWindowsToWorldSpace(Mouse.GetState().Position) - Context.Position;
+            var direction = RenderEngine.TranslateWindowsToWorldSpace(InputEngine.MousePositionInWindowsSpace()) - Context.Position;
             direction.Normalize();
             direction += (new Vector2((float)Rand.NextDouble(), (float)Rand.NextDouble()) - new Vector2(.5f)) * .5f;
             direction.Normalize();
