@@ -17,9 +17,11 @@ namespace MageTastic.World
         private readonly List<Entity> Entities;
         private readonly List<Entity> NewEntityAdditions;
         private readonly Tile[,] TileMap;
+        private readonly Director Director;
 
         public Level()
         {
+            Director = new Director();
             Entities = new List<Entity>();
             NewEntityAdditions = new List<Entity>();
             TileMap = Assets.LevelOneTileMap;
@@ -66,6 +68,8 @@ namespace MageTastic.World
             }
 
             DetermineCollisions();
+
+            Director.Update(gameTime);
         }
 
         private void DetermineCollisions()
@@ -90,7 +94,6 @@ namespace MageTastic.World
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
             RenderEngine.DrawTileMapInView(TileMap, spriteBatch);
 
             foreach (var entity in Entities.OrderBy(uu => uu.Position.Y))
@@ -118,7 +121,7 @@ namespace MageTastic.World
         //TODO EFFICIENCY laughing at this, had to make it quick and dirty, change it when it becomes a problem
         public IEnumerable<Entity> GetEntitiesOfTeam(EntityTeam entityTeam)
         {
-            return Entities.Where(uu => (uu is Character && ((Character)uu).Team == EntityTeam.Players));
+            return Entities.Where(uu => (uu is Character && ((Character)uu).Team == entityTeam));
         }
     }
 }

@@ -6,6 +6,7 @@ using MageTastic.Entities.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MageTastic.Entities.Characters.Skills;
+using MageTastic.Utility;
 
 namespace MageTastic.Entities.Characters
 {
@@ -24,6 +25,11 @@ namespace MageTastic.Entities.Characters
         public void UseSkill(SkillBase skill)
         {
             State.HandleAction(skill);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(Assets.DevFont, Stats.Health.ToString(), Position, Color.Black);
         }
 
         abstract public void OnDeath();

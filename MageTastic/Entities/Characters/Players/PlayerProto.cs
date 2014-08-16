@@ -37,6 +37,11 @@ namespace MageTastic.Entities.Characters.Players
                 UseSkill(ProtoSkill);
             }
 
+            if (InputEngine.WasKeyPressed(Keys.OemTilde))
+            {
+                IsCollidable = !IsCollidable;
+            }
+
             State.ChangeDirection(facingDirection.ToDirection());
             State.HandleMovement(movementDirection);
 
@@ -84,16 +89,7 @@ namespace MageTastic.Entities.Characters.Players
             //RenderEngine.DrawDevDot(spriteBatch, Position);
             //RenderEngine.DrawDevDot(spriteBatch, Position + State.CurrentFrame.RightAttach - State.CurrentFrame.Origin);
 
-            spriteBatch.DrawString(
-                Assets.DevFont,
-                State.ToString(),
-                Vector2.Zero,
-                Color.Black,
-                0f,
-                Vector2.Zero,
-                .2f,
-                SpriteEffects.None,
-                0f);
+            base.Draw(spriteBatch);
         }
 
         public override void HandleCollision(Entity colliders)

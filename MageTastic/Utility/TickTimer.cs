@@ -25,7 +25,7 @@ namespace MageTastic.Utility
             get { return CurrentCountdown <= TimeSpan.Zero;}
         }
         
-        public float Completion
+        public float Progress
         {
             get { return (float)(CurrentCountdown.TotalMilliseconds / StartMilli); }
         }
@@ -39,6 +39,11 @@ namespace MageTastic.Utility
         public void Update(GameTime gameTime)
         {
             CurrentCountdown -= gameTime.ElapsedGameTime;
+        }
+
+        public void Reset()
+        {
+            CurrentCountdown = TimeSpan.FromMilliseconds(StartMilli);
         }
 
         public static TickTimer Expired { get { return new TickTimer(0); } }

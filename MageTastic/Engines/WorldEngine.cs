@@ -40,5 +40,10 @@ namespace MageTastic.Engines
         {
             return Instance.CurrentLevel.GetEntitiesOfTeam(EntityTeam.Players);
         }
+
+        public static int GetEnemyCount()
+        {
+            return Instance.CurrentLevel.GetEntitiesOfTeam(EntityTeam.Enemies).Count(uu => uu.State.CurrentState != EntityState.Dead);
+        }
     }
 }

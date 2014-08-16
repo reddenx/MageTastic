@@ -61,8 +61,7 @@ namespace MageTastic.Entities.Characters.Enemies
         public override void Draw(SpriteBatch spriteBatch)
         {
             RenderEngine.DrawPlayerProto(spriteBatch, this);
-
-            spriteBatch.DrawString(Assets.DevFont, Stats.Health.ToString(), Position, Color.Black);
+            base.Draw(spriteBatch);
         }
 
         public override void HandleCollision(Entity colliders)

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using MageTastic.Utility;
+using MageTastic.Engines;
+using MageTastic.Entities.Characters.Enemies;
 
 namespace MageTastic.World
 {
@@ -11,14 +14,41 @@ namespace MageTastic.World
     //on screen at once
     class Director
     {
-        //should hold list of players
+        private TickTimer CheckTheEquationTimer;
+        private Random Rand;
 
         public Director()
-        { }
+        {
+            CheckTheEquationTimer = new TickTimer(5000);
+            Rand = new Random();
+        }
 
         public void Update(GameTime gameTime)
         {
+            CheckTheEquationTimer.Update(gameTime);
+            if (CheckTheEquationTimer.IsComplete)
+            {
+                CheckTheEquationTimer.Reset();
 
+                var shouldBeAlive = GetMaxEnemyAmountViaSinEquation();
+                var areActuallyAlive = WorldEngine.GetEnemyCount();
+
+                var amountToSpawn = shouldBeAlive - areActuallyAlive;
+                var player = WorldEngine.GetAllPlayers().FirstOrDefault();
+
+                for (int i = 0; i < amountToSpawn; ++i)
+                {
+
+                    var position = player.Position + new Vector2(Rand.Next(-200,200), Rand.Next(-200,200));
+
+                    WorldEngine.AddEntityToWorld(new ProtoEnemy(Assets.CharacterAnimationSet, Assets.PlayerKnight, position));
+                }
+            }
+        }
+
+        private int GetMaxEnemyAmountViaSinEquation()
+        {
+            return 5;
         }
     }
 }

@@ -47,11 +47,15 @@ namespace MageTastic.Entities.States.ProjectileStates
         {
             if(!(collider is ProjectileProtoBlueOrb) && collider != Projectile.Source)
             {
-                if (collider is Character && collider != Projectile.Source)
+                if (collider is Character)
                 {
-                    ((Character)(collider)).Stats.Health -= 10;
+                    var characterCollider = collider as Character;
+                    if (characterCollider.Team != Projectile.Source.Team)
+                    {
+                        characterCollider.Stats.Health -= 10;
+                        Explode();
+                    }
                 }
-                Explode();
             }
         }
     }
