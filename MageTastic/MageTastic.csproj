@@ -61,6 +61,7 @@
     <Compile Include="Entities\Characters\CharacterStats.cs" />
     <Compile Include="Entities\Characters\Skills\EnemyShootOrbSkill.cs" />
     <Compile Include="Entities\Characters\Skills\PlayerShootOrbSkill.cs" />
+    <Compile Include="Entities\Characters\Skills\SkillEffect.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Characters\Players\PlayerProto.cs" />
     <Compile Include="Entities\Projectiles\ProjectileBase.cs" />

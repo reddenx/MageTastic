@@ -30,7 +30,6 @@ namespace MageTastic.GameState
             CurrentLevel.AddEntity(player);
             var enemy = new ProtoEnemy(Assets.CharacterAnimationSet, Assets.PlayerKnight, new Vector2(2020));
             CurrentLevel.AddEntity(enemy);
-            
 
             RenderEngine.SetCameraTarget(player);
         }
