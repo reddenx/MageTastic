@@ -36,12 +36,12 @@ namespace MageTastic.Utility
 
         private float Constrain(float value)
         {
-            if (Value > MaxValue)
+            if (value > MaxValue)
             {
                 value = MaxValue;
                 OnFilled();
             }
-            else if (Value < MinValue)
+            else if (value < MinValue)
             {
                 value = MinValue;
                 OnDepleted();
@@ -103,6 +103,11 @@ namespace MageTastic.Utility
         public static implicit operator float(ConstrainedValue cv)
         {
             return cv.Value;
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
 }

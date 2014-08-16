@@ -10,6 +10,7 @@ namespace MageTastic.Entities.States.CharacterStates.EnemyStates
         public DeadEnemy(AnimatedStateBase oldBase)
             :base(oldBase)
         {
+            Context.IsCollidable = false;
         }
 
         public override EntityState CurrentState
