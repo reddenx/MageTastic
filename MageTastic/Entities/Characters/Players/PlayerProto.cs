@@ -20,14 +20,17 @@ namespace MageTastic.Entities.Characters.Players
         private SkillBase ProtoSkill;
 
         public PlayerProto(Vector2 position)
-            : base(Assets.CharacterAnimationSet, Assets.PlayerKnight, position, EntityTeam.Players)
+            : base(
+            Assets.CharacterAnimationSet,
+            Assets.PlayerKnight, 
+            position,
+            EntityTeam.Players, 
+            new CharacterAttachment(Assets.HammerAnimationSet, Assets.HammerTexture))
         {
             ProtoSkill = new PlayerShootOrbSkill(this);
             State = new IdlePlayer(this);
 
             Stats.MagicResist = 100;
-
-            LeftHand = new CharacterAttachment(Assets.HammerAnimationSet, Assets.HammerTexture);
         }
 
         public override void Update(GameTime gameTime)

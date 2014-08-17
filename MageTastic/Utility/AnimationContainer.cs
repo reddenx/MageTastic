@@ -12,6 +12,7 @@ namespace MageTastic.Utility
         private readonly EntityFrame[][] Animation;
 
         public EntityFrame CurrentFrame;
+        public Direction PreviousDirection;
 
         private int FrameIndex;
         private TickTimer FrameTimer;
@@ -30,9 +31,16 @@ namespace MageTastic.Utility
             if (FrameTimer.IsComplete)
             {
                 FrameIndex = (FrameIndex + 1) % Animation[(int)currentDirection].Length; //looks goofy but it just doesn't let it go out of bounds
+                FrameTimer = new TickTimer(CurrentFrame.FrameTime);
+            }
+            if (PreviousDirection != currentDirection)
+            {
+                FrameIndex = 0;
+                PreviousDirection = currentDirection;
                 CurrentFrame = Animation[(int)currentDirection][FrameIndex];
                 FrameTimer = new TickTimer(CurrentFrame.FrameTime);
             }
+            CurrentFrame = Animation[(int)currentDirection][FrameIndex];
         }
     }
 }

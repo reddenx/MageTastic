@@ -19,7 +19,7 @@ namespace MageTastic.Entities.Characters.Enemies
         private SkillBase Skill;
 
         public ProtoEnemy(Dictionary<EntityState,EntityFrame[][]> animationSet, Texture2D texture, Vector2 position)
-            : base(animationSet, texture, position, EntityTeam.Enemies)
+            : base(animationSet, texture, position, EntityTeam.Enemies, new CharacterAttachment(Assets.HammerAnimationSet, Assets.HammerTexture))
         {
             State = new IdleEnemy(this);
             Stats = new CharacterStats(this);

@@ -13,9 +13,9 @@ namespace MageTastic.Entities.States
         abstract public EntityState CurrentState { get; }
         protected Entity Context;
 
-        private AnimationContainer Animation_C;
+        private AnimationContainer Animation;
 
-        public EntityFrame CurrentFrame { get { return Animation_C.CurrentFrame; } }
+        public EntityFrame CurrentFrame { get { return Animation.CurrentFrame; } }
         public Direction CurrentDirection { get; protected set; }
 
         private AnimatedStateBase() { }
@@ -25,20 +25,20 @@ namespace MageTastic.Entities.States
             Context = oldBase.Context;
             CurrentDirection = oldBase.CurrentDirection;
 
-            Animation_C = new AnimationContainer(Context.AnimationSet[CurrentState]);
+            Animation = new AnimationContainer(Context.AnimationSet[CurrentState]);
         }
 
         public AnimatedStateBase(Entity context)
         {
             Context = context;
 
-            Animation_C = new AnimationContainer(Context.AnimationSet[CurrentState]);
+            Animation = new AnimationContainer(Context.AnimationSet[CurrentState]);
             CurrentDirection = Direction.Up;
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            Animation_C.Update(gameTime, CurrentDirection);
+            Animation.Update(gameTime, CurrentDirection);
         }
 
         //inputs into state machine

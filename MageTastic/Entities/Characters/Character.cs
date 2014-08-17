@@ -16,13 +16,13 @@ namespace MageTastic.Entities.Characters
         public CharacterStats Stats;
 
         public CharacterAttachment LeftHand;
-        public CharacterAttachment RightHand;
 
-        public Character(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position, EntityTeam team)
+        public Character(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position, EntityTeam team, CharacterAttachment leftAttachment)
             : base(animationSet, texture, true, position)
         {
             Team = team;
             Stats = new CharacterStats(this);
+            LeftHand = leftAttachment;
         }
 
         public void UseSkill(SkillBase skill)

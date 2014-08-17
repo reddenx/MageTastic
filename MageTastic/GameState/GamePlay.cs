@@ -28,8 +28,6 @@ namespace MageTastic.GameState
             //TODO remove proto code
             var player = new PlayerProto(new Vector2(2000));
             CurrentLevel.AddEntity(player);
-            var enemy = new ProtoEnemy(Assets.CharacterAnimationSet, Assets.PlayerKnight, new Vector2(2020));
-            CurrentLevel.AddEntity(enemy);
 
             RenderEngine.SetCameraTarget(player);
         }

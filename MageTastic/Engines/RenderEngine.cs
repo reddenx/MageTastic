@@ -2,6 +2,7 @@
 using MageTastic.Entities.Characters;
 using MageTastic.Entities.Projectiles;
 using MageTastic.Entities.States;
+using MageTastic.Entities.States.CharacterStates;
 using MageTastic.Utility;
 using MageTastic.World;
 using Microsoft.Xna.Framework;
@@ -65,9 +66,10 @@ namespace MageTastic.Engines
 
             if (character.LeftHand != null)
             {
-                var leftHandFrame = character.LeftHand.AnimationSet[character.State.CurrentState][(int)character.State.CurrentDirection][0];//TODO arg, this needs an animated state machine too
+                var leftHandFrame = (character.State as CharacterStateBase).CurrentLeftFrame;
 
-                spriteBatch.Draw(character.LeftHand.Texture,
+                spriteBatch.Draw(
+                    character.LeftHand.Texture,
                     character.Position + frame.LeftAttach - frame.Origin,
                     leftHandFrame.SpriteSheetSourceRectangle,
                     Color.White,
