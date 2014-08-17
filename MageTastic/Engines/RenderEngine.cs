@@ -65,7 +65,7 @@ namespace MageTastic.Engines
 
             if (character.LeftHand != null)
             {
-                var leftHandFrame = character.LeftHand.AnimationSet[character.State.CurrentState][(int)Direction.Up][0];//TODO arg, this needs an animated state machine too
+                var leftHandFrame = character.LeftHand.AnimationSet[character.State.CurrentState][(int)character.State.CurrentDirection][0];//TODO arg, this needs an animated state machine too
 
                 spriteBatch.Draw(character.LeftHand.Texture,
                     character.Position + frame.LeftAttach - frame.Origin,

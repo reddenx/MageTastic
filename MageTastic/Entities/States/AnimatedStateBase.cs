@@ -20,7 +20,7 @@ namespace MageTastic.Entities.States
         private EntityFrame[][] Animation;
         private TickTimer FrameTimer;
         private int FrameIndex;
-        protected Direction CurrentDirection;
+        public Direction CurrentDirection { get; protected set; }
 
         private AnimatedStateBase() { }
 
