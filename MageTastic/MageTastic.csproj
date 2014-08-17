@@ -92,6 +92,7 @@
     <Compile Include="GameState\GamePlay.cs" />
     <Compile Include="GameState\GameStateBase.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Utility\AnimationContainer.cs" />
     <Compile Include="Utility\Assets.cs" />
     <Compile Include="Utility\Camera.cs" />
     <Compile Include="Utility\ConstrainedValue.cs" />

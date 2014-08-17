@@ -10,16 +10,12 @@ namespace MageTastic.Entities.States
 {
     abstract class AnimatedStateBase
     {
-        //not necessary but useful for debug and tracking
         abstract public EntityState CurrentState { get; }
-
         protected Entity Context;
 
-        //animation information
-        public EntityFrame CurrentFrame { get { return Animation[(int)CurrentDirection][FrameIndex]; } }
-        private EntityFrame[][] Animation;
-        private TickTimer FrameTimer;
-        private int FrameIndex;
+        private AnimationContainer Animation_C;
+
+        public EntityFrame CurrentFrame { get { return Animation_C.CurrentFrame; } }
         public Direction CurrentDirection { get; protected set; }
 
         private AnimatedStateBase() { }
@@ -27,31 +23,22 @@ namespace MageTastic.Entities.States
         protected AnimatedStateBase(AnimatedStateBase oldBase) 
         {
             Context = oldBase.Context;
-
-            Animation = Context.AnimationSet[CurrentState];
-            FrameIndex = 0;
             CurrentDirection = oldBase.CurrentDirection;
-            FrameTimer = new TickTimer(CurrentFrame.FrameTime);
+
+            Animation_C = new AnimationContainer(Context.AnimationSet[CurrentState]);
         }
 
         public AnimatedStateBase(Entity context)
         {
             Context = context;
 
-            Animation = Context.AnimationSet[CurrentState];
-            FrameTimer = TickTimer.Expired;
-            FrameIndex = 0;
+            Animation_C = new AnimationContainer(Context.AnimationSet[CurrentState]);
             CurrentDirection = Direction.Up;
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            FrameTimer.Update(gameTime);
-            if (FrameTimer.IsComplete)
-            {
-                FrameIndex = (FrameIndex + 1) % Animation[(int)CurrentDirection].Length; //looks goofy but it just doesn't let it go out of bounds
-                FrameTimer = new TickTimer(CurrentFrame.FrameTime);
-            }
+            Animation_C.Update(gameTime, CurrentDirection);
         }
 
         //inputs into state machine
