@@ -44,12 +44,12 @@ namespace MageTastic.Engines
             Instance.Camera.Update(gameTime);
         }
 
-        public static void DrawPlayerProto(SpriteBatch spriteBatch, Character character)
+        public static void DrawCharacter(SpriteBatch spriteBatch, Character character)
         {
-            Instance._DrawPlayerProto(spriteBatch, character);
+            Instance._DrawCharacter(spriteBatch, character);
         }
 
-        private void _DrawPlayerProto(SpriteBatch spriteBatch, Character character)
+        private void _DrawCharacter(SpriteBatch spriteBatch, Character character)
         {
             var frame = character.State.CurrentFrame;
 
@@ -62,6 +62,22 @@ namespace MageTastic.Engines
                 frame.Scale,
                 SpriteEffects.None,
                 0f);
+
+            if (character.LeftHand != null)
+            {
+                var leftHandFrame = character.LeftHand.AnimationSet[character.State.CurrentState][(int)Direction.Up][0];//TODO arg, this needs an animated state machine too
+
+                spriteBatch.Draw(character.LeftHand.Texture,
+                    character.Position + frame.LeftAttach - frame.Origin,
+                    leftHandFrame.SpriteSheetSourceRectangle,
+                    Color.White,
+                    0f,
+                    leftHandFrame.Origin,
+                    leftHandFrame.Scale,
+                    SpriteEffects.None,
+                    0f);
+            }
+           
         }
 
         public static Vector2 TranslateWindowsToWorldSpace(Point windowsSpace)
@@ -69,7 +85,7 @@ namespace MageTastic.Engines
             return Instance.Camera.TranslateToWorldSpace(windowsSpace);
         }
 
-        public static void DrawProjectileProto(SpriteBatch spriteBatch, ProjectileProtoBlueOrb projectileProtoBlueOrb)
+        public static void DrawProjectile(SpriteBatch spriteBatch, ProjectileBase projectileProtoBlueOrb)
         {
             var frame = projectileProtoBlueOrb.State.CurrentFrame;
             var rotation = (float)Math.Atan2(projectileProtoBlueOrb.Velocity.X, -projectileProtoBlueOrb.Velocity.Y);

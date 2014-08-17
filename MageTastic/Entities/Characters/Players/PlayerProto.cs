@@ -20,12 +20,14 @@ namespace MageTastic.Entities.Characters.Players
         private SkillBase ProtoSkill;
 
         public PlayerProto(Vector2 position)
-            :base(Assets.CharacterAnimationSet, Assets.PlayerKnight, position, EntityTeam.Players)
+            : base(Assets.CharacterAnimationSet, Assets.PlayerKnight, position, EntityTeam.Players)
         {
             ProtoSkill = new PlayerShootOrbSkill(this);
             State = new IdlePlayer(this);
 
             Stats.MagicResist = 100;
+
+            LeftHand = new CharacterAttachment(Assets.HammerAnimationSet, Assets.HammerTexture);
         }
 
         public override void Update(GameTime gameTime)
@@ -34,7 +36,7 @@ namespace MageTastic.Entities.Characters.Players
             var movementDirection = GetMovementDirectionFromKeyboard();
             var facingDirection = RenderEngine.TranslateWindowsToWorldSpace(InputEngine.MousePositionInWindowsSpace()) - Position;
 
-            if (InputEngine.WasKeyPressed(Keys.Space))
+            if (InputEngine.WasMouseButtonPressed(MouseButtons.Left))
             {
                 UseSkill(ProtoSkill);
             }
@@ -82,7 +84,7 @@ namespace MageTastic.Entities.Characters.Players
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            RenderEngine.DrawPlayerProto(spriteBatch, this);
+            RenderEngine.DrawCharacter(spriteBatch, this);
 
             //spriteBatch.Draw(Assets.DevTexture, new Rectangle((int)Position.X, (int)Position.Y, 1,1), Color.White);
             //spriteBatch.Draw(Assets.DevTexture, new Rectangle((int)(State.CurrentFrame.LeftAttach.X + Position.X - State.CurrentFrame.Origin.X), (int)(State.CurrentFrame.LeftAttach.Y + Position.Y - State.CurrentFrame.Origin.Y), 1, 1), Color.White);

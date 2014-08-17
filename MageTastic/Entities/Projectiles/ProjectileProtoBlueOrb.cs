@@ -16,12 +16,10 @@ namespace MageTastic.Entities.Projectiles
     class ProjectileProtoBlueOrb : ProjectileBase
     {
         public SkillBase Source;
-        public Vector2 Velocity;
 
         public ProjectileProtoBlueOrb(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position, Vector2 velocity, int flyTime, SkillBase source)
-            :base(animationSet, texture, true, position)
+            :base(animationSet, texture, true, position, velocity)
         {
-            Velocity = velocity;
             State = new BlueOrbFlyingProto(this, flyTime);
             Source = source;
         }
@@ -33,7 +31,7 @@ namespace MageTastic.Entities.Projectiles
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            RenderEngine.DrawProjectileProto(spriteBatch, this);
+            RenderEngine.DrawProjectile(spriteBatch, this);
         }
 
         public override void HandleCollision(Entity colliders)

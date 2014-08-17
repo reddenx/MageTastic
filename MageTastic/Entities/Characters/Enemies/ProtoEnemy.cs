@@ -60,7 +60,7 @@ namespace MageTastic.Entities.Characters.Enemies
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            RenderEngine.DrawPlayerProto(spriteBatch, this);
+            RenderEngine.DrawCharacter(spriteBatch, this);
             base.Draw(spriteBatch);
         }
 

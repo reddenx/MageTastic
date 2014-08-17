@@ -9,9 +9,12 @@ namespace MageTastic.Entities.Projectiles
 {
     abstract class ProjectileBase : Entity
     {
-        public ProjectileBase(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, bool isCollidable, Vector2 position)
+        public Vector2 Velocity;
+
+        public ProjectileBase(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, bool isCollidable, Vector2 position, Vector2 velocity)
             : base(animationSet, texture, isCollidable, position)
         {
+            Velocity = velocity;
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)

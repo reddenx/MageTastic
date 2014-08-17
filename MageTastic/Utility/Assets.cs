@@ -24,8 +24,10 @@ namespace MageTastic.Utility
         public static Texture2D PlayerKnight;
         public static Texture2D BlueMagicProjectile;
         public static Texture2D TileMapTexture;
+        public static Texture2D HammerTexture;
         public static Dictionary<EntityState, EntityFrame[][]> CharacterAnimationSet;
         public static Dictionary<EntityState, EntityFrame[][]> BlueMagicProjectileAnimationSet;
+        public static Dictionary<EntityState, EntityFrame[][]> HammerAnimationSet;
         public static Rectangle[][][] BlendedTileSet;
         public static Tile[,] LevelOneTileMap { get; set; }
 
@@ -33,6 +35,8 @@ namespace MageTastic.Utility
         {
             CharacterAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\Hero_1aData.txt");
             BlueMagicProjectileAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\BlueMagicProjectileData.txt");
+            HammerAnimationSet = ParsingUtils.GetAnimationSetFromFile("Assets\\HammerData.txt");
+
             BlendedTileSet = ParsingUtils.GetTileSetFromFile("Assets\\BlendedTileSetData.txt");
         }
 
@@ -58,6 +62,8 @@ namespace MageTastic.Utility
             PlayerKnight = LoadTextureFallWithFallback("Hero_1a", content);
             BlueMagicProjectile = LoadTextureFallWithFallback("BlueMagicProjectile", content);
             TileMapTexture = LoadTextureFallWithFallback("OutdoorTileset", content);
+            HammerTexture = LoadTextureFallWithFallback("Hammer", content);
+            
             LevelOneTileMap = ParsingUtils.GetLevelFromImage("Assets\\Island.png");
         }
 
