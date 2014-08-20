@@ -39,7 +39,7 @@ namespace MageTastic.Entities.States.CharacterStates.SkillStates
             {
                 CreateAndShootOrb();
 
-                if (InputEngine.IsMouseButtonUp(MouseButtons.Left))
+                if (InputEngine.IsKeyUp(Keys.Space))
                 {
                     ChangeState(ReturnState);
                 }

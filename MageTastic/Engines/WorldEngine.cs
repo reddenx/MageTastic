@@ -13,9 +13,11 @@ namespace MageTastic.Engines
         private static WorldEngine Instance;
 
         private Level CurrentLevel;
+        private Random Random;
 
         private WorldEngine()
         {
+            Random = new Random();
         }
 
         public static void Instantiate()
@@ -45,5 +47,7 @@ namespace MageTastic.Engines
         {
             return Instance.CurrentLevel.GetEntitiesOfTeam(EntityTeam.Enemies).Count(uu => uu.State.CurrentState != EntityState.Dead);
         }
+
+        public static Random Rand { get { return Instance.Random; } }
     }
 }

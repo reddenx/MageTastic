@@ -16,7 +16,7 @@ namespace MageTastic.Utility
     /// </summary>
     class TickTimer
     {
-        private readonly int StartMilli;
+        private int StartMilli;
 
         public TimeSpan CurrentCountdown { get; private set; }
         
@@ -44,6 +44,12 @@ namespace MageTastic.Utility
         public void Reset()
         {
             CurrentCountdown = TimeSpan.FromMilliseconds(StartMilli);
+        }
+
+        public void Reset(int milli)
+        {
+            StartMilli = milli;
+            CurrentCountdown = TimeSpan.FromMilliseconds(milli);
         }
 
         public static TickTimer Expired { get { return new TickTimer(0); } }

@@ -39,7 +39,7 @@ namespace MageTastic.Entities.Characters.Players
             var movementDirection = GetMovementDirectionFromKeyboard();
             var facingDirection = RenderEngine.TranslateWindowsToWorldSpace(InputEngine.MousePositionInWindowsSpace()) - Position;
 
-            if (InputEngine.WasMouseButtonPressed(MouseButtons.Left))
+            if (InputEngine.WasKeyPressed(Keys.Space))
             {
                 UseSkill(ProtoSkill);
             }

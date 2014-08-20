@@ -7,7 +7,7 @@ namespace MageTastic.Entities.Characters.Skills
 {
     class BlueOrbEffect : SkillEffect
     {
-        private readonly float DamageAmount = 10f;
+        private readonly float DamageAmount = 60f;
 
         public BlueOrbEffect(Character owner)
             :base(owner, DamageTypes.Magic)

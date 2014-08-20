@@ -5,9 +5,9 @@ using System.Text;
 
 namespace MageTastic.Entities.States.CharacterStates.EnemyStates
 {
-    class DeadEnemy : AnimatedStateBase
+    class DeadEnemy : CharacterStateBase
     {
-        public DeadEnemy(AnimatedStateBase oldBase)
+        public DeadEnemy(CharacterStateBase oldBase)
             :base(oldBase)
         {
             Context.IsCollidable = false;

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MageTastic.Entities.States.CharacterStates;
 
 namespace MageTastic.Entities.Characters.Enemies
 {
@@ -18,12 +19,15 @@ namespace MageTastic.Entities.Characters.Enemies
         public Character Target;
         private SkillBase Skill;
 
+        private Vector2 FlockVariation;
+        private TickTimer FlockVariationTimer;
+
         public ProtoEnemy(Dictionary<EntityState,EntityFrame[][]> animationSet, Texture2D texture, Vector2 position)
             : base(animationSet, texture, position, EntityTeam.Enemies, new CharacterAttachment(Assets.HammerAnimationSet, Assets.HammerTexture))
         {
             State = new IdleEnemy(this);
             Stats = new CharacterStats(this);
-
+            FlockVariationTimer = new TickTimer(5000);
             Skill = new EnemyShootOrbSkill(this);
         }
 
@@ -40,11 +44,11 @@ namespace MageTastic.Entities.Characters.Enemies
             //move within attack distance of target
             else
             {
-                movementDirection = Target.Position - Position;
+                movementDirection = Target.Position - Position + FlockVariation;
                 movementDirection.Normalize();
                 movementDirection /= 2;
 
-                State.ChangeDirection(movementDirection.ToDirection());
+                State.ChangeDirection((Target.Position - Position).ToDirection());
                 State.HandleMovement(movementDirection);
 
                 //attack until target is dead
@@ -54,6 +58,14 @@ namespace MageTastic.Entities.Characters.Enemies
                 }
             }
             //acquire new target if they're dead
+
+            //setup flock variations
+            FlockVariationTimer.Update(gameTime);
+            if (FlockVariationTimer.IsComplete)
+            {
+                FlockVariationTimer.Reset(WorldEngine.Rand.Next(3000,5000));
+                FlockVariation = new Vector2(WorldEngine.Rand.Next(-100, 100), WorldEngine.Rand.Next(-100, 100));
+            }
 
             State.Update(gameTime);
         }
@@ -70,7 +82,7 @@ namespace MageTastic.Entities.Characters.Enemies
 
         public override void OnDeath()
         {
-            State = new DeadEnemy(State);
+            State = new DeadEnemy(State as CharacterStateBase);
         }
     }
 }
