@@ -9,13 +9,13 @@ using System.Text;
 
 namespace MageTastic.Entities.States.ProjectileStates
 {
-    class BlueOrbExplosionProto : AnimatedStateBase
+    class BlueOrbExplosionProto : ProjectileStateBase
     {
         private ProjectileProtoBlueOrb Projectile { get { return (ProjectileProtoBlueOrb)Context; } }
         private TickTimer ExplosionTimer;
         private List<Character> CharactersAlreadyHit;
 
-        public BlueOrbExplosionProto(AnimatedStateBase oldState)
+        public BlueOrbExplosionProto(ProjectileStateBase oldState)
             :base(oldState)
         {
             ExplosionTimer = new TickTimer(750);

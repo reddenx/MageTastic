@@ -9,7 +9,7 @@ using System.Text;
 namespace MageTastic.Entities.States.ProjectileStates
 {
     //TODO this is a proto, make into generic projectile
-    class BlueOrbFlyingProto : AnimatedStateBase
+    class BlueOrbFlyingProto : ProjectileStateBase
     {
         private ProjectileProtoBlueOrb Projectile { get { return (ProjectileProtoBlueOrb)Context; } }
 

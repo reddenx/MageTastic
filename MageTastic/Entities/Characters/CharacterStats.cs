@@ -8,9 +8,6 @@ namespace MageTastic.Entities.Characters
 {
     class CharacterStats
     {
-        //TODO: come up with constructor
-        //purpose: stats determine damage and resistances
-
         public ConstrainedValue Health;
         public ConstrainedValue Resource;
 
@@ -20,14 +17,17 @@ namespace MageTastic.Entities.Characters
         public int MagicResist;
 
         public int Vitality; //health amount
-        public int Vigor;   //resource amount
 
-        public int Strength; //physical damage, blead/physical resistance, stun duration, aim
+        public int Strength; //physical damage, bleed/physical resistance, stun duration, aim
         public int Magic;    //magic damage, stun/magic/physical resistance
         public int Agility;  //bleed damage/duration, magic/bleed resistance, crit chance/damage, run speed, dodge
-
-        public CharacterStats(Character owner)
+        
+        public CharacterStats(Character owner, int vitality, int strength, int magic, int agility)
         {
+            Vitality = vitality;
+            Strength = strength;
+            Magic = magic;
+            Agility = agility;
             RecalculateStats(owner);
         }
 
@@ -35,6 +35,11 @@ namespace MageTastic.Entities.Characters
         {
             Health = new ConstrainedValue(100, 0, 100, owner.OnDeath);
             Resource = new ConstrainedValue(100, 0, 100);
+
+            MovementSpeed = 1;//TODO calculate stats
+            PhysicalResist = 0;
+            BleedResist = 0;
+            MagicResist = 0;
         }
     }
 }
