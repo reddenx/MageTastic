@@ -1,4 +1,5 @@
-﻿using MageTastic.Entities.States;
+﻿using MageTastic.Engines;
+using MageTastic.Entities.States;
 using MageTastic.Entities.States.CharacterStates;
 using MageTastic.Utility;
 using Microsoft.Xna.Framework;
@@ -26,6 +27,7 @@ namespace MageTastic.Entities
         public readonly Texture2D Texture;
         public readonly Dictionary<EntityState, EntityFrame[][]> AnimationSet;
         public bool RemoveFromWorld;
+        public readonly uint ID;
 
         //logic
         public AnimatedStateBase State;
@@ -39,6 +41,7 @@ namespace MageTastic.Entities
             Texture = texture;
             IsCollidable = isCollidable;
             Position = position;
+            ID = WorldEngine.GetNextEntityId();
         }
 
 

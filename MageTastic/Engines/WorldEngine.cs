@@ -14,10 +14,12 @@ namespace MageTastic.Engines
 
         private Level CurrentLevel;
         private Random Random;
+        private uint ObjectIdCounter;
 
         private WorldEngine()
         {
             Random = new Random();
+            ObjectIdCounter = 0;
         }
 
         public static void Instantiate()
@@ -49,5 +51,10 @@ namespace MageTastic.Engines
         }
 
         public static Random Rand { get { return Instance.Random; } }
+
+        public static uint GetNextEntityId()
+        {
+            return Instance.ObjectIdCounter++;
+        }
     }
 }

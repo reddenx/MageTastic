@@ -22,11 +22,11 @@ namespace MageTastic.Entities.Characters.Enemies
         private Vector2 FlockVariation;
         private TickTimer FlockVariationTimer;
 
-        public ProtoEnemy(Dictionary<EntityState,EntityFrame[][]> animationSet, Texture2D texture, Vector2 position)
+        public ProtoEnemy(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, Vector2 position)
             : base(animationSet, texture, position, EntityTeam.Enemies, new CharacterAttachment(Assets.HammerAnimationSet, Assets.HammerTexture))
         {
             State = new IdleEnemy(this);
-            Stats = new CharacterStats(this);
+            Stats = new CharacterStats(this, 1, 0, 0, 0);
             FlockVariationTimer = new TickTimer(5000);
             Skill = new EnemyShootOrbSkill(this);
         }
@@ -63,7 +63,7 @@ namespace MageTastic.Entities.Characters.Enemies
             FlockVariationTimer.Update(gameTime);
             if (FlockVariationTimer.IsComplete)
             {
-                FlockVariationTimer.Reset(WorldEngine.Rand.Next(3000,5000));
+                FlockVariationTimer.Reset(WorldEngine.Rand.Next(3000, 5000));
                 FlockVariation = new Vector2(WorldEngine.Rand.Next(-100, 100), WorldEngine.Rand.Next(-100, 100));
             }
 

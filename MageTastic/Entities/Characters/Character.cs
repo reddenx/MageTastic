@@ -21,7 +21,7 @@ namespace MageTastic.Entities.Characters
             : base(animationSet, texture, true, position)
         {
             Team = team;
-            Stats = new CharacterStats(this);
+            Stats = new CharacterStats(this, 10,0,0,0);
             LeftHand = leftAttachment;
         }
 

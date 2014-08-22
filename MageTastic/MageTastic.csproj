@@ -56,6 +56,7 @@
     <Compile Include="Engines\MediaEngine.cs" />
     <Compile Include="Engines\NetworkEngine.cs" />
     <Compile Include="Engines\RenderEngine.cs" />
+    <Compile Include="Engines\UserInterfaceEngine.cs" />
     <Compile Include="Engines\WorldEngine.cs" />
     <Compile Include="Entities\Characters\Character.cs" />
     <Compile Include="Entities\Characters\CharacterAttachment.cs" />
@@ -91,7 +92,12 @@
     <Compile Include="GameState\GameObject.cs" />
     <Compile Include="GameState\GamePlay.cs" />
     <Compile Include="GameState\GameStateBase.cs" />
+    <Compile Include="Network\NetworkCommand.cs" />
+    <Compile Include="Network\INetworkConnection.cs" />
+    <Compile Include="Network\NetworkIdentification.cs" />
+    <Compile Include="Network\NetworkMessageBase.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="UI\ControlBase.cs" />
     <Compile Include="Utility\AnimationContainer.cs" />
     <Compile Include="Utility\Assets.cs" />
     <Compile Include="Utility\Camera.cs" />
