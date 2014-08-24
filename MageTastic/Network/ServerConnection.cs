@@ -23,6 +23,7 @@ namespace MageTastic.Network
 
         public ServerConnection(int port)
         {
+            ConnectedClients = new List<ServerClientConnection>();
             InCommands = new List<NetworkCommand>();
             OutCommands = new List<NetworkCommand>();
             Port = port;

@@ -28,6 +28,11 @@ namespace MageTastic.Engines
             Instance.Connection = new ServerConnection(37017);
         }
 
+        public static void ConnectTo(string hostName)
+        {
+            Instance.Connection = new ClientConnection(hostName, 37017);
+        }
+
         public static void NotifyEntity(EntityPayload message)
         {
             NetworkCommand command = new NetworkCommand(NetworkCommandDestination.Entity, message);

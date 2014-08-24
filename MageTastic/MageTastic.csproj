@@ -93,6 +93,7 @@
     <Compile Include="GameState\GameObject.cs" />
     <Compile Include="GameState\GamePlay.cs" />
     <Compile Include="GameState\GameStateBase.cs" />
+    <Compile Include="Network\ClientConnection.cs" />
     <Compile Include="Network\NetworkCommand.cs" />
     <Compile Include="Network\INetworkConnection.cs" />
     <Compile Include="Network\ServerConnection.cs" />

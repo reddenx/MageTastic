@@ -30,7 +30,9 @@ namespace MageTastic.GameState
             CurrentLevel.AddEntity(player);
 
             RenderEngine.SetCameraTarget(player);
+            
             NetworkEngine.StartHosting();
+            //NetworkEngine.ConnectTo("192.168.10.150");
         }
 
         public override void Update(GameTime gameTime)
