@@ -9,7 +9,7 @@ namespace MageTastic.Engines
     class NetworkEngine
     {
         private static NetworkEngine Instance;
-        private readonly INetworkConnection Connection;
+        private INetworkConnection Connection;
 
         private NetworkEngine()
         {
@@ -23,18 +23,14 @@ namespace MageTastic.Engines
             }
         }
 
-        public static void NotifyEntity(uint entityId, object message)
+        public static void StartHosting()
         {
-            throw new NotImplementedException();
+            Instance.Connection = new ServerConnection(37017);
+        }
 
-            //possible command types for entities
-            //state change
-            //position change
-            //attribute change
-
-            //build command
-            NetworkCommand command = null;
-
+        public static void NotifyEntity(EntityPayload message)
+        {
+            NetworkCommand command = new NetworkCommand(NetworkCommandDestination.Entity, message);
             Instance.Connection.QueueCommand(command);
         }
     }

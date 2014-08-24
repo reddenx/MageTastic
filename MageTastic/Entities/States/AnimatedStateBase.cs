@@ -36,6 +36,12 @@ namespace MageTastic.Entities.States
             CurrentDirection = Direction.Up;
         }
 
+        protected void ChangeAnimation(EntityState state)
+        {
+            Animation = new AnimationContainer(Context.AnimationSet[state]);
+
+        }
+
         public virtual void Update(GameTime gameTime)
         {
             Animation.Update(gameTime, CurrentDirection);

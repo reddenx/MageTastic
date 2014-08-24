@@ -52,7 +52,6 @@ namespace MageTastic.Entities.States.ProjectileStates
                     var characterCollider = collider as Character;
                     if (characterCollider.Team != Projectile.Source.Owner.Team)
                     {
-                        //TODO let one of the entities handle defending or attacking on this one
                         foreach (var effect in Projectile.Source.Effects)
                         {
                             effect.ApplyTo(characterCollider);

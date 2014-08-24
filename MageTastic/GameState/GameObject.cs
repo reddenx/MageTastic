@@ -63,6 +63,7 @@ namespace MageTastic.GameState
             RenderEngine.Instantiate(camera);
             InputEngine.Instantiate();
             WorldEngine.Instantiate();
+            NetworkEngine.Instantiate();
 
             base.Initialize();
         }

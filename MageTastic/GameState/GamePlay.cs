@@ -30,6 +30,7 @@ namespace MageTastic.GameState
             CurrentLevel.AddEntity(player);
 
             RenderEngine.SetCameraTarget(player);
+            NetworkEngine.StartHosting();
         }
 
         public override void Update(GameTime gameTime)

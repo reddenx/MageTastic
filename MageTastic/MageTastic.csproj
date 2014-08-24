@@ -86,6 +86,7 @@
     <Compile Include="Entities\States\CharacterStates\CharacterStateBase.cs" />
     <Compile Include="Entities\EntityFrame.cs" />
     <Compile Include="Entities\EntityStates.cs" />
+    <Compile Include="Entities\States\NetworkReceiverState.cs" />
     <Compile Include="Entities\States\ProjectileStates\ProjectileStateBase.cs" />
     <Compile Include="Entities\States\ProjectileStates\BlueOrbExplosionProto.cs" />
     <Compile Include="Entities\States\ProjectileStates\BlueOrbFlyingProto.cs" />
@@ -94,8 +95,7 @@
     <Compile Include="GameState\GameStateBase.cs" />
     <Compile Include="Network\NetworkCommand.cs" />
     <Compile Include="Network\INetworkConnection.cs" />
-    <Compile Include="Network\NetworkIdentification.cs" />
-    <Compile Include="Network\NetworkMessageBase.cs" />
+    <Compile Include="Network\ServerConnection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="UI\ControlBase.cs" />
     <Compile Include="Utility\AnimationContainer.cs" />

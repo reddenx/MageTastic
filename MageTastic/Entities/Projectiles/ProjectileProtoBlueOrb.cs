@@ -35,8 +35,6 @@ namespace MageTastic.Entities.Projectiles
         }
 
         public override void HandleCollision(Entity colliders)
-        {
-            //TODO do effect transfer here?
-        }
+        {  }
     }
 }
