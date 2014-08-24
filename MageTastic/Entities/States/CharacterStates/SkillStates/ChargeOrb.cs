@@ -39,5 +39,10 @@ namespace MageTastic.Entities.States.CharacterStates.SkillStates
 
             base.Update(gameTime);
         }
+
+        public override void HandleMovement(Vector2 movementVector)
+        {
+            Context.Position += movementVector * .4f;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -101,15 +102,24 @@ namespace MageTastic.Network
             var formatter = new BinaryFormatter();
             var netStream = connectionContext.ClientConnection.GetStream();
 
-            while (true)
+            try
             {
-                var command = formatter.Deserialize(netStream) as NetworkCommand;
-                lock (InCommands)
+                while (true)
                 {
-                    InCommands.Add(command);
-                }
+                    var command = formatter.Deserialize(netStream) as NetworkCommand;
+                    lock (InCommands)
+                    {
+                        InCommands.Add(command);
+                    }
 
-                EchoAll(command, connectionContext.UserId);
+                    EchoAll(command, connectionContext.UserId);
+                }
+            }
+            catch (IOException e)
+            {
+                //client closed
+                connectionContext.ClientConnection.Close();
+                ConnectedClients.Remove(connectionContext);
             }
         }
 

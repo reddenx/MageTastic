@@ -69,7 +69,7 @@ namespace MageTastic.World
 
             DetermineCollisions();
 
-            Director.Update(gameTime);
+            //Director.Update(gameTime);
         }
 
         private void DetermineCollisions()
