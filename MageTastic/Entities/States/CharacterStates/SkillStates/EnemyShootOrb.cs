@@ -40,13 +40,10 @@ namespace MageTastic.Entities.States.CharacterStates.SkillStates
 
             var flyTime = 900;
 
-            WorldEngine.AddEntityToWorld(new ProjectileProtoBlueOrb(
-                Assets.BlueMagicProjectileAnimationSet,
-                Assets.BlueMagicProjectile,
-                CurrentFrame.LeftAttach + Context.Position - Context.State.CurrentFrame.Origin,
-                direction,
-                flyTime,
-                SkillUsed));
+                WorldEngine.CreateProjectileProtoBlueOrd(CurrentFrame.LeftAttach + Context.Position - Context.State.CurrentFrame.Origin,
+                    direction, 
+                    flyTime,
+                    SkillUsed);
         }
 
         public override void HandleMovement(Vector2 movementVector)

@@ -38,10 +38,8 @@ namespace MageTastic.World
 
                 for (int i = 0; i < amountToSpawn; ++i)
                 {
-
                     var position = player.Position + new Vector2(Rand.Next(-200,200), Rand.Next(-200,200));
-
-                    WorldEngine.AddEntityToWorld(new ProtoEnemy(Assets.CharacterAnimationSet, Assets.PlayerKnight, position));
+                    WorldEngine.CreateEnemyProto(position);
                 }
             }
         }

@@ -96,6 +96,7 @@
     <Compile Include="Network\ClientConnection.cs" />
     <Compile Include="Network\NetworkCommand.cs" />
     <Compile Include="Network\INetworkConnection.cs" />
+    <Compile Include="Network\NoConnection.cs" />
     <Compile Include="Network\ServerConnection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="UI\ControlBase.cs" />

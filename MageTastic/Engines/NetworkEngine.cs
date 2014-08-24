@@ -32,6 +32,11 @@ namespace MageTastic.Engines
         {
             Instance.Connection = new ClientConnection(hostName, 37017);
         }
+        
+        public static void StartSinglePlayer()
+        {
+            Instance.Connection = new NoConnection();
+        }
 
         public static void NotifyEntity(EntityPayload message)
         {

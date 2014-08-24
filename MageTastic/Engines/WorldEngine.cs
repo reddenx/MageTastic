@@ -4,6 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MageTastic.Entities.Characters;
+using MageTastic.Entities.Characters.Players;
+using MageTastic.Entities.Characters.Enemies;
+using Microsoft.Xna.Framework;
+using MageTastic.Utility;
+using MageTastic.Entities.Projectiles;
+using MageTastic.Entities.Characters.Skills;
 
 namespace MageTastic.Engines
 {
@@ -35,7 +42,7 @@ namespace MageTastic.Engines
             Instance.CurrentLevel = level;
         }
 
-        public static void AddEntityToWorld(Entity entity)
+        private static void AddEntityToWorld(Entity entity)
         {
             Instance.CurrentLevel.AddEntity(entity);
         }
@@ -55,6 +62,32 @@ namespace MageTastic.Engines
         public static uint GetNextEntityId()
         {
             return Instance.ObjectIdCounter++;
+        }
+
+        //TODO create identification criteria, probably enum with parameters regarding level etc.
+        public static void CreateEnemyProto(Vector2 location)
+        {
+            var enemy = new ProtoEnemy(Assets.CharacterAnimationSet, Assets.PlayerKnight, location);
+            AddEntityToWorld(enemy);
+        }
+
+        //TODO this is proto code
+        public static PlayerProto CreatePlayerProto()
+        {
+            var player = new PlayerProto(new Vector2(2000));
+            AddEntityToWorld(player);
+            return player;
+        }
+
+        public static void CreateProjectileProtoBlueOrd(Vector2 location, Vector2 velocity, int timeToLive, SkillBase skillUsed)
+        {
+            var orb = new ProjectileProtoBlueOrb(
+            Assets.BlueMagicProjectileAnimationSet,
+            Assets.BlueMagicProjectile,
+            location,
+            velocity,
+            timeToLive,
+            skillUsed);
         }
     }
 }

@@ -26,12 +26,14 @@ namespace MageTastic.GameState
         public override void Initialize()
         {
             //TODO remove proto code
-            var player = new PlayerProto(new Vector2(2000));
-            CurrentLevel.AddEntity(player);
+
+            var player = WorldEngine.CreatePlayerProto();
 
             RenderEngine.SetCameraTarget(player);
-            
-            NetworkEngine.StartHosting();
+
+            //TODO somehow pivot off hosting
+            NetworkEngine.StartSinglePlayer();
+            //NetworkEngine.StartHosting();
             //NetworkEngine.ConnectTo("192.168.10.150");
         }
 
