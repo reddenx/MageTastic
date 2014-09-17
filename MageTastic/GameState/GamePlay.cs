@@ -40,6 +40,8 @@ namespace MageTastic.GameState
         public override void Update(GameTime gameTime)
         {
             CurrentLevel.Update(gameTime);
+            UserInterfaceEngine.Update(gameTime);
+            RenderEngine.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

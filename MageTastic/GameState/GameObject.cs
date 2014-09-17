@@ -35,14 +35,8 @@ namespace MageTastic.GameState
         protected override void Update(GameTime gameTime)
         {
             InputEngine.Update(gameTime);
-
             CurrentGameState.Update(gameTime);
-
-            if (InputEngine.IsKeyDown(Keys.Escape))
-            {
-                Exit();
-            }
-            RenderEngine.Update(gameTime);
+            
 
             base.Update(gameTime);
         }
@@ -64,6 +58,7 @@ namespace MageTastic.GameState
             InputEngine.Instantiate();
             WorldEngine.Instantiate();
             NetworkEngine.Instantiate();
+            UserInterfaceEngine.Initialize();
 
             base.Initialize();
         }
