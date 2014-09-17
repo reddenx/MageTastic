@@ -100,6 +100,7 @@
     <Compile Include="Network\ServerConnection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="UI\ControlBase.cs" />
+    <Compile Include="UI\MenuWindow.cs" />
     <Compile Include="Utility\AnimationContainer.cs" />
     <Compile Include="Utility\Assets.cs" />
     <Compile Include="Utility\Camera.cs" />

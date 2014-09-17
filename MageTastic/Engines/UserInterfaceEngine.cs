@@ -36,10 +36,20 @@ namespace MageTastic.Engines
         }
 
         public static void Update(GameTime gameTime)
-        { }
+        {
+            foreach (var control in Instance.Controls)
+            {
+                control.Update(gameTime);
+            }
+        }
 
         public static void Draw(SpriteBatch spriteBatch)
-        { }
+        {
+            foreach (var control in Instance.Controls)
+            {
+                control.Draw(spriteBatch);
+            }
+        }
 
         public static void RegisterControl(object control)
         {

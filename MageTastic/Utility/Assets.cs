@@ -25,6 +25,8 @@ namespace MageTastic.Utility
         public static Texture2D BlueMagicProjectile;
         public static Texture2D TileMapTexture;
         public static Texture2D HammerTexture;
+        public static Texture2D MenuBackground;
+
         public static Dictionary<EntityState, EntityFrame[][]> CharacterAnimationSet;
         public static Dictionary<EntityState, EntityFrame[][]> BlueMagicProjectileAnimationSet;
         public static Dictionary<EntityState, EntityFrame[][]> HammerAnimationSet;
@@ -63,6 +65,7 @@ namespace MageTastic.Utility
             BlueMagicProjectile = LoadTextureFallWithFallback("BlueMagicProjectile", content);
             TileMapTexture = LoadTextureFallWithFallback("OutdoorTileset", content);
             HammerTexture = LoadTextureFallWithFallback("Hammer", content);
+            MenuBackground = LoadTextureFallWithFallback("MenuBackground", content);
             
             LevelOneTileMap = ParsingUtils.GetLevelFromImage("Assets\\Island.png");
         }
@@ -78,6 +81,7 @@ namespace MageTastic.Utility
                 return DevTexture;
             }
         }
+
 
     }
 }

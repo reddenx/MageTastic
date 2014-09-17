@@ -56,6 +56,12 @@ namespace MageTastic.GameState
             CurrentLevel.Draw(spriteBatch);
 
             spriteBatch.End();
+
+            spriteBatch.Begin();
+
+            UserInterfaceEngine.Draw(spriteBatch);
+
+            spriteBatch.End();
         }
     }
 }

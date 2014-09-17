@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using MageTastic.Entities;
 using Microsoft.Xna.Framework;
+using MageTastic.Engines;
+using Microsoft.Xna.Framework.Input;
 
 namespace MageTastic.Utility
 {
@@ -22,14 +24,23 @@ namespace MageTastic.Utility
         {
             Target = null;
             ViewDimensions = screenDimensions;
-            Zoom = 6f;
+            Zoom = 6.0f;
         }
 
         public void Update(GameTime gameTime)
         {
+            if (InputEngine.WasKeyPressed(Keys.OemPlus))
+            {
+                Zoom = Zoom + 1 < 6 ? Zoom + 1 : 6;
+            }
+            else if (InputEngine.WasKeyPressed(Keys.OemMinus))
+            {
+                Zoom = Zoom - 1 > 1 ? Zoom - 1 : 1;
+            }
+
             if (Target != null)
             {
-                Position = -Target.Position*Zoom + new Vector2(ViewDimensions.X/2,ViewDimensions.Y/2) ;// new Vector2(Target.Position.X - ViewDimensions.X / 2, Target.Position.Y - ViewDimensions.Y / 2);
+                Position = -Target.Position * Zoom + new Vector2(ViewDimensions.X / 2, ViewDimensions.Y / 2);// new Vector2(Target.Position.X - ViewDimensions.X / 2, Target.Position.Y - ViewDimensions.Y / 2);
             }
         }
 

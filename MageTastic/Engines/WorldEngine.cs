@@ -88,6 +88,7 @@ namespace MageTastic.Engines
             velocity,
             timeToLive,
             skillUsed);
+            AddEntityToWorld(orb);
         }
     }
 }
