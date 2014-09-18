@@ -15,12 +15,12 @@ namespace MageTastic.UI
 
         public ScoreTicker()
         {
-            Position = new Vector2(200, 200);
+            Position = new Vector2(10, 10);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Assets.DevFont, WorldEngine.LevelDirector.Score.ToString(), Position, Color.Red, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+            spriteBatch.DrawString(Assets.DevFont, "Score: " + WorldEngine.LevelDirector.Score.ToString(), Position, Color.Red, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
         }
     }
 }

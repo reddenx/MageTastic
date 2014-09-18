@@ -21,7 +21,7 @@ namespace MageTastic.World
 
         public Director()
         {
-            CheckTheEquationTimer = new TickTimer(5000);
+            CheckTheEquationTimer = new TickTimer(3000);
             Rand = new Random();
             Score = 0;
         }
@@ -49,13 +49,12 @@ namespace MageTastic.World
 
         private int GetMaxEnemyAmountViaSinEquation(TimeSpan totalTime)
         {
-            return 5 + (1 * totalTime.Seconds / 3);
+            return (int)(-3 + (1 * totalTime.TotalSeconds / 3));
         }
 
         public void NotifyEnemyDeath(ProtoEnemy protoEnemy)
         {
             ++Score;
-            protoEnemy.RemoveFromWorld = true;
         }
     }
 }
