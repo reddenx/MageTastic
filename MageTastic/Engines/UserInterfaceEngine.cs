@@ -51,9 +51,9 @@ namespace MageTastic.Engines
             }
         }
 
-        public static void RegisterControl(object control)
+        public static void RegisterControl(ControlBase control)
         {
-
+            Instance.Controls.Add(control);
         }
     }
 }

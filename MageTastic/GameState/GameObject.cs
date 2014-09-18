@@ -83,6 +83,8 @@ namespace MageTastic.GameState
 
         public void ChangeGameState(GameStateBase newState)
         {
+            UserInterfaceEngine.Reinitialize();
+
             if (CurrentGameState != null)
             {
                 CurrentGameState.TearDown();

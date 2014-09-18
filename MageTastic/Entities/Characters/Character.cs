@@ -32,7 +32,7 @@ namespace MageTastic.Entities.Characters
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Assets.DevFont, Stats.Health.ToString(), Position, Color.Black);
+            spriteBatch.DrawString(Assets.DevFont, Stats.Health.ToString(), new Vector2(Position.X - 4, Position.Y - 9), Color.White, 0f, Vector2.Zero, .25f, SpriteEffects.None, 0f);
         }
 
         abstract public void OnDeath();

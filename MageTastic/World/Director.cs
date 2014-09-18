@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using MageTastic.Utility;
 using MageTastic.Engines;
 using MageTastic.Entities.Characters.Enemies;
+using MageTastic.UI;
 
 namespace MageTastic.World
 {
@@ -16,12 +17,13 @@ namespace MageTastic.World
     {
         private TickTimer CheckTheEquationTimer;
         private Random Rand;
-        public int Score = 0;
+        public int Score;
 
         public Director()
         {
             CheckTheEquationTimer = new TickTimer(5000);
             Rand = new Random();
+            Score = 0;
         }
 
         public void Update(GameTime gameTime)
@@ -31,7 +33,7 @@ namespace MageTastic.World
             {
                 CheckTheEquationTimer.Reset();
 
-                var shouldBeAlive = GetMaxEnemyAmountViaSinEquation();
+                var shouldBeAlive = GetMaxEnemyAmountViaSinEquation(gameTime.TotalGameTime);
                 var areActuallyAlive = WorldEngine.GetEnemyCount();
 
                 var amountToSpawn = shouldBeAlive - areActuallyAlive;
@@ -39,15 +41,15 @@ namespace MageTastic.World
 
                 for (int i = 0; i < amountToSpawn; ++i)
                 {
-                    var position = player.Position + new Vector2(Rand.Next(-200,200), Rand.Next(-200,200));
+                    var position = player.Position + new Vector2(Rand.Next(-200, 200), Rand.Next(-200, 200));
                     WorldEngine.CreateEnemyProto(position);
                 }
             }
         }
 
-        private int GetMaxEnemyAmountViaSinEquation()
+        private int GetMaxEnemyAmountViaSinEquation(TimeSpan totalTime)
         {
-            return 5;
+            return 5 + (1 * totalTime.Seconds / 3);
         }
 
         public void NotifyEnemyDeath(ProtoEnemy protoEnemy)

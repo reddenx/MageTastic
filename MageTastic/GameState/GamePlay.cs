@@ -10,6 +10,7 @@ using MageTastic.Entities;
 using MageTastic.Engines;
 using MageTastic.Entities.Characters.Players;
 using MageTastic.Entities.Characters.Enemies;
+using MageTastic.UI;
 
 namespace MageTastic.GameState
 {
@@ -33,6 +34,8 @@ namespace MageTastic.GameState
             NetworkEngine.StartSinglePlayer();
             //NetworkEngine.StartHosting();
             //NetworkEngine.ConnectTo("192.168.10.150");
+
+            UserInterfaceEngine.RegisterControl(new ScoreTicker());
         }
 
         public override void TearDown()
