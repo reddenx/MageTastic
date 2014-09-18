@@ -36,7 +36,11 @@ namespace MageTastic.GameState
         {
             InputEngine.Update(gameTime);
             CurrentGameState.Update(gameTime);
-            
+
+            if (InputEngine.WasKeyReleased(Keys.Escape))
+            {
+                GameStateEngine.StartGamePlay();
+            }
 
             base.Update(gameTime);
         }
@@ -59,6 +63,7 @@ namespace MageTastic.GameState
             WorldEngine.Instantiate();
             NetworkEngine.Instantiate();
             UserInterfaceEngine.Initialize();
+            GameStateEngine.Initialize(this);
 
             base.Initialize();
         }
@@ -68,13 +73,23 @@ namespace MageTastic.GameState
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Assets.LoadContent(Content);
 
-            CurrentGameState = new GamePlay();
-            CurrentGameState.Initialize();
+            GameStateEngine.StartGamePlay();
         }
 
         protected override void UnloadContent()
         {
             base.UnloadContent();
+        }
+
+        public void ChangeGameState(GameStateBase newState)
+        {
+            if (CurrentGameState != null)
+            {
+                CurrentGameState.TearDown();
+            }
+            
+            newState.Initialize();
+            CurrentGameState = newState;
         }
     }
 }

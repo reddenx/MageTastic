@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MageTastic.Engines;
+using MageTastic.Entities.Characters.Skills;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -9,27 +11,27 @@ namespace MageTastic.Entities.Projectiles
 {
     abstract class ProjectileBase : Entity
     {
+        public SkillBase Source;
         public Vector2 Velocity;
 
-        public ProjectileBase(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, bool isCollidable, Vector2 position, Vector2 velocity)
+        public ProjectileBase(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, bool isCollidable, Vector2 position, Vector2 velocity, SkillBase source)
             : base(animationSet, texture, isCollidable, position)
         {
             Velocity = velocity;
+            Source = source;
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            State.Update(gameTime);
         }
 
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException();
-        }
+        public override void HandleCollision(Entity colliders)
+        { }
 
-        public override void HandleCollision(Entity collider)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            RenderEngine.DrawProjectile(spriteBatch, this);
         }
     }
 }

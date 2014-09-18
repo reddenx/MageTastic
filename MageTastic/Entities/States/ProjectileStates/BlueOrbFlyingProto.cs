@@ -8,10 +8,9 @@ using System.Text;
 
 namespace MageTastic.Entities.States.ProjectileStates
 {
-    //TODO this is a proto, make into generic projectile
     class BlueOrbFlyingProto : ProjectileStateBase
     {
-        private ProjectileProtoBlueOrb Projectile { get { return (ProjectileProtoBlueOrb)Context; } }
+        private ProjectileBase Projectile { get { return (ProjectileBase)Context; } }
 
         private TickTimer ExplosionTimer;
 

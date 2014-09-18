@@ -52,6 +52,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Engines\GameStateEngine.cs" />
     <Compile Include="Engines\InputEngine.cs" />
     <Compile Include="Engines\MediaEngine.cs" />
     <Compile Include="Engines\NetworkEngine.cs" />

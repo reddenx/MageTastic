@@ -28,14 +28,16 @@ namespace MageTastic.Entities.Characters.Skills
         public static float GetModifierForResistance(int resistance)
         {
             var resMax = .9f;
-            var defScale = 1f;
+            var defScale = 6f;
 
-            var modifier = (1 - (1 - 1 / ((float)resistance / defScale + 1)) * resMax);//TODO algebra fail, simplify this
+            //simplifying, this is the raw equation
+            //var modifier = (1 - (1 - 1 / ((float)resistance / defScale + 1)) * resMax);
+            var modifier = 1 - (resMax * resistance) / (defScale + resistance);
 
             return modifier;
         }
 
-        public static float GetModifierForDamage(int skill)
+        public static float GetModifierForDamage(int relevantStat)
         {
             return 1f; //TODO skills: still undecided on this one, probably just gonna be linear
         }

@@ -43,7 +43,7 @@ namespace MageTastic.Network
 
         public void QueueCommand(NetworkCommand command)
         {
-            lock(OutCommands)
+            lock (OutCommands)
             {
                 OutCommands.Add(command);
             }
@@ -135,6 +135,18 @@ namespace MageTastic.Network
                     InCommands.Add(command);
                 }
             }
+        }
+
+        public void Close()
+        {
+            try { SendThread.Abort(); }
+            catch { }
+
+            try { ReceiveThread.Abort(); }
+            catch { }
+
+            try { Client.Close(); }
+            catch { }
         }
     }
 }

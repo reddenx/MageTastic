@@ -20,21 +20,25 @@ namespace MageTastic.GameState
         public GamePlay()
         {
             CurrentLevel = new Level();
-            WorldEngine.SetLevel(CurrentLevel);
         }
 
         public override void Initialize()
         {
-            //TODO remove proto code
-
+            WorldEngine.Instantiate();
+            WorldEngine.SetLevel(CurrentLevel);
             var player = WorldEngine.CreatePlayerProto();
-
             RenderEngine.SetCameraTarget(player);
 
             //TODO somehow pivot off hosting
             NetworkEngine.StartSinglePlayer();
             //NetworkEngine.StartHosting();
             //NetworkEngine.ConnectTo("192.168.10.150");
+        }
+
+        public override void TearDown()
+        {
+            WorldEngine.UnInstantiate();
+            NetworkEngine.CleanUp();
         }
 
         public override void Update(GameTime gameTime)

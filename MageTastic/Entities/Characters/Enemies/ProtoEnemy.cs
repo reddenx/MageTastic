@@ -82,6 +82,7 @@ namespace MageTastic.Entities.Characters.Enemies
 
         public override void OnDeath()
         {
+            WorldEngine.LevelDirector.NotifyEnemyDeath(this);
             State = new DeadEnemy(State as CharacterStateBase);
         }
     }

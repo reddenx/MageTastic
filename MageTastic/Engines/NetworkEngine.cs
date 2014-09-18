@@ -43,5 +43,10 @@ namespace MageTastic.Engines
             NetworkCommand command = new NetworkCommand(NetworkCommandDestination.Entity, message);
             Instance.Connection.QueueCommand(command);
         }
+
+        public static void CleanUp()
+        {
+            Instance.Connection.Close();
+        }
     }
 }

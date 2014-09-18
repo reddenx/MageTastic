@@ -84,7 +84,7 @@ namespace MageTastic.Network
             thread.IsBackground = true;
             var userId = UserIdCounter++;
             var clientConnection = new ServerClientConnection(thread, newClient, userId);
-            
+
             //TODO handshake logic here
             (new BinaryFormatter()).Serialize(newClient.GetStream(), userId);//sending userid right now, needs more info
             //
@@ -128,7 +128,7 @@ namespace MageTastic.Network
             //can't foreach a list that's liable to change when clients connect
             for (int i = 0; i < ConnectedClients.Count; ++i)
             {
-                if(ConnectedClients[i].UserId != userId)
+                if (ConnectedClients[i].UserId != userId)
                 {
                     SendMessage(ConnectedClients[i].ClientConnection.GetStream(), command);
                 }
@@ -153,6 +153,25 @@ namespace MageTastic.Network
                 ReceiveThread = recvThread;
                 ClientConnection = connection;
                 UserId = userId;
+            }
+        }
+
+
+        public void Close()
+        {
+            try { Listener.Stop(); }
+            catch { }
+
+            try { ConnectionThread.Abort(); }
+            catch { }
+
+            foreach (var connection in ConnectedClients)
+            {
+                try { connection.ReceiveThread.Abort(); }
+                catch { }
+
+                try { connection.ClientConnection.Close(); }
+                catch { }
             }
         }
     }

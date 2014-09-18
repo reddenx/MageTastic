@@ -60,7 +60,7 @@ namespace MageTastic.Entities.States.CharacterStates.SkillStates
             direction.Normalize();
             direction *= 1f;
 
-            var flyTime = Rand.Next(900, 1200);
+            var flyTime = Rand.Next(500, 800);
 
             WorldEngine.CreateProjectileProtoBlueOrd(CurrentFrame.LeftAttach + Context.Position - Context.State.CurrentFrame.Origin,
                 direction,

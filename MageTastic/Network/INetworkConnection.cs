@@ -10,5 +10,6 @@ namespace MageTastic.Network
         void QueueCommand(NetworkCommand command);
         NetworkCommand[] GetCommands();
         void Initialize(object identification);
+        void Close();
     }
 }

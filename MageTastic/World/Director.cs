@@ -16,6 +16,7 @@ namespace MageTastic.World
     {
         private TickTimer CheckTheEquationTimer;
         private Random Rand;
+        public int Score = 0;
 
         public Director()
         {
@@ -47,6 +48,12 @@ namespace MageTastic.World
         private int GetMaxEnemyAmountViaSinEquation()
         {
             return 5;
+        }
+
+        public void NotifyEnemyDeath(ProtoEnemy protoEnemy)
+        {
+            ++Score;
+            protoEnemy.RemoveFromWorld = true;
         }
     }
 }

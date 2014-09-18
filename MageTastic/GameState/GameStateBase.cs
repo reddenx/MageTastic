@@ -15,6 +15,7 @@ namespace MageTastic.GameState
         }
 
         abstract public void Initialize();
+        abstract public void TearDown();
         abstract public void Update(GameTime gameTime);
         abstract public void Draw(SpriteBatch spriteBatch);
     }

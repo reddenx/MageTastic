@@ -21,5 +21,8 @@ namespace MageTastic.Network
 
         public void Initialize(object identification)
         { }
+
+        public void Close()
+        { }
     }
 }

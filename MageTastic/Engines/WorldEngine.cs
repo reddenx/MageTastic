@@ -29,11 +29,21 @@ namespace MageTastic.Engines
             ObjectIdCounter = 0;
         }
 
+        public static Director LevelDirector { get { return Instance.CurrentLevel.Director; } }
+
         public static void Instantiate()
         {
             if (Instance == null)
             {
                 Instance = new WorldEngine();
+            }
+        }
+
+        public static void UnInstantiate()
+        {
+            if (Instance != null)
+            {
+                Instance = null;
             }
         }
 

@@ -127,7 +127,7 @@ namespace MageTastic.Utility.Parsing
             return GetLevelFromData(mapData);
         }
 
-        //TODO THIS IS A FUCKING WRECK, clean it up, get the data in a file, present algorithm better
+        //TODO THIS IS A FUCKING WRECK, was in a hurry to get shit done, clean it up, get the data in a file, present algorithm better
         public static Tile[,] GetLevelFromData(int[,] data)
         {
             //again too lazy today to make it a real parser, but here's where it would parse

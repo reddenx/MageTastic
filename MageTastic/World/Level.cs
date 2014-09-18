@@ -17,7 +17,7 @@ namespace MageTastic.World
         private readonly List<Entity> Entities;
         private readonly List<Entity> NewEntityAdditions;
         private readonly Tile[,] TileMap;
-        private readonly Director Director;
+        public readonly Director Director;
 
         public Level()
         {
@@ -69,7 +69,7 @@ namespace MageTastic.World
 
             DetermineCollisions();
 
-            //Director.Update(gameTime);
+            Director.Update(gameTime);
         }
 
         private void DetermineCollisions()
