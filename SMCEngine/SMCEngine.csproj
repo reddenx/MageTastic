@@ -38,16 +38,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\EntityEnums.cs" />
+    <Compile Include="Entities\EntityFrame.cs" />
     <Compile Include="Entities\PhysicsComponent.cs" />
-    <Compile Include="Entities\RenderComponent.cs" />
+    <Compile Include="Entities\AnimationComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MediaService.cs" />
     <Compile Include="Services\RenderService.cs" />
     <Compile Include="Services\WorldService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WorldComponents\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -9,6 +9,6 @@ namespace SMCEngine.Entities
     public class Entity
     {
         PhysicsComponent Physics;
-        RenderComponent Render;
+        AnimationComponent Render;
     }
 }

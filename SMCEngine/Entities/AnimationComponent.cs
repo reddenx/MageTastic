@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SMCEngine.Entities
 {
-    public class RenderComponent
+    public class AnimationComponent
     {
         public Texture2D Texture;
-        public Animation[] Animations;
+        public Dictionary<EntityActions, Dictionary<EntityDirections, EntityFrame[]>> AnimationDefinitions;
     }
 }
