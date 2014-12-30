@@ -42,6 +42,7 @@
     <Compile Include="Entities\EntityFrame.cs" />
     <Compile Include="Entities\PhysicsComponent.cs" />
     <Compile Include="Entities\AnimationComponent.cs" />
+    <Compile Include="Media\SoundEnums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MediaService.cs" />
     <Compile Include="Services\RenderService.cs" />
