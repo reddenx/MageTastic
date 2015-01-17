@@ -53,6 +53,8 @@ namespace MageTastic.Entities.Characters.Players
             State.HandleMovement(movementDirection);
 
             State.Update(gameTime);
+
+            base.Update(gameTime);
         }
 
         private Vector2 GetMovementDirectionFromKeyboard()

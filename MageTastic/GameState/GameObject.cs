@@ -17,7 +17,6 @@ namespace MageTastic.GameState
         private SpriteBatch SpriteBatch;
         private readonly Point ScreenDimensions = new Point(1024, 768);
         
-
         private GameStateBase CurrentGameState;
 
         public GameObject()

@@ -12,18 +12,22 @@ namespace MageTastic.Entities.Projectiles
     abstract class ProjectileBase : Entity
     {
         public SkillBase Source;
-        public Vector2 Velocity;
+        public Vector2 Direction;
 
         public ProjectileBase(Dictionary<EntityState, EntityFrame[][]> animationSet, Texture2D texture, bool isCollidable, Vector2 position, Vector2 velocity, SkillBase source)
             : base(animationSet, texture, isCollidable, position)
         {
             Velocity = velocity;
+            Direction = velocity;
             Source = source;
         }
 
         public override void Update(GameTime gameTime)
         {
             State.Update(gameTime);
+
+            Position += Velocity;
+            //base.Update(gameTime);
         }
 
         public override void HandleCollision(Entity colliders)

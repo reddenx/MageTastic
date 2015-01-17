@@ -23,6 +23,10 @@ namespace MageTastic.Entities
     {
         //data
         public Vector2 Position;
+        public Vector2 Acceleration;
+        public Vector2 Velocity;
+        private float Friction = .6f;
+
         public bool IsCollidable;
         public readonly Texture2D Texture;
         public readonly Dictionary<EntityState, EntityFrame[][]> AnimationSet;
@@ -47,7 +51,13 @@ namespace MageTastic.Entities
 
 
         //methods
-        abstract public void Update(GameTime gameTime);
+        public virtual void Update(GameTime gameTime)
+        {
+            Velocity += Acceleration;
+            Position += Velocity;
+            Velocity *= Friction;
+            Acceleration = Vector2.Zero;
+        }
         abstract public void Draw(SpriteBatch spriteBatch);
         abstract public void HandleCollision(Entity collider);
 
@@ -61,5 +71,6 @@ namespace MageTastic.Entities
 
             return translated;
         }
+
     }
 }

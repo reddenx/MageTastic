@@ -51,7 +51,7 @@ namespace MageTastic.Entities.States.CharacterStates.SkillStates
             movementVector.Normalize();
             movementVector /= 10f;
 
-            Context.Position += movementVector;
+            Context.Acceleration += movementVector;
             base.HandleMovement(movementVector);
         }
 

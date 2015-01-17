@@ -70,7 +70,7 @@ namespace MageTastic.Entities.States.CharacterStates.SkillStates
 
         public override void HandleMovement(Vector2 movementVector)
         {
-            Context.Position += movementVector * .6f;
+            Context.Acceleration += movementVector * .6f;
         }
     }
 }

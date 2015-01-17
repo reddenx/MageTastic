@@ -34,7 +34,7 @@ namespace MageTastic.Entities.States.CharacterStates.PlayerStates
             movementVector.Normalize();
             movementVector *= .75f;
 
-            Context.Position += movementVector;
+            Context.Acceleration += movementVector;
         }
     }
 }

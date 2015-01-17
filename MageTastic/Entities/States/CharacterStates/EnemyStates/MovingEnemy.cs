@@ -20,7 +20,7 @@ namespace MageTastic.Entities.States.CharacterStates.EnemyStates
 
         public override void HandleMovement(Vector2 movementVector)
         {
-            Context.Position += movementVector;
+            Context.Acceleration += movementVector;
         }
 
         public override void HandleAction(Characters.Skills.SkillBase actionInput)

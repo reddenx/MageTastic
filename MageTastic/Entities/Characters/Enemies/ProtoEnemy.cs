@@ -68,6 +68,8 @@ namespace MageTastic.Entities.Characters.Enemies
             }
 
             State.Update(gameTime);
+
+            base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

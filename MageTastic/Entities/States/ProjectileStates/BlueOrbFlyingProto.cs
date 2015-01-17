@@ -23,7 +23,7 @@ namespace MageTastic.Entities.States.ProjectileStates
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             base.Update(gameTime);
-            Projectile.Position += Projectile.Velocity;
+            Projectile.Acceleration += Projectile.Velocity;
 
             ExplosionTimer.Update(gameTime);
             if (ExplosionTimer.IsComplete)

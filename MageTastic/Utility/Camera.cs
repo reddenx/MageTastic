@@ -13,11 +13,11 @@ namespace MageTastic.Utility
     {
         private Vector2 Position;
         private Point ViewDimensions;
-        public float Zoom { get; private set; }
+        private float Zoom { get; set; }
         private Entity Target;
         public Matrix Transformation
         {
-            get { return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(new Vector3(Position, 0f)); }
+            get { return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(Position.X , Position.Y, 0f); }
         }
 
         public Camera(Point screenDimensions)
@@ -29,9 +29,9 @@ namespace MageTastic.Utility
 
         public void Update(GameTime gameTime)
         {
-            if (InputEngine.WasKeyPressed(Keys.OemPlus))
+            if (InputEngine.IsKeyDown(Keys.OemPlus))
             {
-                Zoom = Zoom + 1 < 6 ? Zoom + 1 : 6;
+                Zoom = Zoom + 0.1f < 6 ? Zoom + .01f : 6;
             }
             else if (InputEngine.WasKeyPressed(Keys.OemMinus))
             {
