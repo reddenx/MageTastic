@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DDAECD3C-4D6E-4684-AE63-8D398A84F750}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SinglePlayerEngine</RootNamespace>
     <AssemblyName>SinglePlayerEngine</AssemblyName>
@@ -31,14 +31,25 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\Animation.cs" />
+    <Compile Include="Entities\Brains\BrainComponent.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityAction.cs" />
-    <Compile Include="Entities\PhysicsComponent.cs" />
+    <Compile Include="Entities\Physics\PhysicsComponent.cs" />
     <Compile Include="GameContainer.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Services\ConsoleService.cs" />
+    <Compile Include="Services\ContentService.cs" />
+    <Compile Include="Services\RenderService.cs" />
+    <Compile Include="Services\UIService.cs" />
     <Compile Include="Services\WorldService.cs" />
+    <Compile Include="UI\Console\ConsoleEntry.cs" />
+    <Compile Include="UI\UIElement.cs" />
+    <Compile Include="Utility\Camera.cs" />
     <Compile Include="Utility\TickTimer.cs" />
   </ItemGroup>
   <ItemGroup>

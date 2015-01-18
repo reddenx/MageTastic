@@ -7,7 +7,24 @@ namespace SinglePlayerEngine.Entities
 {
     enum EntityAction
     {
-        Vitruvian = 0,
-        Moving = 1,
+        Vitruvian,
+
+        Idle,
+        Moving,
+        Dead,
+
+        Casting,
+        Channelling,
+        Recovering,
+
+        Stunned,
+    }
+
+    enum EntityFacingDirections
+    {
+        Up = 0,
+        Right = 1,
+        Down = 2,
+        Left = 3,
     }
 }
