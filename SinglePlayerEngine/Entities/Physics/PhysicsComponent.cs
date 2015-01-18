@@ -11,5 +11,7 @@ namespace SinglePlayerEngine.Entities.Physics
         public abstract bool IsCollidingWith(Entity entity);
         public abstract void Update(GameTime gameTime);
         public abstract bool IsInside(Rectangle rectangle);
+        
+        public abstract void ApplyForce(Vector2 force);
     }
 }

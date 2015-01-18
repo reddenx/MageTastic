@@ -39,6 +39,7 @@
     <Compile Include="Entities\Brains\BrainComponent.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityAction.cs" />
+    <Compile Include="Entities\Physics\MovingPhysicalEntity.cs" />
     <Compile Include="Entities\Physics\PhysicsComponent.cs" />
     <Compile Include="GameContainer.cs" />
     <Compile Include="Program.cs" />
