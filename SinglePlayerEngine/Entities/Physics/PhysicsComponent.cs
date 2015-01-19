@@ -8,10 +8,13 @@ namespace SinglePlayerEngine.Entities.Physics
 {
     abstract class PhysicsComponent
     {
+        public Vector2 Position { get; protected set; }
+
         public abstract bool IsCollidingWith(Entity entity);
         public abstract void Update(GameTime gameTime);
         public abstract bool IsInside(Rectangle rectangle);
-        
-        public abstract void ApplyForce(Vector2 force);
+        public abstract void ApplyImpulse(Vector2 force);
+        public abstract void SetMovementDirection(Vector2 direction);
+        public abstract Rectangle GetCollisionRectangle();
     }
 }

@@ -37,14 +37,19 @@
   <ItemGroup>
     <Compile Include="Entities\Animation.cs" />
     <Compile Include="Entities\Brains\BrainComponent.cs" />
+    <Compile Include="Entities\Brains\PlayerBrain.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityAction.cs" />
+    <Compile Include="Entities\EntityAnimationFrame.cs" />
     <Compile Include="Entities\Physics\MovingPhysicalEntity.cs" />
     <Compile Include="Entities\Physics\PhysicsComponent.cs" />
+    <Compile Include="Entities\States\EntityStateBase.cs" />
+    <Compile Include="Entities\States\PlayerIdleState.cs" />
     <Compile Include="GameContainer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Services\ConsoleService.cs" />
     <Compile Include="Services\ContentService.cs" />
+    <Compile Include="Services\InputService.cs" />
     <Compile Include="Services\RenderService.cs" />
     <Compile Include="Services\UIService.cs" />
     <Compile Include="Services\WorldService.cs" />

@@ -12,6 +12,7 @@ namespace SinglePlayerEngine.Services
     {
         private static WorldService Instance;
 
+        private List<Entity> NewEntities;
         private List<Entity> Entities;
 
         public static void Initialize()
@@ -22,6 +23,7 @@ namespace SinglePlayerEngine.Services
         private WorldService()
         {
             Entities = new List<Entity>();
+            NewEntities = new List<Entity>();
         }
 
         public static void Update(GameTime gameTime)
@@ -30,6 +32,9 @@ namespace SinglePlayerEngine.Services
             {
                 entity.Update(gameTime);
             }
+
+            Instance.Entities.AddRange(Instance.NewEntities);
+            Instance.NewEntities.Clear();
         }
 
         //TODO efficiency
@@ -40,11 +45,17 @@ namespace SinglePlayerEngine.Services
                 .ToArray();
         }
 
+        //TODO efficiency
         public static Entity[] GetDrawableEntitiesWithin(Rectangle rectangle)
         {
             return Instance.Entities
                 .Where(entity => entity.Physics.IsInside(rectangle))
                 .ToArray();
+        }
+
+        public static void AddEntity(Entity player)
+        {
+            Instance.NewEntities.Add(player);
         }
     }
 }

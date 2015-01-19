@@ -19,33 +19,86 @@ namespace SinglePlayerEngine.Entities.Physics
         private Vector2 CollisionBoxSize;
         private Vector2 Origin;
 
-        private Vector2 Position;
         private Vector2 Velocity;
-        private Vector2 Acceleration;
+        private Vector2 Impulse;
+        private Vector2 MovementDirection;
 
         private float Mu;
         private float MaxVelocity;
-        private float Force;
+        private float MoveForce;
+
+        public MovingPhysicalEntity(Vector2 position, Vector2 origin, Vector2 collisionBoxSize, float maxVelocity, float acceleration)
+        {
+            Position = position;
+            Origin = origin;
+            CollisionBoxSize = collisionBoxSize;
+
+            CalculateMovementNoMu(maxVelocity, acceleration);
+        }
 
         public override void Update(GameTime gameTime)
         {
-            var seconds = gameTime.ElapsedGameTime.TotalSeconds;
-            Acceleration = Vector2.Zero;
-        }
+            var seconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        public override bool IsCollidingWith(Entity entity)
-        {
-            return false;
+            var scaledAcceleration = MovementDirection * MoveForce;
+
+            Velocity = -Mu * (Velocity + scaledAcceleration) + (Velocity + scaledAcceleration);
+
+            Position += Velocity * (float)seconds;
         }
 
         public override bool IsInside(Rectangle rectangle)
         {
-            return true;
+            return GetCollisionRectangle().Intersects(rectangle);
         }
 
-        public override void ApplyForce(Vector2 force)
+        public override void ApplyImpulse(Vector2 force)
         {
-            //TODO THIS IS WHERE YOU LEFT OFF 20150117
+            Impulse += force;
+        }
+
+        public override void SetMovementDirection(Vector2 direction)
+        {
+            if (direction != Vector2.Zero)
+            {
+                direction.Normalize();
+            }
+            MovementDirection = direction;
+        }
+
+        public override bool IsCollidingWith(Entity entity)
+        {
+            return entity.Physics.GetCollisionRectangle().Intersects(GetCollisionRectangle());
+        }
+
+        public override Rectangle GetCollisionRectangle()
+        {
+            return new Rectangle(
+                (int)(Position.X - Origin.X),
+                (int)(Position.Y - Origin.Y),
+                (int)CollisionBoxSize.X,
+                (int)CollisionBoxSize.Y);
+        }
+
+        private void CalculateMovementNoMu(float maxVelocity, float force)
+        {
+            Mu = force / (maxVelocity + force);
+            MoveForce = force;
+            MaxVelocity = maxVelocity;
+        }
+
+        private void CalculateMovementNoF(float maxVelocity, float mu)
+        {
+            MoveForce = (-mu * maxVelocity) / (mu - 1);
+            Mu = mu;
+            MaxVelocity = maxVelocity;
+        }
+
+        private void CalculateMovementNoVm(float force, float friction)
+        {
+            MoveForce = force;
+            Mu = friction;
+            MaxVelocity = (force - force * friction) / friction;
         }
     }
 }

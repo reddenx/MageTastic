@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SinglePlayerEngine.Utility;
+using SinglePlayerEngine.Entities;
 
 namespace SinglePlayerEngine.Services
 {
@@ -43,9 +44,37 @@ namespace SinglePlayerEngine.Services
                 Instance.PlayerCamera.GetTransformMatrix());
 
             //TODO background tilesets
-            WorldService.GetDrawableEntitiesWithin(Instance.PlayerCamera.GetWorldlyViewport());
+            var entities = WorldService.GetDrawableEntitiesWithin(Instance.PlayerCamera.GetWorldlyViewport());
+            foreach(var entity in entities)
+            {
+                Instance.DrawEntity(entity);
+            }
 
             Instance.SpriteBatch.End();
+        }
+
+        private void DrawEntity(Entity entity)
+        {
+            var currentFrame = entity.CurrentState.GetCurrentFrame();
+
+            SpriteBatch.Draw(
+                entity.Texture, 
+                entity.Physics.Position, 
+                currentFrame.SourceRectangle, 
+                Color.White,
+                0f, 
+                currentFrame.Origin, 
+                new Vector2(1f),
+                SpriteEffects.None,
+                GetZScaleForEntityPosition(entity.Physics.Position));
+
+
+        }
+
+        private float GetZScaleForEntityPosition(Vector2 position)
+        {
+            //TODO for z ordering
+            return 0f;
         }
 
         public static void DrawUI()
