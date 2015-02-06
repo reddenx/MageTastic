@@ -46,6 +46,9 @@
     <Compile Include="Entities\States\EntityStateBase.cs" />
     <Compile Include="Entities\States\PlayerIdleState.cs" />
     <Compile Include="GameContainer.cs" />
+    <Compile Include="GameState\GameStateBase.cs" />
+    <Compile Include="GameState\LoadingState.cs" />
+    <Compile Include="GameState\MainMenuState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Services\ConsoleService.cs" />
     <Compile Include="Services\ContentService.cs" />
@@ -56,7 +59,9 @@
     <Compile Include="UI\Console\ConsoleEntry.cs" />
     <Compile Include="UI\UIElement.cs" />
     <Compile Include="Utility\Camera.cs" />
+    <Compile Include="Utility\ParsingUtils.cs" />
     <Compile Include="Utility\TickTimer.cs" />
+    <Compile Include="World\WorldDirector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.1.2.0, Culture=neutral, processorArchitecture=MSIL">

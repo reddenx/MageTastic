@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SinglePlayerEngine.Services;
+using SinglePlayerEngine.GameState;
 
 namespace SinglePlayerEngine
 {
@@ -13,7 +14,11 @@ namespace SinglePlayerEngine
     {
         private GraphicsDeviceManager GraphicsDeviceManager;
         private readonly Point ScreenDimensions = new Point(1024, 768);
-        
+
+        //gamestate nonsense
+        private GameStateBase CurrentGameState;
+        private LoadingState LoadingState;
+        private GameStateBase AsyncPendingGameState;
 
         public GameContainer()
             :base()
@@ -44,12 +49,17 @@ namespace SinglePlayerEngine
             RenderService.SetupRenderer(GraphicsDevice);
             ContentService.LoadContent(Content);
 
-            //TODO remove this code when done prototyping
-            var player = new SinglePlayerEngine.Entities.Entity(ContentService.BlueMagicProjectileTexture, ContentService.BlueMagicProjectileAnimations);
-            player.Brain = new SinglePlayerEngine.Entities.Brains.PlayerBrain(player);
-            player.Physics = new SinglePlayerEngine.Entities.Physics.MovingPhysicalEntity(Vector2.Zero, Vector2.Zero, new Vector2(8), 600f, 200f);
-            player.CurrentState = new SinglePlayerEngine.Entities.States.PlayerIdleState(player);
-            WorldService.AddEntity(player);
+            //build loading state and switch to it
+            LoadingState = new LoadingState(null);
+            LoadingState.StartupSynchronous(Content);
+            CurrentGameState = LoadingState;
+
+            var mainMenu = new MainMenuState(this);
+            mainMenu.StartupAsync(Content,
+                () =>
+                {
+                    CurrentGameState = mainMenu;
+                });
 
             base.LoadContent();
         }
@@ -63,21 +73,51 @@ namespace SinglePlayerEngine
         protected override void Update(GameTime gameTime)
         {
             InputService.Update(gameTime);
-            WorldService.Update(gameTime);
             ConsoleService.Update(gameTime);
             RenderService.Update(gameTime);
             UIService.Update(gameTime);
+
+            CurrentGameState.Update(gameTime);
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            CurrentGameState.Draw(gameTime);
 
-            RenderService.DrawWorld();
-            RenderService.DrawUI();
+            //GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            //RenderService.DrawWorld();
+            //RenderService.DrawUI();
 
             base.Draw(gameTime);
         }
+
+        public void ChangeState(GameStateBase newState)
+        {
+            if (AsyncPendingGameState != null)
+            {
+                throw new Exception("Gamestate transition error, the pending state is not done loading");
+            }
+
+            var oldState = CurrentGameState;
+            AsyncPendingGameState = newState;
+            CurrentGameState = LoadingState;
+            oldState.ShutdownAsync(Content, 
+                () => 
+                {
+                    AsyncPendingGameState.StartupAsync(Content, 
+                        () =>
+                        {
+                            CurrentGameState = AsyncPendingGameState;
+                            AsyncPendingGameState = null;
+                        });
+                });
+        }
+
+
+
+
     }
 }

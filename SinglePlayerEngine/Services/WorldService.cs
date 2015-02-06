@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using SinglePlayerEngine.Entities;
+using SinglePlayerEngine.World;
 
 namespace SinglePlayerEngine.Services
 {
@@ -12,6 +13,7 @@ namespace SinglePlayerEngine.Services
     {
         private static WorldService Instance;
 
+        private WorldDirector Director;
         private List<Entity> NewEntities;
         private List<Entity> Entities;
 
@@ -24,6 +26,7 @@ namespace SinglePlayerEngine.Services
         {
             Entities = new List<Entity>();
             NewEntities = new List<Entity>();
+            Director = new WorldDirector();
         }
 
         public static void Update(GameTime gameTime)

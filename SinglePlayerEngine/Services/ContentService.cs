@@ -15,8 +15,11 @@ namespace SinglePlayerEngine.Services
         private static ContentService Instance;
 
         public static Texture2D DevTexture;
+
         public static Texture2D BlueMagicProjectileTexture;
         public static Dictionary<EntityAction, Animation> BlueMagicProjectileAnimations;
+
+
 
         internal static void Initialize()
         {
@@ -73,6 +76,10 @@ namespace SinglePlayerEngine.Services
                     })
                 },
             };
+        }
+
+        public static void LoadMainMenuContent()
+        {
         }
     }
 }

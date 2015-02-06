@@ -14,6 +14,7 @@ namespace SinglePlayerEngine.Services
     {
         private static RenderService Instance;
 
+        private GraphicsDevice Graphics;
         private SpriteBatch SpriteBatch;
         private Camera PlayerCamera;
 
@@ -29,6 +30,7 @@ namespace SinglePlayerEngine.Services
 
         public static void SetupRenderer(GraphicsDevice device)
         {
+            Instance.Graphics = device;
             Instance.SpriteBatch = new SpriteBatch(device);
         }
 
@@ -84,6 +86,11 @@ namespace SinglePlayerEngine.Services
             UIService.Draw(Instance.SpriteBatch);
 
             Instance.SpriteBatch.End();
+        }
+
+        public static void Clear(Color color)
+        {
+            Instance.Graphics.Clear(color);
         }
 
         public static void Update(GameTime gameTime)
