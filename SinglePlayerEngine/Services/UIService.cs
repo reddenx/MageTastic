@@ -18,6 +18,7 @@ namespace SinglePlayerEngine.Services
         public static void Initialize()
         {
             Instance = new UIService();
+            ConsoleService.RecordInfo("UI Service Initialized");
         }
 
         private UIService()

@@ -1,25 +1,24 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using SinglePlayerEngine.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using SinglePlayerEngine.Services;
 
 namespace SinglePlayerEngine.GameState
 {
-    class LoadingState : GameStateBase
+    class GamePlayState : GameStateBase
     {
-        public LoadingState(GameContainer context)
-            : base(context)
+        public GamePlayState(GameStateBase previousState)
+            : base(previousState)
         { }
 
-        public void StartupSynchronous(ContentManager content) { Startup(content); }
         protected override void Startup(ContentManager content)
         {
-
+            Thread.Sleep(1500);
         }
 
         protected override void Shutdown(ContentManager content)
@@ -32,7 +31,7 @@ namespace SinglePlayerEngine.GameState
 
         public override void Draw(GameTime gameTime)
         {
-            RenderService.Clear(Color.Blue);
+            RenderService.Clear(Color.Red);
         }
     }
 }

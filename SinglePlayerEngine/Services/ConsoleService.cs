@@ -22,6 +22,7 @@ namespace SinglePlayerEngine.Services
         private ConsoleService()
         {
             Entries = new List<ConsoleEntry>();
+            Entries.Add(new ConsoleEntry("Console Startup", ConsoleEntryType.Info));
         }
 
         public static void Update(GameTime gameTime)
@@ -51,6 +52,17 @@ namespace SinglePlayerEngine.Services
                 recentEntries[i] = Instance.Entries[Instance.Entries.Count - 1 - i];
             }
             return recentEntries;
+        }
+
+        public static void Draw(GameTime gameTime)
+        {
+            //TODO efficiency
+            var recentEntries = Instance.Entries.Take(10);
+
+            foreach (var entry in recentEntries)
+            {
+                RenderService.DrawConsole(Instance.Entries.ToArray());
+            }
         }
     }
 }

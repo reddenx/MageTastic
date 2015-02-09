@@ -18,6 +18,7 @@ namespace SinglePlayerEngine.Services
         public static void Initialize()
         {
             Instance = new InputService();
+            ConsoleService.RecordInfo("Input Service Initialized");
         }
 
         public InputService()

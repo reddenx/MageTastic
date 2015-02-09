@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Input;
 
 namespace SinglePlayerEngine.GameState
 {
@@ -24,17 +25,19 @@ namespace SinglePlayerEngine.GameState
 
         protected override void Shutdown(ContentManager content)
         {
-            
         }
 
         public override void Update(GameTime gameTime)
         {
-            
+            if (InputService.IsKeyHeld(Keys.Enter))
+            {
+                ChangeState(new GamePlayState(this));
+            }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            RenderService.Clear(Color.Red);
+            RenderService.Clear(Color.CornflowerBlue);
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SinglePlayerEngine.Utility;
 using SinglePlayerEngine.Entities;
+using SinglePlayerEngine.UI.Console;
 
 namespace SinglePlayerEngine.Services
 {
@@ -21,6 +22,7 @@ namespace SinglePlayerEngine.Services
         public static void Initialize(Point screenSize)
         {
             Instance = new RenderService(screenSize);
+            ConsoleService.RecordInfo("Render Service Initialized");
         }
 
         private RenderService(Point screenSize)
@@ -47,7 +49,7 @@ namespace SinglePlayerEngine.Services
 
             //TODO background tilesets
             var entities = WorldService.GetDrawableEntitiesWithin(Instance.PlayerCamera.GetWorldlyViewport());
-            foreach(var entity in entities)
+            foreach (var entity in entities)
             {
                 Instance.DrawEntity(entity);
             }
@@ -60,12 +62,12 @@ namespace SinglePlayerEngine.Services
             var currentFrame = entity.CurrentState.GetCurrentFrame();
 
             SpriteBatch.Draw(
-                entity.Texture, 
-                entity.Physics.Position, 
-                currentFrame.SourceRectangle, 
+                entity.Texture,
+                entity.Physics.Position,
+                currentFrame.SourceRectangle,
                 Color.White,
-                0f, 
-                currentFrame.Origin, 
+                0f,
+                currentFrame.Origin,
                 new Vector2(1f),
                 SpriteEffects.None,
                 GetZScaleForEntityPosition(entity.Physics.Position));
@@ -82,7 +84,7 @@ namespace SinglePlayerEngine.Services
         public static void DrawUI()
         {
             Instance.SpriteBatch.Begin();
-            
+
             UIService.Draw(Instance.SpriteBatch);
 
             Instance.SpriteBatch.End();
@@ -96,6 +98,18 @@ namespace SinglePlayerEngine.Services
         public static void Update(GameTime gameTime)
         {
             Instance.PlayerCamera.Update(gameTime);
+        }
+
+        internal static void DrawConsole(ConsoleEntry[] entries)
+        {
+            Instance.SpriteBatch.Begin();
+
+            for(int i=0; i<entries.Length;++i)
+            {
+                Instance.SpriteBatch.DrawString(ContentService.DevFont, entries[i].CompleteMessageForConsole, new Vector2(0, i * 20f), Color.White);
+            }
+
+            Instance.SpriteBatch.End();
         }
     }
 }

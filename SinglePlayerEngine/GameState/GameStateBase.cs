@@ -25,6 +25,11 @@ namespace SinglePlayerEngine.GameState
             Context = previousState.Context;
         }
 
+        protected void ChangeState(GameStateBase newState)
+        {
+            Context.ChangeState(newState);
+        }
+
         abstract protected void Startup(ContentManager content);
         public void StartupAsync(ContentManager content, Action callback)
         {

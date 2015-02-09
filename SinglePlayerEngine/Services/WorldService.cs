@@ -20,6 +20,7 @@ namespace SinglePlayerEngine.Services
         public static void Initialize()
         {
             Instance = new WorldService();
+            ConsoleService.RecordInfo("World Service Initialized");
         }
 
         private WorldService()

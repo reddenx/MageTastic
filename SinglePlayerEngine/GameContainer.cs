@@ -23,6 +23,8 @@ namespace SinglePlayerEngine
         public GameContainer()
             :base()
         {
+            ConsoleService.Initialize();//very first thing
+
             GraphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Assets";
 
@@ -34,7 +36,6 @@ namespace SinglePlayerEngine
 
         protected override void Initialize()
         {
-            ConsoleService.Initialize();
             InputService.Initialize();
             WorldService.Initialize();
             ContentService.Initialize();
@@ -74,31 +75,24 @@ namespace SinglePlayerEngine
         {
             InputService.Update(gameTime);
             ConsoleService.Update(gameTime);
-            RenderService.Update(gameTime);
-            UIService.Update(gameTime);
-
             CurrentGameState.Update(gameTime);
-
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             CurrentGameState.Draw(gameTime);
-
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            //RenderService.DrawWorld();
-            //RenderService.DrawUI();
-
+            ConsoleService.Draw(gameTime);
             base.Draw(gameTime);
         }
 
         public void ChangeState(GameStateBase newState)
         {
+            ConsoleService.RecordInfo(string.Format("State change from {0} to {1}", CurrentGameState.GetType().ToString(), newState.GetType().ToString()));
+
             if (AsyncPendingGameState != null)
             {
-                throw new Exception("Gamestate transition error, the pending state is not done loading");
+                ConsoleService.RecordCriticalEvent("Gamestate transition error, the pending state is not done loading");
             }
 
             var oldState = CurrentGameState;
@@ -115,9 +109,5 @@ namespace SinglePlayerEngine
                         });
                 });
         }
-
-
-
-
     }
 }
