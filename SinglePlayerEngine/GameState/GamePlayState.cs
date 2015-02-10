@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 using SinglePlayerEngine.Services;
 
 namespace SinglePlayerEngine.GameState
@@ -18,7 +19,8 @@ namespace SinglePlayerEngine.GameState
 
         protected override void Startup(ContentManager content)
         {
-            Thread.Sleep(1500);
+            ContentService.LoadGameplayContent(content);
+            WorldService.StartupWorld();
         }
 
         protected override void Shutdown(ContentManager content)
@@ -27,11 +29,20 @@ namespace SinglePlayerEngine.GameState
 
         public override void Update(GameTime gameTime)
         {
+            WorldService.Update(gameTime);
+            UIService.Update(gameTime);
+
+            if (InputService.IsKeyHeld(Keys.Escape))
+            {
+                base.Exit();
+            }
         }
 
         public override void Draw(GameTime gameTime)
         {
             RenderService.Clear(Color.Red);
+
+            RenderService.DrawWorld();
         }
     }
 }

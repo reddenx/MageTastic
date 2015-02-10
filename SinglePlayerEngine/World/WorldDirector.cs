@@ -24,5 +24,8 @@ namespace SinglePlayerEngine.World
             player.CurrentState = new SinglePlayerEngine.Entities.States.PlayerIdleState(player);
             WorldService.AddEntity(player);
         }
+
+        public void Reset()
+        { }
     }
 }

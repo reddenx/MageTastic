@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SinglePlayerEngine.Services;
 using SinglePlayerEngine.GameState;
+using Microsoft.Xna.Framework.Input;
 
 namespace SinglePlayerEngine
 {
@@ -48,7 +49,7 @@ namespace SinglePlayerEngine
         protected override void LoadContent()
         {
             RenderService.SetupRenderer(GraphicsDevice);
-            ContentService.LoadContent(Content);
+            ContentService.LoadIntialContent(Content);
 
             //build loading state and switch to it
             LoadingState = new LoadingState(null);
@@ -88,7 +89,9 @@ namespace SinglePlayerEngine
 
         public void ChangeState(GameStateBase newState)
         {
-            ConsoleService.RecordInfo(string.Format("State change from {0} to {1}", CurrentGameState.GetType().ToString(), newState.GetType().ToString()));
+            ConsoleService.RecordInfo(string.Format("State change from {0} to {1}", 
+                CurrentGameState.GetType().Name,
+                newState.GetType().Name));
 
             if (AsyncPendingGameState != null)
             {

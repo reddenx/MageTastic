@@ -20,7 +20,6 @@ namespace SinglePlayerEngine.Services
         public static Texture2D BlueMagicProjectileTexture;
         public static Dictionary<EntityAction, Animation> BlueMagicProjectileAnimations;
 
-
         internal static void Initialize()
         {
             Instance = new ContentService();
@@ -30,22 +29,8 @@ namespace SinglePlayerEngine.Services
         private ContentService()
         { }
 
-        public static void LoadContent(ContentManager content)
-        {
-            Instance.LoadContentFiles(content);
-        }
-
         public static void UnloadContent(ContentManager Content)
         {
-        }
-
-        private void LoadContentFiles(ContentManager content)
-        {
-            DevTexture = content.Load<Texture2D>("Dev");
-            DevFont = content.Load<SpriteFont>("DevFont");
-
-            BlueMagicProjectileTexture = SafeLoadTexture("BlueMagicProjectile", content);
-            BlueMagicProjectileAnimations = SafeLoadAnimation("BlueMagicProjectileAnimations.txt");
         }
 
         private Texture2D SafeLoadTexture(string name, ContentManager content)
@@ -80,9 +65,21 @@ namespace SinglePlayerEngine.Services
             };
         }
 
-        public static void LoadMainMenuContent()
+        public static void LoadIntialContent(ContentManager content)
         {
+            DevTexture = content.Load<Texture2D>("Dev");
+            DevFont = content.Load<SpriteFont>("DevFont");
         }
 
+        public static void LoadMainMenuContent()
+        {
+            //TODO needs more assets
+        }
+
+        public static void LoadGameplayContent(ContentManager content)
+        {
+            BlueMagicProjectileTexture = Instance.SafeLoadTexture("BlueMagicProjectile", content);
+            BlueMagicProjectileAnimations = Instance.SafeLoadAnimation("BlueMagicProjectileAnimations.txt");
+        }
     }
 }

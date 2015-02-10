@@ -30,6 +30,14 @@ namespace SinglePlayerEngine.Services
             Director = new WorldDirector();
         }
 
+        public static void StartupWorld()
+        {
+            Instance.Entities.Clear();
+            Instance.NewEntities.Clear();
+            Instance.Director.Reset();
+            Instance.Director.PlacePlayerInWorld();
+        }
+
         public static void Update(GameTime gameTime)
         {
             foreach (var entity in Instance.Entities)

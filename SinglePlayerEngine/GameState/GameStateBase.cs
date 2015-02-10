@@ -71,5 +71,10 @@ namespace SinglePlayerEngine.GameState
                 Callback = callback;
             }
         }
+
+        protected void Exit()
+        {
+            Context.Exit();
+        }
     }
 }
