@@ -1,0 +1,77 @@
+Spell Slots and a modular spell system
+
+a spell can have 5 destinations when cast 0-4:
+0 is cast immediately and does not get stored
+1-4 are stored into their slots and stored for a duration that is lengthened by each cast
+1 is about 10-30 seconds and 4 is permanently stored (like a buff)
+
+a spell has costs associated at each state in its lifecycle
+spell lifecycle:
+
+e = event
+s = state
+
+casting, acts on the caster:
+-e cast start
+-s casting
+-e cast complete
+-e cast interrupted
+
+storage/activation, acts on the caster
+-e storage start
+-s storing
+-e storage complete
+-s stored
+-e storage removal
+
+-e activation start
+-s activating
+-e activation complete
+
+effects and interactions, acts on the target or location
+-e effect begin
+-s effecting
+-e effect end
+
+channelling and completion, acts on the caster
+-e channelling start
+-s channelling
+-e channelling end
+-e exhaustion start
+-s exhausted
+-e exhaustion end
+
+each state has a duration abd "other things?" defined by the spell, states have a tick event that spells can do things off of, example: a healing aura buff every 500 ticks or maybe synched with time, heals units within 5 meters of the target
+each event can have actions defined by the spell that act on the target
+
+* if there's begin and end events, maybe the state only exists as data and duration, with no attached data?
+
+spell slot interaction mechanics: recharge % is added before applying, possibly moving a character into the (-). when a negative recharge happens, all spell slots are purged and you become exhausted (half speed) for 3 seconds. 
+
+example:
+healing aura buff with emergency finish,
+description: costs 10 energy to start and can't move while casting; while in a slot, heals 3hp to allies within 3 meters every second, reserves 10 energy and reduces recharge by 20%; when expended from the slot, heals 20hp to allies in 8 meter range and reduces their damage by 20% for 8 seconds.
+input: cast "constant healing buff" into slot 4
+-e cast start, deduct 10 energy or fail, reduce speed by 50%, reduce energy recharge to 0
+-s casting 8 second duration
+-e cast complete, remove spell adjustments
+
+-e storage start (4), reduce speed by 100%
+-s storing, 1 second
+-e storage complete, remove deductions, reserve 10 energy, reduce energy recharge by 20%
+-s stored, every 1 second, target aura 3 meters to frendly entities, use effect A
+-e storage removal, remove spell adjustments
+
+-e activation start, reduce speed by 100%, target aura 8 meters to friendly entities, use effect B
+-s activating, 1 second
+-e activation end, remove spell adjustments
+
+effect A
+-e effect begin, add current 3hp
+-s effecting, 0 seconds
+-e effect end, n/a
+
+effect B
+-e effect begin, add curent 20hp, speed increased by 50%, damage reduced by 20%
+-s effecting, 8 seconds
+-e effect end, remove spell adjustments
