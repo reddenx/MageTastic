@@ -7,7 +7,7 @@ using OpenTK.Graphics.OpenGL4;
 
 namespace openTk.Graphics
 {
-    sealed class VertexBuffer<TVertex>
+    public sealed class VertexBuffer<TVertex>
         where TVertex : struct // vertices must be structs so we can copy them to GPU memory easily
     {
         private readonly int vertexSize;

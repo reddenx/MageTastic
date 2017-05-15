@@ -23,21 +23,7 @@ namespace openTk
         {
             Console.WriteLine("version: {0}", GL.GetString(StringName.Version));
         }
-
-        private void LoadTexture()
-        {
-            var textureId = -1;
-            GL.GenTextures(1, out textureId);
-            GL.BindTexture(TextureTarget.Texture2D, textureId);
-
-            var rawTexture = new System.Drawing.Bitmap("Dev.png");
-            var data = rawTexture.LockBits(new System.Drawing.Rectangle(0,0,rawTexture.Width, rawTexture.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
-            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, data.Width, data.Height, 0, PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
-
-            rawTexture.UnlockBits(data);
-        }
-
+        
         protected override void OnLoad(EventArgs e)
         {
             GL.Enable(EnableCap.Texture2D);
@@ -66,7 +52,7 @@ namespace openTk
             ProjectionMatrix = new Matrix4Uniform("projectionMatrix");
             ProjectionMatrix.Matrix = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver2, 16f / 9f, .1f, 100f);
 
-            LoadTexture();
+            PrototypingMethods.LoadTexture();
 
             base.OnLoad(e);
         }

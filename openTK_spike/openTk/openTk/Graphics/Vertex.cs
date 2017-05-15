@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace openTk.Graphics
 {
-    struct Vertex
+    public struct Vertex
     {
         public const int Size = (3 + 4) * 4;
 
