@@ -56,15 +56,73 @@ namespace openTk.Physics
             SE.Query(query, results);
         }
 
-        public bool Insert(GameObject obj)
+        public bool Insert(GameObject item)
         {
-            //TODO
-            throw new NotImplementedException();
+            var newItemBounds = GetCollisionRectangleFromGameObject(item);
+            //check if it fits in me
+            if (!Bounds.Contains(newItemBounds))
+            {
+                return false;
+            }
+
+            //if it does, check if I'm at my capacity, if not, add and finish, otherwise split and continue
+            if (Items.Count < MaxItems)
+            {
+                Items.Add(item);
+                return true;
+            }
+            else
+            {
+                Split();
+            }
+
+            //now that things are all prepped, lets put it in a child
+            if (NW.Insert(item))
+                return true;
+            if (NE.Insert(item))
+                return true;
+            if (SW.Insert(item))
+                return true;
+            if (SE.Insert(item))
+                return true;
+
+            //if we're here, it didn't fit in any children and has to go here :(
+            Items.Add(item);
+            return true;
         }
 
+        private void Split()
+        {
+            if (NW == null && Bounds.Width > 1 && Bounds.Height > 1)
+            {
+                var newWidth = Bounds.Width / 2;
+                var newHeight = Bounds.Height / 2;
+                NW = new QuadTree(MaxItems, new Rectangle(Bounds.X, Bounds.Y, newWidth, newHeight));
+                NE = new QuadTree(MaxItems, new Rectangle(Bounds.X + newWidth, Bounds.Y, newWidth, newHeight));
+                SW = new QuadTree(MaxItems, new Rectangle(Bounds.X, Bounds.Y + newHeight, newWidth, newHeight));
+                SE = new QuadTree(MaxItems, new Rectangle(Bounds.X + newWidth, Bounds.Y + newHeight, newWidth, newHeight));
+            }
+        }
 
+        public List<Rectangle> GetDebugRectangles()
+        {
+            var results = new List<Rectangle>();
+            GetDebugRectangles(results);
+            return results;
+        }
 
+        private void GetDebugRectangles(List<Rectangle> results)
+        {
+            results.Add(Bounds);
 
+            if (NW == null)
+                return;
+
+            NW.GetDebugRectangles(results);
+            NE.GetDebugRectangles(results);
+            SW.GetDebugRectangles(results);
+            SE.GetDebugRectangles(results);
+        }
 
         private Rectangle GetCollisionRectangleFromGameObject(GameObject obj)
         {

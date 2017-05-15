@@ -11,6 +11,6 @@ namespace openTk.Physics
     {
         private readonly List<GameObject> EnumerableObjects;
         private readonly Dictionary<Guid, GameObject> IndexableObjects;
-        private readonly QuadTree<GameObject> LocationableObjects;
+        private readonly QuadTree LocationableObjects;
     }
 }

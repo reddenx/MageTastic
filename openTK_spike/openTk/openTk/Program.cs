@@ -34,7 +34,7 @@ namespace openTk
             foreach (DisplayDevice device in DisplayDevice.AvailableDisplays)
 #pragma warning restore CS0618 // Type or member is obsolete
             {
-                Console.WriteLine($"primary: {device.IsPrimary}, bounds: {device.Bounds}, bits/pix: {device.BitsPerPixel}");
+                Console.WriteLine("primary: {0}, bounds: {1}, bits/pix: {2}", device.IsPrimary, device.Bounds, device.BitsPerPixel);
             }
         }
 
