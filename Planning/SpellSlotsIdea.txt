@@ -75,3 +75,47 @@ effect B
 -e effect begin, add curent 20hp, speed increased by 50%, damage reduced by 20%
 -s effecting, 8 seconds
 -e effect end, remove spell adjustments
+
+
+
+
+
+
+thoughts on resources.
+options:
+- no resource options
+- special resources
+  + opposing attunement system; as you use something from one category, each piece has a value associated with it that is multiplied to. this causes all beneficial parts of a spell to be weaker, and detrimental parts stronger, like longer cast times and shorter/weaker effects.  events/effects caused by spells add to your current state, this moves your attunement in a direction.  if you cast a spell it modifies your attunement towards that element: attunement += cost, other_attunement -= cost / element_counts; this distribues the attunment equally.  these shouldn't have limits and rewards a player for navigating their spell attunements for maximum effect, like a super overpowered buff by casting a shitload of fireballs beforehand.  attunement is taken into account at each event/effect time, so if a spell gets weaker the longer it goes on, like a heal aura will get weaker and weaker the longer it does it's thing.  some fun things that could happen are attempting to keep up 3 buffs of one type and constantly cast out a spell of another type.  effects are 100% effective at an attunement of 0, positive and negative attunement means multipliers on an exponential scale.  so if I cast a fire spell that costs 5 fire, I go from 0 -> 5, my fire detrimental effects are now 5^2 * balancer.
+    - light/dark
+    - triangle of unrelated elements
+      + arcane, dark, elemental
+        - arcane: time, healing, energy like things
+        - dark: summoning, debuffs, traps, evil ish things
+        - elemental: fire, water, earth, etc.
+    - quad of opposing elements?
+      + good & evil, fire & earth
+      + fire, water, earth, wind
+        - offense, heal, defense, buffs/utility
+- some sort of recharging resource
+  + no cooldowns
+  + simpler.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
