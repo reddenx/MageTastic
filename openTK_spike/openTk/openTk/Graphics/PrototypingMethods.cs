@@ -32,21 +32,19 @@ namespace openTk.Graphics
             GL.BindTexture(TextureTarget.Texture2D, 0);
         }
 
-        public static ProtoTexture LoadTexture3(string path, Rectangle[] sourceRectangles)
+        public static ProtoTexture LoadTexture3(string name, string path, Rectangle[] sourceRectangles)
         {
             var textureSource = new Bitmap(path);
             var texture = GL.GenTexture();
             GL.BindTexture(TextureTarget.Texture2D, texture);
 
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)All.Linear);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.Linear);
-
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, textureSource.Width, textureSource.Height, 0, PixelFormat.Bgra, PixelType.UnsignedByte, IntPtr.Zero);
             var lockedBits = textureSource.LockBits(new Rectangle(0, 0, textureSource.Width, textureSource.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
             GL.TexSubImage2D(TextureTarget.Texture2D, 0, 0, 0, textureSource.Width, textureSource.Height, PixelFormat.Bgra, PixelType.UnsignedByte, lockedBits.Scan0);
-
             textureSource.UnlockBits(lockedBits);
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)All.Nearest);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.Nearest);
 
             GL.BindTexture(TextureTarget.Texture2D, 0);
 
@@ -54,7 +52,13 @@ namespace openTk.Graphics
             var rawHeight = textureSource.Height;
             textureSource.Dispose();
 
-            var mapVertices = new List<float[]>();
+            var textureCoordinateBuffers = new List<int>();
+            if (sourceRectangles == null || sourceRectangles.Length == 0)
+            {
+                sourceRectangles = new[] { new Rectangle(0, 0, rawWidth, rawHeight) };
+            }
+
+
             foreach (var rect in sourceRectangles)
             {
                 var left = (float)rect.X / (float)rawWidth;
@@ -62,25 +66,28 @@ namespace openTk.Graphics
                 var top = 1 - ((float)rect.Y + (float)rect.Height) / (float)rawHeight;
                 var bottom = 1 - (float)rect.Y / (float)rawHeight;
 
-                mapVertices.Add(new float[]
+                var vertexMap = new float[]
                 {
                     left, top,
                     right, top,
                     right, bottom,
                     left, bottom
-                });
-            }
+                };
 
-            foreach (var rect in sourceRectangles)
-            {
                 var buffer = GL.GenBuffer();
                 GL.BindBuffer(BufferTarget.ArrayBuffer, buffer);
-                GL.BufferData(BufferTarget.ArrayBuffer, )
+                GL.BufferData(BufferTarget.ArrayBuffer, sizeof(float) * vertexMap.Length, vertexMap, BufferUsageHint.StaticDraw);
+                textureCoordinateBuffers.Add(buffer);
             }
+
 
             return new ProtoTexture()
             {
-                
+                Name = name,
+                TextureReference = texture,
+                sourceRectangles = sourceRectangles,
+                TextureMapping = textureCoordinateBuffers,
+                TextureBufferItemSize = 2,
             };
         }
 
@@ -131,7 +138,11 @@ namespace openTk.Graphics
 
     public class ProtoTexture
     {
-
+        public string Name;
+        public List<int> TextureMapping;
+        public int TextureReference;
+        public int TextureBufferItemSize;
+        public Rectangle[] sourceRectangles;
     }
 
     public class ProtoTextureMapBuffer

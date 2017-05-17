@@ -1,10 +1,10 @@
-﻿#version 130
+﻿#version 330
 
-in vec4 fColor; // must match name in vertex shader
+in vec2 fTexCoord;
+out vec4 outputColor;
 
-out vec4 fragColor; // first out variable is automatically written to the screen
+uniform sampler2D samplerTexture;
 
-void main()
-{
-    fragColor = fColor;
+void main() {
+    outputColor = texture(samplerTexture, vec2(fTexCoord.x, 1.0 - fTexCoord.x));
 }
