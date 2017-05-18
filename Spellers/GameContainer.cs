@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Spellers.GameServices;
 using Spellers.GameStates;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace Spellers
 
         public GameContainer()
         {
+            ConsoleService.Initialize();
+
             GraphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Assets";
 
@@ -39,9 +42,11 @@ namespace Spellers
             //set up first gamestate
             LoadingState = new LoadingGameState(ChangeGameStates);
             CurrentState = new MainMenuGameState(ChangeGameStates);
-            CurrentState.Startup();
 
             base.LoadContent();
+
+            CurrentState.Startup();
+            LoadingState.Startup();
         }
 
         protected override void Update(GameTime gameTime)

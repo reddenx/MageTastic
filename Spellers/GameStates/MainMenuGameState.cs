@@ -24,7 +24,7 @@ namespace Spellers.GameStates
 
         public override void Startup()
         {
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
