@@ -70,7 +70,7 @@ namespace MageTastic.GameState
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            Assets.LoadContent(Content);
+            Assets.LoadContent(Content, GraphicsDeviceManager);
 
             GameStateEngine.StartGamePlay();
         }

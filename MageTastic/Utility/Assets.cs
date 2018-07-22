@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,31 +51,34 @@ namespace MageTastic.Utility
             }
         }
 
-        public static void LoadContent(ContentManager content)
+        public static void LoadContent(ContentManager content, GraphicsDeviceManager gdm)
         {
-            Instance._LoadContent(content);
+            Instance._LoadContent(content, gdm);
         }
 
-        private void _LoadContent(ContentManager content)
+        private void _LoadContent(ContentManager content, GraphicsDeviceManager gdm)
         {
             //this one better load ^_^
-            DevTexture = content.Load<Texture2D>("Dev");
+            using (var fstream = new FileStream("./Assets/Dev.png", FileMode.Open))
+                DevTexture = Texture2D.FromStream(gdm.GraphicsDevice, fstream);
+
             DevFont = content.Load<SpriteFont>("arial");
 
-            PlayerKnight = LoadTextureFallWithFallback("Hero_1a", content);
-            BlueMagicProjectile = LoadTextureFallWithFallback("BlueMagicProjectile", content);
-            TileMapTexture = LoadTextureFallWithFallback("OutdoorTileset", content);
-            HammerTexture = LoadTextureFallWithFallback("Hammer", content);
-            MenuBackground = LoadTextureFallWithFallback("MenuBackground", content);
-            
+            PlayerKnight = LoadTextureFallWithFallback("./Assets/Hero_1a.png", gdm);
+            BlueMagicProjectile = LoadTextureFallWithFallback("./Assets/BlueMagicProjectile.png", gdm);
+            TileMapTexture = LoadTextureFallWithFallback("./Assets/OutdoorTileset.png", gdm);
+            HammerTexture = LoadTextureFallWithFallback("./Assets/Hammer.png", gdm);
+            MenuBackground = LoadTextureFallWithFallback("./Assets/MenuBackground.png", gdm);
+
             LevelOneTileMap = ParsingUtils.GetLevelFromImage("Assets\\Island.png");
         }
 
-        private Texture2D LoadTextureFallWithFallback(string textureName, ContentManager content)
+        private Texture2D LoadTextureFallWithFallback(string textureName, GraphicsDeviceManager gdm)
         {
             try
             {
-                return content.Load<Texture2D>(textureName);
+                using (var fstream = new FileStream(textureName, FileMode.Open))
+                    return Texture2D.FromStream(gdm.GraphicsDevice, fstream);
             }
             catch
             {
